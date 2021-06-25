@@ -1,4 +1,4 @@
-# Computer vision algorithm for path planning of an UAV Documentation
+# Computer Vision Algorithm for Path Planning of an UAV - Documentation
 
 This is my personal repo for the development of the documentation of my bachelor's degree's thesis project
 
