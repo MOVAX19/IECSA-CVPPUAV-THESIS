@@ -1,0 +1,90 @@
+\documentclass[oneside,numbers,spanish]{ezthesis}
+\usepackage[spanish]{babel}
+\usepackage{amssymb}
+\usepackage{here}
+\usepackage{graphics}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage{multirow} %unir renglones
+\usepackage[utf8]{inputenc}
+\usepackage{subfig}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{dsfont}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{multirow}
+\usepackage[Conny]{fncychap}
+\usepackage{xcolor}
+\usepackage{xpatch}
+\usepackage{merriweather} %% Option 'black' gives heavier bold face 
+\usepackage[T1]{fontenc}
+%\usepackage{fourier}
+%\usepackage[T1]{fontenc}
+\spanishdecimal{.}
+\renewcommand\spanishtablename{Tabla}
+\renewcommand\spanishlisttablename{\'{I}ndice de tablas}
+\graphicspath{ {Images/} }
+
+
+
+\newtheorem{definition}{Definici\'{o}n}[section]
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposici\'{o}n}
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{comment}[theorem]{Comentario}
+\newtheorem{remark}[theorem]{Nota}
+\definecolor{UNAQ}{HTML}{00335F}
+
+\renewcommand{\bibname}{\textbf{Referencias }}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\listtablename}{\'{I}ndice de tablas}
+\renewcommand{\max}{max}
+\renewcommand{\min}{min}
+
+\ChNameUpperCase 
+\ChTitleUpperCase 
+\ChNameVar{\centering\Huge\rm\bfseries\color{black}}
+\ChNumVar{\Huge\color{black}} 
+\ChRuleWidth{2pt} 
+\ChTitleVar{\centering\Huge\rm\color{black}}
+
+\xpatchcmd\DOCH
+  {\mghrulefill}{\color{UNAQ}\mghrulefill}
+  {}{\PatchFailed}
+\xpatchcmd\DOTI
+  {\mghrulefill}{\color{UNAQ}\mghrulefill}
+  {}{\PatchFailed}
+\xpatchcmd\DOTIS
+  {\mghrulefill}{\color{UNAQ}\mghrulefill}
+  {}{\PatchFailed}
+
+
+
+%\hyperlinking
+\begin{document}
+
+
+
+\includepdf[pages=1-1]{PORTADA.pdf}
+%\chapter{Conny}
+\include{Chapters/Resumen}
+\include{Chapters/glosario}
+\tableofcontents
+\listoffigures
+\listoftables
+\include{Chapters/intro}
+
+
+
+\bibliography{biblio}
+
+\appendix
+
+
+\end{document}
