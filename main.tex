@@ -21,14 +21,22 @@
 \usepackage[Conny]{fncychap}
 \usepackage{xcolor}
 \usepackage{xpatch}
-\usepackage{merriweather} %% Option 'black' gives heavier bold face 
+%\usepackage{merriweather} %% Option 'black' gives heavier bold face 
+\usepackage[rm]{roboto}
 \usepackage[T1]{fontenc}
-%\usepackage{fourier}
-%\usepackage[T1]{fontenc}
+\usepackage[sfdefault,scaled=.85]{FiraSans}
+\usepackage{newtxsf}
 \spanishdecimal{.}
 \renewcommand\spanishtablename{Tabla}
 \renewcommand\spanishlisttablename{\'{I}ndice de tablas}
+\renewcommand{\bibname}{\textbf{Referencias }}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\listtablename}{\'{I}ndice de tablas}
+\renewcommand{\max}{max}
+\renewcommand{\min}{min}
 \graphicspath{ {Images/} }
+%\definecolor{UNAQ}{HTML}{00335F}
+\definecolor{UNAQ}{HTML}{00437e}
 
 
 
@@ -39,14 +47,29 @@
 \newtheorem{corollary}[theorem]{Corolario}
 \newtheorem{comment}[theorem]{Comentario}
 \newtheorem{remark}[theorem]{Nota}
-\definecolor{UNAQ}{HTML}{00335F}
 
-\renewcommand{\bibname}{\textbf{Referencias }}
-\renewcommand{\tablename}{Tabla}
-\renewcommand{\listtablename}{\'{I}ndice de tablas}
-\renewcommand{\max}{max}
-\renewcommand{\min}{min}
+%Page header formatting
+\pagestyle{fancy}
+%Normal pages style
+\renewcommand{\headrule}{\hbox to\headwidth{%
+  \color{UNAQ}\leaders\hrule height \headrulewidth\hfill}}
+\setlength{\headheight}{25pt}
+\renewcommand{\headrulewidth}{1.5pt}
+\fancyhead[R]{}
+\fancyfoot[R]{\thepage}
 
+%Style for chapter headers
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\includegraphics[width=3.5cm]{UNAQClearBlue.pdf}}
+  \fancyfoot[R]{\textbf{\thepage}} 
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \setlength{\headheight}{56pt}
+}
+
+
+%Chapter title formatting
 \ChNameUpperCase 
 \ChTitleUpperCase 
 \ChNameVar{\centering\Huge\rm\bfseries\color{black}}
