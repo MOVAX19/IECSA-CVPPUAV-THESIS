@@ -38,6 +38,18 @@ A partir de todo lo anterior, en este trabajo se propone el diseño y la simulac
 
  \section{Contribuciones}
 
+ \section{Metodología}
+En primera instancia, se realiza una revisión bibliográfica intensiva acerca del estado del arte en cuanto a drones guiados por visión artificial, con el objetivo de visualizar las soluciones ya implementadas y conceptualizar la arquitectura necesaria para el sistema, sus componentes, los algoritmos de visión artificial empleados y la configuración necesaria para realizar la integración de todo lo anterior.
+
+Posteriormente, se define el esquema general del proyecto estableciendo el algoritmo de visión artificial a utilizar, el ambiente de simulación, la interfaz de comunicación para la adquisición de datos e imágenes provenientes de la simulación, el modelo de dron a simular y las librerías necesarias para integrar el ambiente de simulación.
+
+Establecido lo anterior, se implementa la arquitectura diseñada para el ambiente de simulación y se realizan vuelos manuales con el modelo de dron definido dentro de un circuito de prueba compuesto por compuertas. A partir de lo anterior, se extraen imágenes de la trayectoria de vuelo del dron por medio de una cámara simulada a bordo del modelo del dron; se utilizan las imágenes recopiladas para el entrenamiento del algoritmo de visión artificial.
+
+Cuando el algoritmo de visión artificial proporciona una identificación adecuada del tipo de compuerta utilizada, se implementa el algoritmo con base en la arquitectura definida. Se realiza la validación del algoritmo en otro circuito de vuelo; a lo largo de la simulación, existe un intercambio de información constante entre la simulación y el algoritmo de visión artificial, la simulación envía imágenes obtenidas durante el vuelo del dron y el algoritmo de visión artificial las analiza, de tal forma que es capaz de identificar el centro de la compuerta más cercana y devuelve comandos de vuelo a la simulación para definir una ruta de vuelo que permita que el dron sea capaz de volar a través de la compuerta identificada y finalizar el circuito de forma autónoma.
+
+Se reportan los resultados obtenidos y las posibles mejoras para el proyecto en su conjunto
+
+
 
 \section{Límites y alcances}
 
