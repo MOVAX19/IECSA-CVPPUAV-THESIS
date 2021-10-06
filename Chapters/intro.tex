@@ -1,5 +1,19 @@
 \chapter{Introducción}
 
+\section{Antecedente históricos}
+En diciembre de 1903, Orville Wright realizó el primer vuelo tripulado en la historia de la humanidad; no tuvo que pasar mucho tiempo para que el concepto de vehículo aéreo no tripulado tuviera un auge dentro de la comunidad científica y militar enfocada a la aviación.
+
+Siendo estrictamente correctos, si se toma en consideración los vehículos capaces de generar sustentación y/o que cuentan con un medio para su control, se puede decir que el primer UAV de la historia, fue diseñado por el inglés Douglas Archibald, al fijar un anemómetro en la cuerda de un cometa, con lo cual fue capaz de medir  la velocidad del viento a una altura de aproximadamente 1200 ft. Más tarde, en 1887, Archibald colocó cámaras en otra cometa, con lo cual desarrolló el primer UAV de reconocimiento, en el mundo.
+
+Hablando específicamente de quadrotores, en 1907, Louis Breguet, un pionero francés de la aviación, junto con su hermano Jacques y su profesor Charles Richet, hicieron una demostración del diseño de un giroplano de 4 rotores. Este prototipo contaba con un motor de 30 caballos de fuerza que alimentaba los 4 rotores, cada uno de los cuales tenía 4 propelas y lograba elevarse hasta un máximo de 0.6 m.
+
+Por otro lado, Etienne Oehmichen, un ingeniero francés, fue el primero en experimentar con diseños de aeronaves de ala rotativa. En 1920, construyó y probó 6 diseños, el segundo de ellos tenía 4 motores y 8 propelas; el cuerpo de esta aeronave estaba hecho de tubos de acero y tenía 4 extremidades, en las cuales se alojaban cada uno de sus rotores con 2 propelas cada uno. En su momento, este diseño destacaba en su estabilidad y controlabilidad, y para la mitad de 1920 ya había realizado más de mil vuelos de prueba. En 1924 estableció un récord mundial al volar una distancia horizontal de 360 m.
+
+Después, en 1922 el Dr. George de Bothezt e Ivan Jerome desarrollaron una aeronave con una estructura en forma de equis y rotores de 6 propelas en sus extremidades. Para 1923 habían realizado hasta 100 vuelos de prueba con una altura máxima de 5 m; sin embargo, este diseño era muy complejo y rígido, dificultando su movimiento lateral y suponiendo una  carga de trabajo, para alimentar la maquinaria, demasiado alta para el piloto.
+
+Además, en 1956 se desarrolló el Convertawings Model A, el cual fue pensado para formar parte de una línea de quadrotores grandes para uso civil y militar. Este prototipo contaba con dos motores, que controlan el giro de dos rotores, cada uno, a partir de lo anterior, el control de la aeronave se lograba al variar el empuje proporcionado por los rotores.
+
+
 \section{Motivación}
 
 
@@ -7,7 +21,8 @@
 \section{Objetivos}
 \subsection{Objetivo general}
 
-Proponer e implementar en simulación un algoritmo de detección de compuertas rectangulares mediante visión artificial para la definición y control de trayectoria de un cuadricóptero autónomo virtual.   
+Proponer e implementar en simulación un algoritmo de detección de compuertas rectangulares mediante visión artificial para la definición y control de trayectoria de un cuadricóptero autónomo virtual.  
+
 
 \subsection{Objetivo específicos}
 
@@ -36,9 +51,11 @@ A partir de todo lo anterior, en este trabajo se propone el diseño y la simulac
 \section{Planteamiento del problema}
 
 
- \section{Contribuciones}
+\section{Contribuciones}
 
- \section{Metodología}
+
+\section{Metodología}
+
 En primera instancia, se realiza una revisión bibliográfica intensiva acerca del estado del arte en cuanto a drones guiados por visión artificial, con el objetivo de visualizar las soluciones ya implementadas y conceptualizar la arquitectura necesaria para el sistema, sus componentes, los algoritmos de visión artificial empleados y la configuración necesaria para realizar la integración de todo lo anterior.
 
 Posteriormente, se define el esquema general del proyecto estableciendo el algoritmo de visión artificial a utilizar, el ambiente de simulación, la interfaz de comunicación para la adquisición de datos e imágenes provenientes de la simulación, el modelo de dron a simular y las librerías necesarias para integrar el ambiente de simulación.
@@ -54,10 +71,10 @@ Se reportan los resultados obtenidos y las posibles mejoras para el proyecto en 
 \section{Límites y alcances}
 
 \subsection{Alcances}
-
+Se implementa la arquitectura de red neuronal convolucional (RNC) DeepPilot, la cual toma capturas de la única cámara a bordo del drone y predice cuatro comandos de vuelo ($\phi,\theta\psi,h$) como salida. La RNC es entrenada a partir de un dataset proveído por los autores de la arquitectura y que contiene un gran conjunto de imágenes obtenidas a partir de simulación, las cuales están asociadas a ciertos comandos de vuelo.    La arquitectura es evaluada dentro de un entorno de simulación realizado en simulador Gazebo 11, en donde se virtualiza un circuito o pista de obstáculos compuesta por compuertas rectangulares de distintas alturas y color sólido, colocadas en distintas posiciones y orientaciones a lo largo del circuito. Se utiliza ROS2 para coordinar el envío de datos entre la simulación de Gazebo 11 y un nodo propio de ROS2 que contiene el algoritmo y arquitectura de DeepPilot. Además, se documenta de forma detallada la configuración realizada para la creación del ambiente de simulación, especificando la integración entre Gazebo, ROS y Python 3 para la evaluación de la arquitectura de DeepPilot. Por último, el proyecto en su conjunto se distribuye bajo el paradigma de código abierto.
 
 \subsection{Límites}
-
+A diferencia de las contribuciones y proyectos más populares dentro de la comunidad de las carreras de drones autónomos, en donde se utiliza ROS1 y Gazebo en su versión 9, en este proyecto se implementa la última versión estable de ROS2, Foxy, y la versión más actual del simulador Gazebo, al momento de escritura del trabajo, la versión 11. Por lo que es muy posible que algunos plugins tanto de ROS como de Gazebo, no se encuentren disponibles en estas versiones, lo que significa una limitante para la expansión a futuro del proyecto.  Por otro lado, dentro del ambiente de simulación, no se evalúan condiciones de vuelo poco ventajosas como viento en contra, lluvia o cualquier otra condición climática adversa. Además, la complejidad en el arreglo de compuertas para el circuito es baja y se asume que las compuertas se encuentran de forma paralela a la cámara del dron, y  es necesario que siempre exista una compuerta visible después de haber cruzado por otra.
 
 
 \section{Estructura de la tesis}
