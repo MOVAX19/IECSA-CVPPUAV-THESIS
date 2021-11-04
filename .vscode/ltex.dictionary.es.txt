@@ -68,3 +68,14 @@ Moon
 INAOE
 Gazebo
 Dummy8
+OpenCV
+Ardupilot
+gazebo_ros_pkg
+plugin
+framework
+ArduPilot
+SITL
+bash
+Pixhawk2
+Cube
+Simulator

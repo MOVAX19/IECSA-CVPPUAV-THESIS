@@ -21,7 +21,7 @@ La implementación del trabajo se realizó en una computadora portátil modelo \
     \label{tab:specs}
 \end{table}
 
-Con respecto al software, se trabajó con las versiones más recientes y técnicamente compatibles del software que integra el sistema. Para el ambiente de simulación se utilizó \textit{Gazebo 11} en conjunto con \textit{Ardupilot} y el modelo ofrecido para SITL de Arducopter; Para la gestión de procesos se utilizó \textit{ROS2 Foxy}. Además, la computadora en donde se implementó el sistema viene por defecto con el sistema operativo \textit{Windows 10}; sin embargo, para poder integrar el software mencionado es necesario utilizar \textit{Ubuntu 20.04.3 LTS (Focal Fossa)}, el cual fue instalado en un disco duro externo.
+Con respecto al software, se trabajó con las versiones más recientes y técnicamente compatibles del software que integra el sistema. Para el ambiente de simulación se utilizó \textit{Gazebo 11} en conjunto con \textit{ArduPilot} y el modelo ofrecido para SITL de Arducopter; Para la gestión de procesos se utilizó \textit{ROS2 Foxy}. Además, la computadora en donde se implementó el sistema viene por defecto con el sistema operativo \textit{Windows 10}; sin embargo, para poder integrar el software mencionado es necesario utilizar \textit{Ubuntu 20.04.3 LTS (Focal Fossa)}, el cual fue instalado en un disco duro externo.
 
 \subsection{Instalación de ROS 2}
 La siguiente serie de comandos fue extraída de la documentación oficial de ROS2 Foxy\cite{ros2} y se asume que la instalación se lleva a cabo en un sistema con Ubuntu 20.04 o sus derivados (\textit{Xubuntu, Kubuntu}, etc.). El proceso puede ser distinto para cualquier otra distribución de Linux o Sistema operativo no listado en la documentación oficial, o incluso puede que no sea compatible.
@@ -132,6 +132,253 @@ La siguiente serie de comandos fue extraída de la documentación oficial de ROS
 
 Hecho lo anterior, el sistema debe de contar con una instalación completa de ROS 2. Para comprobar que la instalación se llevó a cabo de manera correcta, se pueden ejecutar los nodos demo que vienen incluidos en la instalación de escritorio.
 
+\subsection{Instalación de OpenCV}
+
+Como prerrequisito para instalar la librería de OpenCv es indispensable contar con Python 3 y su gestor de paquetes \textit{pip}. 
+
+La gran mayoría de distribuciones basadas en Ubuntu vienen con Python 3 instalado por defecto. Se puede verificar su instalación con el siguiente comando:
+
+\begin{lstlisting}[language = bash]
+    $ python3 --version 
+\end{lstlisting}
+
+La expresión anterior debería de imprimir la versión de Python con la que cuenta el sistema, o en su defecto, si Python no se encuentra instalado, se muestra un mensaje que indica que el comando ingresado no existe. Si este último no es el caso, se puede proceder directamente a la instalación de pip.
+
+Instalación de Python 3:
+\begin{enumerate}
+    \item Actualizar la lista de repositorios del sistema
+
+    \begin{lstlisting}[language = bash]
+        $ sudo apt update && sudo apt -y full-upgrade
+    \end{lstlisting}
+    
+    \item Instalar Python 3 desde los repositorios oficiales de Ubuntu
+
+    \begin{lstlisting}[language = bash]
+        $ sudo apt install python 3
+    \end{lstlisting}
+
+    \item Verificar la instalación de Python
+
+    \begin{lstlisting}[language = bash]
+        $ python3 --version 
+    \end{lstlisting}
+
+    \item Instalar pip 
+
+    \begin{lstlisting}[language = bash]
+        $ sudo apt install python3-pip
+    \end{lstlisting}
+
+    \item Verificar instalación de pip
+
+    \begin{lstlisting}[language = bash]
+        $ pip3 --version
+    \end{lstlisting}
+\end{enumerate}
+
+Una vez que se cumplió con el prerequisito anterior, se puede proceder con la instalación de OpenCV. Cabe mencionar que se aconseja usar ambientes virtuales de Python por cada proyecto, esto con el objetivo de evitar que la instalación de paquetes afecte a otros proyectos desarrollados en el mismo sistema. Sin embargo, debido a que el sistema que se utilizado estuvo enfocado exclusivamente a la elaboración de este proyecto, en este trabajo se muestra la instalación global de la librería.
+
+La instalación de la librería es sencilla y se puede realizar con un único comando
+
+\begin{lstlisting}[language = bash]
+    $ pip install opencv-contrib-python
+\end{lstlisting}
+
+Para verificar la instalación de la librería, se puede ejecutar un pequeño script de Python desde la terminal.
+
+\begin{lstlisting}[language = bash]
+    $ python3
+    >>> import cv2
+    >>> cv2.__version__
+\end{lstlisting}
+
+Si la instalación se realizó de forma correcta, se debe de mostrar un mensaje donde se indica la versión de OpenCV que se instaló.
+
+\subsection{Instalación de Gazebo}
+
+Como se mencionó en el marco teórico, Gazebo es un ambiente de simulación independiente; es decir, no necesita de ROS o ArduPilot para funcionar. Sin embargo, para habilitar la comunicación entre los nodos de ROS y Gazebo, es recomendable realizar la instalación de Gazebo utilizando los repositorios ofrecidos por ROS 2.
+
+La instalación es sencilla y solo requiere ejecutar el siguiente comando:
+
+\begin{lstlisting}[language = bash]
+    $ sudo apt install ros-foxy-gazebo-ros-pkgs
+\end{lstlisting}
+
+Al ejecutar la instrucción anterior, se instala en conjunto Gazebo y el plugin para la comunicación entre ROS y Gazebo, \textit{gazebo\_ros\_pkg}. Además, el repositorio también incluye una serie de simulaciones de prueba para demostrar la manera en la que se lleva a cabo la comunicación entre una simulación en Gazebo y un nodo de ROS. 
+
+Por otro lado, cabe destacar que, de la misma forma en la cada versión de ROS es desarrollada para trabajar bajo una versión especifica de Ubuntu, cada versión de ROS también tiene asociada una única versión compatible de Gazebo; para el caso de ROS 2 Foxy, se trabaja con la última versión disponible, Gazebo 11.
+
+Una vez que termino la ejecución del comando anterior, se puede verificar que la instalación se realizó de manera correcta ejecutando Gazebo desde la terminal, tal que:
+
+\begin{lstlisting}[language = bash]
+    $ gazebo
+\end{lstlisting}
+
+La instrucción anterior ejecuta una instancia de Gazebo, en donde al no haber ingresado ningún parámetro para cargar un mundo o ambiente de simulación existente, se abre la pantalla inicial del simulador, con un mundo vacío.
+
+Por otro lado, con el fin de comprobar la comunicación entre ROS y Gazebo, se puede ejecutar una de las simulaciones demos incluidas en la instalación. Para ello se selecciona una de las simulaciones más básicas, en donde se tiene un modelo sencillo de un robot y por medio de un topic de ROS se envían instrucciones al robot para su desplazamiento.
+
+Para realizar lo anterior primero se debe de ejecutar una instancia de Gazebo con el mundo que se desea simular.
+
+\begin{lstlisting}[language = bash]
+    $ gazebo --verbose /opt/ros/foxy/share/gazebo_plugins/worlds/gazebo_ros_diff_drive_demo.world
+\end{lstlisting}
+
+Una vez iniciada la simulación, se pueden enviar instrucciones para el robot por medio de ROS, de la siguiente manera:
+
+\begin{lstlisting}[language = bash]
+    $ ros2 topic pub /demo/cmd_demo geometry_msgs/Twist '{linear: {x: 1.0}}' -1
+\end{lstlisting}
+
+Para consultar el resto de simulaciones de demostración incluida, se puede acceder al directorio donde se encuentra instalado ROS y listar los nombre de las simulaciones instaladas. Es posible abrir los archivos de simulación con un editor de texto y observar la documentación incluida en cada una, en donde se especifica el modo de uso de esta, la interfaz de mensajes que utilizar para la comunicación y la sintaxis necesaria para enviar mensajes utilizando ROS.
+
+\begin{lstlisting}[language = bash]
+    $ cd  /opt/ros/foxy/share/gazebo_plugins/worlds
+    $ ls 
+\end{lstlisting}
+
+\subsection{Instalación de ArduPilot SITL Simulator}
+Configurar y trabajar con el framework de simulación de ArduPilot es quizás la parte más compleja en cuanto al software utilizado para el sistema propuesto. Esto es debido a que la gran parte de la documentación oficial se encuentra desactualizada y los recursos que proveen información al respecto se encuentran dispersos por foros y otros tipos de documentación no oficial. 
+
+A continuación se muestra una síntesis del proceso de instalación y Configuración para ArduPilot SITL Simulator.
+
+\begin{enumerate}
+
+    \item Ubicarse en el directorio donde se desean almacenar los archivos del repositorio de ArduPilot y clonar el proyecto.
+
+    \begin{lstlisting}[language = bash]
+        $ git clone --recursive https://github.com/ArduPilot/arduPilot.git
+        $ cd arduPilot
+    \end{lstlisting}    
+
+    \item Instalar las herramientas necesarias para la compilación de ArduPilot
+    
+    \begin{lstlisting}[language = bash]
+        $ Tools/environment_install/install-prereqs-ubuntu.sh -y
+    \end{lstlisting}   
+
+    \item Recargar la ruta de trabajo para hacer uso de las herramientas
+    
+    \begin{lstlisting}[language = bash]
+        $ . ~/.profile
+    \end{lstlisting}   
+
+    \item Compilar el paquete seleccionando el modelo de computadora de vuelo y el vehículo deseado.
+
+    \begin{lstlisting}[language = bash]
+        $ ./waf configure --board CubeBlack
+        $ ./waf copter
+    \end{lstlisting}
+
+    Como comentario complementario, ArduPilot es compatible con varios modelos de computadoras de vuelo, en este caso se seleccionó una \textit{Pixhawk2 Cube}. Para obtener el listado de todas las computadoras de vuelo compatibles, se puede ejecutar la siguiente instrucción; de tal forma que es posible seleccionar cualquier otro modelo cambiando el nombre del parámetro por cualquier de la lista. 
+
+    \begin{lstlisting}[language = bash]
+        $ ./waf list_boards
+    \end{lstlisting}
+
+    De igual manera, el parámetro de vehículo puede ser modificado por el nombre de otro de los vehículos con los que trabaja ArduPilot, acorde a las necesidades del usuario. Para enlistar los vehículos disponibles se puede utilizar el comando \textit{"list"}.
+    
+    \begin{lstlisting}[language = bash]
+        $ ./waf list
+    \end{lstlisting}
+
+    \item Limpiar los archivos temporales generados tras la compilación.
+    
+    \begin{lstlisting}[language = bash]
+        $ ./waf clean
+    \end{lstlisting}
+
+    \item Añadir el API de ArduPilot al perfil de bash
+    
+    \begin{lstlisting}[language = bash]
+        $ echo "export PATH=$PATH:$HOME/ardupilot/Tools/autotest" >> ~/.bashrc
+        $ echo "export PATH=/usr/lib/ccache:$PATH" >> ~/.bashrc 
+    \end{lstlisting}  
+
+    \item Recargar el directorio de trabajo con el nuevo perfil de bash
+    
+    \begin{lstlisting}[language = bash]
+        $ . ~/.bashrc
+    \end{lstlisting}  
+
+\end{enumerate}
+
+Hecho lo anterior, se puede realizar la prueba del  framework de SITL, para ello es necesario dirigirse al directorio del vehículo instalado, dentro del directorio donde se descargó ArduPilot. 
+
+\begin{lstlisting}[language = bash]
+    $ cd ~/ardupilot/ArduCopter
+\end{lstlisting}  
+
+Una vez dentro del directorio, se puede ejecutar la simulación del vehículo con el siguiente comando:
+
+\begin{lstlisting}[language = bash]
+    $ sim_vehicle.py --map --console
+\end{lstlisting}  
+
+El comando anterior ejecuta una instancia del SITL de ArduPilot, de tal forma que se abren dos ventanas; un mapa una terminal.
+
+La terminal que se abre al momento de ejecutar la simulación corresponde a la consola de vuelo, en esta se indican algunos parámetros de interés del dron, tal como el nivel de la batería, el modo de vuelo, la altura a la que se encuentra, un historial de eventos, entre otras cosas.
+
+El mapa contiene un pequeño esquema de un cuadricóptero (vehículo compilado para este trabajo) y es donde se puede observar su desplazamiento con base en los comandos ingresados a partir de la terminal de ArduPilot.
+
+Es posible controlar el dron utilizando comandos ingresados desde la terminal o directamente utilizando el mapa. Es posible asignar waypoints y rutas de vuelo de forma gráfica dando clic derecho sobre el mapa.
+
+A continuación se adjuntan una serie de comandos ejemplo para realizar un desplazamiento básico, en donde el dron despega 10 m sobre el suelo y luego se mueve otros 20 m en el eje x.
+
+Se debe de ingresar lo siguiente en la terminal desde donde se inició la sesión de ArduPilot:
+
+\begin{lstlisting}[language = bash]
+    > mode guided     #cambia el modo de vuelo
+    > arm throttle    #arma los motores del dron
+    > takeoff 10      #Despegue
+    > position 20 0 0 #Desplazamiento en x
+\end{lstlisting}  
+
+Lo anterior corresponde a una demostración del uso básico del simulador standalone de ArduPilot; sin embargo, en este trabajo se propone Gazebo como ambiente de simulación, por lo que es necesario conectar el SITL de Ardupilot con este simulador. Lo anterior es posible realizando la instalación de un plugin específicamente diseñado con este propósito.
+
+Instalación de ArduPilot Gazebo plugin:
+
+\begin{enumerate}
+    \item Dirigirse al directorio deseado para descargar al proyecto y clonar el repositorio de Github
+
+    \begin{lstlisting}[language = bash]
+        $ git clone https://github.com/khancyr/ardupilot_gazebo
+        $ cd ardupilot_gazebo
+    \end{lstlisting}  
+
+    \item Compilar el proyecto
+
+    \begin{lstlisting}[language = bash]
+        $ mkdir build
+        $ cd build
+        $ cmake ..
+        $ make -j4
+        $ sudo make install
+    \end{lstlisting} 
+
+    \item Añadir la configuración de Gazebo al perfil de bash
+
+    \begin{lstlisting}[language = bash]
+        $ echo 'source /usr/share/gazebo/setup.sh' >> ~/.bashrc
+        $ echo 'export GAZEBO_MODEL_PATH=~/ardupilot_gazebo/models' >> ~/.bashrc
+        $ echo 'export GAZEBO_RESOURCE_PATH=~/ardupilot_gazebo/worlds:${GAZEBO_RESOURCE_PATH}' >> ~/.bashrc
+    \end{lstlisting} 
+
+    \item Recargar la ruta de trabajo con el nuevo perfil de bash
+    
+    \begin{lstlisting}[language = bash]
+        $ source ~/.bashrc
+    \end{lstlisting} 
+
+\end{enumerate}
+
+Con la configuración realizada hasta este punto, el sistema del usuario debe de ser capaz de iniciar una instancia de ArduPilot y conectarla con una simulación en Gazebo, de tal forma que los comando ingresados por medio de la terminal de ArduPilot tengan efecto dentro de la simulación de Gazebo. 
+
+La instalación del plugin incluye una simulación de demostración para verificar la comunicación entre ambos programas; sin embargo, al momento de la escritura de este trabajo existe un bug al trabajar la simulación de prueba con Gazebo 11. 
+La simulación de demostración integra un modelo 3D de un dron \text{Iris}, el cual viene configurado de tal manera que incluye la dinámica del dron y una serie de sensores simulados, entre ellos una cámara monocular; dicho lo anterior, el bug consiste en no permitir que se cargue el modelo del dron dentro de la simulación, por lo que la comunicación entre los programas no se puede llevar a cabo.
+
+Para corregir lo anterior, es necesario realizar una pequeña modificación dentro del archivo del mundo de la simulación
 
 \section{Sistema de Visión Artificial}
 
