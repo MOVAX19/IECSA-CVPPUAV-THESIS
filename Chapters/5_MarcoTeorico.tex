@@ -1,6 +1,74 @@
 \chapter{Marco Teórico}
 
 \section{Competencias de Drones Autónomos}
+
+Las carreras de drones se han convertido en un deporte bastante popular en los últimos años. Resulta increíble pensar que, haciendo uso de única y exclusivamente una cámara de vuelo, los pilotos son capaces de abstraer la información necesaria del ambiente para ejecutar maniobras de vuelo con alta precisión y agilidad. 
+
+A partir de lo anterior, la comunidad científica, en especial aquella dedicada al campo de la robótica, se ha visto bastante interesada en sustituir al piloto humano por meras unidades de cómputo y componentes electrónicos; es decir, hoy en día existe la tendencia a automatizar el vuelo de estos vehículos aéreos no tripulados,  de tal manera que, a partir de computadoras de placa única, sensores y algoritmos sofisticados de visión artificial, odometría y gestión y control de trayectoria de vuelo, se pueda obtener el mismo desempeño de vuelo que el otorgado por un piloto humano, e incluso, en algún punto, superarlo de manera significativa.
+
+Sumando a lo ya expresado, se han creado una serie de instituciones y eventos con el fin de financiar, potenciar y motivar el desarrollo tecnológico en este campo emergente, dando lugar a lo que se conoce como \textit{carreras de drones autónomos}. Dentro de los eventos o competencias más significativas se encuentra el \textit{Autonomous Drone Racing (ADR)}\cite{moon2017iros}, llevado a cabo cada año en la Conferencia Internacional de Sistemas y Robots Inteligentes (IROS, por sus siglas en inglés),  el \textit{AlphaPilot Challenge (APC)}\cite{foehn2020alphapilot}, organizado por Lockheed Martin en colaboración con Nvidia y la Liga de Carrera de Drones (DRL); y \textit{Game of Drones (GOD)}\cite{madaan2020airsim}, gestionada por Microsoft para la Conferencia Anual de Sistemas de Procesamiento de Información Neuronal (NeurIPS) de 2019.
+
+Los eventos anteriores representan un punto de encuentro a nivel internacional que ha permitido dirigir los esfuerzo e intelectos alrededor del mundo, a la propuesta de soluciones, ya sea de forma parcial o general, para el dilema ya expresado; y de hecho, es ahí en donde se ha presentado el estado del arte de este enfoque, pues se busca poner a prueba las implementaciones propuestas por los participantes en circuitos y retos con distintas características y composición. En las siguientes subsecciones se describe con más detalle las características, requisitos y relevancia de cada una de las competencias mencionadas.
+
+\subsection{Autonomous Drone Racing}
+A grandes rasgos, el ADR es una competencia que busca promover soluciones para vuelos autónomos ágiles en ambientes angostos de interiores. En el desafío se combinan técnicas y enfoques que buscan optimizar distintos parámetros de desempeño, como la generación de trayectoria de vuelo, el tiempo de recorrido de los circuitos, esquemas de control, detección de obstáculos, localización y mapeo, entre otros. 
+
+El ADR debuto como evento en la edición de 2016 del IROS, en Daejeon, Corea. A partir de entonces siguió teniendo presencia en 3 ediciones más del IROS; en 2017 con sede en Vancouver, Canadá, en 2018 en Madrid, España y en 2019 Macao, China. Cabe recalcar que el IROS per se sigue llevando a cabo, sin embargo, la última ADR tuvo lugar en la edición 2019 de este evento, posiblemente por las restricciones derivadas en 2020 por la pandemia provocada por el virus SARS-CoV-2; además, la edición 2021 del IROS, se llevó a cabo de forma virtual.  
+
+En general, en cada edición se propuso una única pista, dentro de una zona techada, con 5 pruebas de vuelo para los equipos participantes; velocidad de vuelo en línea recta a través de una serie de compuertas incompleta, vuelo en curva cerrada, recorrido de un circuito en zigzag, recorrido de un circuito en espiral y a través de compuertas cerradas y vuelo por un corredor con obstáculos dinámicos. 
+
+En la edición de 2016, las compuertas fueron identificadas con un número embebido en un código QR, para facilitar su localización. El tamaño de los drones se limitó a un volumen máximo de  1 m x 1 m x 1 m; a los equipos se les compartieron detalles estructurales sobre el circuito antes de la competencia, por lo que les era posible generar mapas les pudieran auxiliar en la navegación del dron. Además, se les permitió el uso de cualquier tipo de sensor, siempre y cuando este estuviera montado en el chasis del vehículo; se utilizaron distintos tipos de sensores para su participación, incluyendo lidares, láseres, radares y sensores ultrasónicos.
+
+En cada edición del ADR, las compuertas utilizadas para delimitar el circuito han conservado un característico color naranja; en cada evento los circuitos cumplieron con los requerimientos y pruebas mencionadas anterior mente, excepto en la edición 2019 en donde el circuito estuvo compuesto por dos grupos de compuertas LED, alfombras con patrones y luces controladas; además, el tamaño de este circuito fue reducido para producir una pista mucho más angosta, con el objetivo de incrementar la dificultad en el desafió \cite{rojas2021board}.   
+
+Para cada equipo, la competencia comenzaba con el despegue del dron de forma manual, este era posicionado en un punto de inicio y en cuanto se diera la señal, los equipos cedían el control del dron a su sistema de piloto automático; es decir, se tenía que suspenderse toda clase de interacción humana con el sistema de vuelo del dron, y permitir que navegara de forma autónoma hasta completar el circuito. 
+
+\subsection{AlphaPilot Challenge}
+Como se mencionó, el APC es otra competencia enfocada en las carreras de drones autónomos, fue presentado como un reto de innovación con un gran premio de \$1 millón de dólares para el equipo ganador; la iniciativa fue creada y lanzada al público por Lockheed Martin en conjunto con La Liga de Carrera de drones, en 2019. El objetivo del desafío fue desarrollar un dron completamente autónomo que pudiera navegar por un circuito de vuelo utilizando visión por computadora; a diferencia de otras competencias, el APC no solo buscaba poner a prueba la capacidad de navegación de los sistemas, sino que, se buscaba explotar por completo los sistemas de vuelo, de tal forma que se buscó evaluar también la velocidad de vuelo y agilidad de las maniobras en una pista  más grande y compleja en comparación con la de ADR. 
+
+Entonces, en el APC se buscó implementar soluciones más complejas que permitieran percibir el ambiente del dron por medio del dron y que los sistemas de control de vuelo fueran capaces de llevar al límite la velocidad de navegación de este; el objetivo era claro, se buscaba ampliar el estado del arte y desarrollar implementaciones que pudieran competir con el desempeño de los mejores pilotos humanos. 
+
+Más de 400 equipos participaron en la etapa de selección de esta primera edición del APC, y solamente los mejores 9 equipos clasificaron para poder participar en la competencia. La segunda fase del reto consistió en 3 carreras de clasificación, de donde se seleccionaron a 6 equipos finalistas. La etapa final de la competencia se disputó con un único circuito, donde los equipos compitieron por llevarse el gran premio de \$1 millón de dólares. Los ganadores de cada etapa y carrera de selección fueron filtrados a partir del tiempo que les tomó completar los circuitos; cada participante contó con 3 intentos para completar los circuitos tan rápido como les fuese posible y sin ningún otro competidor o adversario en la pista.
+
+En cada carrera, los drones empezaban en un podio desde donde tenían que despegar y navegar por una secuencia de compuertas con formar distintas y en un orden predefinido. A diferencia del ADR, a los equipos del APC solo seles informo de la estructura de la pista momentos antes de competir; es decir, no podían hacer uso de un mapa detallado para definir la trayectoria de vuelo que tenía que seguir su dron, sino que, tenía que implementar soluciones que se pudieran adaptar en tiempo real a la posición de las compuertas. Se había estimado una longitud de aproximadamente 300 m para cada pista, sin embargo, debido a dificultades técnicas, la pista de mayor longitud fue la de la carrera final, con una longitud aproximada de 74 m\cite{foehn2020alphapilot}.   
+
+Por último, las características del dron utilizado fueron estandarizadas, por lo que a cada equipo se les otorgó el mismo modelo de dron. Además, a todos los equipos se les facilitó una computadora de vuelo \textit{NVIDIA Jetson Xavier}, para la interfaz con los sensores y actuadores de navegación y también fungió como la unidad de procesamiento para llevar a cabo el vuelo autónomo. El arreglo de sensores a bordo de dron se conformó por un par de cámaras estero con  vista frontal a $30^\circ$, una unidad de medición inercial (IMU), un telémetro láser (LRF); la tabla 1 muestra las especificaciones técnicas de los sensores utilizados. Por último, los drones también estaban equipados con un controlador de vuelo encargado de controlar el empuje y la velocidad angular.
+
+\begin{table}
+    \centering
+    \begin{tabular}{llll}
+        \hline
+        Sensor & Modelo & Frecuencia & Detalles\\
+        \hline
+        Cámara & Leopard Imaging IMX 264 & $60 Hz$ & resolución de 1200 x 720\\
+        IMU & Bosch BM1088 & $430 Hz$ & rango: $\pm 24 \text{ g}$, $\pm 34.5 \text{rad/s}$\\
+         & & & resolución: $7e^{-4}\text{g, } 1e^{-3}\text{rads/s}$\\
+        LRF & Garmin LIDAR-Lite v3 & $120 Hz$ & rango: $1-40$ m\\
+        & & & resolución: $0.01 \text{ m}$\\
+        \hline
+    \end{tabular}
+    \label{tab:sensors}
+    \caption{Especificaciones de sensores utilizados en el APC \cite{foehn2020alphapilot}}
+\end{table}
+
+\subsection{Game of Drones}
+En la tercera edición de la Conferencia Anual de Sistemas de Procesamiento de Información Neuronal (NeurIPS), en 2019, el equipo de desarrollo de AirSim\cite{foehn2020alphapilot} en conjunto con la Universidad de Stanford y la Universidad de Zúrich buscaron fomentar el avance de las tecnologías utilizadas den las carreras de drones, gestionando la competencia Game of Drones.
+
+De manera similar a las competencias anteriores, el GOD buscó explotar el potencial de los algoritmos de machine learning y visión por computadora, junto con los avances en cuestión de técnicas de planificación de trayectoria, control y estimación de estado de quadrotores; sin embargo, a diferencia de los otros eventos, el GOD se basó completamente en la utilización de un simulador de vuelo con gráficas foto-realistas para la implementación de las propuestas desarrolladas por los equipos. 
+
+El simulador utilizado para la competencia  fue Microsoft AirSim\cite{airsim2017fsr}, el cual fue desarrollado con el objetivo de hacer más accesible el ámbito de las carreras de drones para ingenieros e investigadores, que tiene un conocimiento bastante amplio sobre algoritmos de machine learning e inteligencia artificial, pero que quizás no esten tan familiarizados con el hardware utilizado por estos sistemas de robótica. AirSim se define como un ambiente de simulación para multi-rotores, que integra un motor de físicas ligero, controlador de vuelo, sensores inerciales, y gracias al uso del motor gráfico Unreal Engine (UE), cuenta con un ambiente con gráficos foto-realistas. Además, también ofrece una API (Application Programming Interface) que permite interactuar y comunicarse con los algoritmos de machine learning, y también provee datos sobre el progreso del recorrido, el desempeño del dron y la habilidad de imponer reglas o normas para la carrera, asociadas a infracciones por colisiones y descalificaciones dentro de la competencia.
+
+La competencia se enfocó en control y planificación de trayectoria, visión artificial y evasión de obstáculos (otro dron oponente). Lo anterior se llevó a cabo en tres niveles con base en el enfoque: 
+
+\textbf{Nivel 1} - Planificación de trayectoria: cada circuito estuvo limitado a dos drones a la vez, en donde uno era el perteneciente al equipo participante y el otro era un dron oponente implementado por el staff de Microsoft. El objetivo fue atravesar todas las compuertas en el menor tiempo posible, evitando colisionar con el dron oponente. La posición de las compuertas y de ambos drones fue proveída a través de la API del simulador. El dron oponente contaba con un algoritmo de trayectoria óptima y volaba con una serie de waypoints generados al azar para cruzar por la sección transversal de cada compuerta.
+
+\textbf{Nivel 2} - Percepción: en esta modalidad, la posición de las compuertas contenía ruido, no había dron oponente y la siguiente compuerta a cruzar no siempre se encontraba a la vista; la posición proveída por la API ayudaría a dirigir al dron en la dirección correcta, sin embargo, el vehículo tenía que valerse de su algoritmo de visión artificial para completar el circuito de manera satisfactoria.
+
+\textbf{Nivel 3} - Percepción y planificación de trayectoria: esta modalidad resulto de la combinación de los dos niveles anteriores. A los participantes se les preveía con datos sobre la posición de las compuertas y había un dron adversario; el objetivo era completar el circuito evitando cualquier colisión con el adversario.
+
+Por último, la competencia consistió de dos etapas, una de clasificación y una ronda para los finalistas. Se registraron 117 participantes, pero solamente 16 calificaron para la competencia.
+
+
  
 \section{Robot Operating System (ROS)}
 
@@ -9,10 +77,12 @@ De acuerdo con su sitio oficial, ROS (del inglés, Robot Operating System) es un
 ROS 1, la primera versión del entorno de trabajo, surgió en 2007 como un ambiente de desarrollo para el PR2 robot, un robot de servicio diseñado para trabajar con personas y creado por la empresa The Willow Garage. Sin embargo, los creadores de ROS buscaban que el entorno de trabajo no se viera limitado a un solo modelo de robot, sino que, pudiera ofrecer herramientas de software para más tipos y modelos de robots, por lo que ROS adquirió varias capas de abstracción mediante la implementación de interfaces para el manejo de mensajes, lo que dio lugar a que el software desarrollado mediante ROS pudiera ser reutilizado en más robots.   
 
 Algunas características que destacan en esta etapa temprana de ROS son:
-Gestión de un solo robot
-Sin requerimientos de aplicación en tiempo real
-Excelente conectividad a la red
-Usado principalmente en el ámbito académico y de investigación
+\begin{itemize}
+    \item Gestión de un solo robot
+    \item Sin requerimientos de aplicación en tiempo real
+    \item Excelente conectividad a la red
+    \item Usado principalmente en el ámbito académico y de investigación
+\end{itemize}
 
 Hoy en día, ROS es utilizado en una amplia gama de robots, desde robots con ruedas y con forma humanoide, hasta brazos industriales, vehículos aéreos y mucho más. Sin embargo, ha pasado bastante tiempo desde el lanzamiento de la primera versión de ROS, y las necesidades y estándares de la industria han cambiado al igual que el paradigma y la filosofía detrás del desarrollo de ROS.
    
@@ -20,6 +90,9 @@ A partir de lo anterior, en 2014 una nueva versión de ROS con un enfoque y estr
 
 \section{Visión Artificial}
 
+\section{Gazebo}
+
 \section{Software in The Loop}
 
-\section{Gazebo}
+
+
