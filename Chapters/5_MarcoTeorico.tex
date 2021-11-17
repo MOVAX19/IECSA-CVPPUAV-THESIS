@@ -47,8 +47,8 @@ Por último, las características del dron utilizado fueron estandarizadas, por 
         & & & resolución: $0.01 \text{ m}$\\
         \hline
     \end{tabular}
-    \label{tab:sensors}
     \caption{Especificaciones de sensores utilizados en el APC \cite{foehn2020alphapilot}}
+    \label{tab:sensors}
 \end{table}
 
 \subsection{Game of Drones}
@@ -72,7 +72,9 @@ Por último, la competencia consistió de dos etapas, una de clasificación y un
  
 \section{Robot Operating System (ROS)}
 
-De acuerdo con su sitio oficial, ROS (del inglés, Robot Operating System) es un conjunto de herramientas y librerías de software para robótica desarrolladas por Open Robotics bajo el paradigma de software libre u open-source. Este entorno de trabajo destaca por contener algoritmos de última generación y herramientas de desarrollo avanzadas,  que permiten la creación, implementación y reutilización de código para todo tipo de proyectos de robótica.
+\subsection{Concepto}
+
+De acuerdo con su sitio oficial\cite{rosFoxy}, ROS (del inglés, Robot Operating System) es un conjunto de herramientas y librerías de software para robótica desarrolladas por Open Robotics\cite{openRobotics} bajo el paradigma de software libre u open-source. Este entorno de trabajo destaca por contener algoritmos de última generación y herramientas de desarrollo avanzadas,  que permiten la creación, implementación y reutilización de código para todo tipo de proyectos de robótica.
 
 ROS 1, la primera versión del entorno de trabajo, surgió en 2007 como un ambiente de desarrollo para el PR2 robot, un robot de servicio diseñado para trabajar con personas y creado por la empresa The Willow Garage. Sin embargo, los creadores de ROS buscaban que el entorno de trabajo no se viera limitado a un solo modelo de robot, sino que, pudiera ofrecer herramientas de software para más tipos y modelos de robots, por lo que ROS adquirió varias capas de abstracción mediante la implementación de interfaces para el manejo de mensajes, lo que dio lugar a que el software desarrollado mediante ROS pudiera ser reutilizado en más robots.   
 
@@ -84,15 +86,102 @@ Algunas características que destacan en esta etapa temprana de ROS son:
     \item Usado principalmente en el ámbito académico y de investigación
 \end{itemize}
 
-Hoy en día, ROS es utilizado en una amplia gama de robots, desde robots con ruedas y con forma humanoide, hasta brazos industriales, vehículos aéreos y mucho más. Sin embargo, ha pasado bastante tiempo desde el lanzamiento de la primera versión de ROS, y las necesidades y estándares de la industria han cambiado al igual que el paradigma y la filosofía detrás del desarrollo de ROS.
+Hoy en día, ROS es utilizado en una amplia gama de robots, desde robots con ruedas y con forma humanoide, hasta brazos industriales, vehículos aéreos y mucho más. Sin embargo, ha pasado bastante tiempo desde el lanzamiento de la primera versión de ROS, y las necesidades y estándares de la industria han cambiado al igual que el paradigma y la filosofía detrás del desarrollo de ROS. Dicho lo anterior, es evidente que ROS ha adquirido una alta relevancia desde su creación; sin embargo, existen muchas limitaciones asociadas a la manera en que ROS fue diseñado. 
+
+\subsection{Conceptos básicos de ROS}
+
+\textbf{Paquetes:} son la unidad principal para organizar software en ROS. Un paquete puede contener procesos (nodos), liberarías, conjuntos de datos, archivos de configuración o cualquier otro tipo de archivo que pertenezca a un conjunto funcional.  Los paquetes representan la unidad atómica en ROS.
+
+\textbf{Tipos de mensajes:} descripción de mensajes, definen la estructura de los datos para los mensajes manejados por ROS.
+
+\textbf{Tipos de servicios:} descripción de servicios, define la estructura solicitada o enviada para los datos utilizados en los servicios de ROS.
+
+\textbf{Nodos:} son procesos que llevan a cabo cálculos. ROS está diseñado para ser modular. Un sistema robótico generalmente está compuesto por múltiples nodos encargos de distintas tareas como la lectura de un sensor, control de un actuador, ejecución de algoritmos, etc.
+
+\textbf{Mensajes:} forma de comunicación entre nodos. Son estructuras de datos para el intercambio de información entre nodos.
+
+\textbf{Topics:} canales de transporte por donde se envían los mensajes, a través de una dinámica de editor y subscriptor. Un nodo envía un mensaje publicándolo en un topic; el topic es el nombre utilizado para identificar el contenido del mensaje.
+
+\textbf{Servicios:} tienen una función similar a los topics, sin embargo, los servicios generan una respuesta/interacción a partir de las solicitudes enviadas.
+
+\textbf{Bags:} registros en donde se almacenan los datos de un mensaje enviado.
+
+\subsection{Las limitaciones de ROS 1}
+
+La forma en que se manejan las comunicaciones entre nodos de cómputos distribuidos en ROS 1 dificulta la integración entre dispositivos de hardware (sensores, actuadores, etc.). Para realizar una red de procesamiento distribuido en ROS 1, es necesario contar con un dispositivo maestro que inicia antes de cualquier otro nodo. Además, las comunicaciones entre nodos se llevan a cabo utilizando el protocolo de llamada XML-RPC, el cual pose una dependencia significativa cuando se implementa en cualquier sistema de recursos limitados o microcontroladores, debido a su naturaleza recursiva. En vez de lo anterior, es muy común que se utilice un controlador con un protocolo de comunicaciones propio para realizar la interacción entre los dispositivos.
+
+En ROS 1, los nodos comúnmente utilizan la API \textit{Node}, la cual implementa su propia función \text{main}, en vez de la API \textit{Nodelet} para compilar librerías compartidas. Debido a lo anterior, el desarrollador tiene que escoger entre una de estas dos APIs, y el proceso para convertir de una API a otra no es trivial y requiere una inversión de tiempo considerable.
+
+En cuanto al proceso de lanzamiento, el sistema de lanzamiento de ROS 1 solo inicializa un conjunto de procesos, y no provee ningún tipo de retroalimentación fue de sí el proceso fue iniciado o no. Sin embargo, es común que los desarrolladores escriban sus procesos para que esperen una cierta cantidad de tiempo o una bandera de estado, que indique que todo esta bien antes de comenzar a procesar los datos. 
+
+Además, en sistemas complejos la observabilidad de los procesos y la posibilidad de una configuración dinámica se vuelven mucho más relevantes. En ROS 1 los nodos no tiene ningún estado asociado y solo algunos componentes una interfaz para obtener información o manipular el sistema durante su ejecución.  
    
-A partir de lo anterior, en 2014 una nueva versión de ROS con un enfoque y estructura distinta es anunciada por Open Robotics.  ROS 2 surge como un completo rediseño para lo que había sido el entorno de trabajo hasta entonces, con esta reestructuración se busca cubrir necesidades y funcionalidades que no habían sido consideradas con  ROS1, pero que habían sido exigidas por la comunidad y la industria. Lo anterior dio lugar al desarrollo de un nuevo conjunto de paquetes 
+A partir de lo anterior, en 2014 una nueva versión de ROS con un enfoque y estructura distinta es anunciada por Open Robotics.  ROS 2 surge como un completo rediseño para lo que había sido el entorno de trabajo hasta entonces, con esta reestructuración se busca cubrir necesidades y funcionalidades que no habían sido consideradas con  ROS 1, pero que habían sido exigidas por la comunidad y la industria. Lo anterior dio lugar al desarrollo de un nuevo conjunto de paquetes con cambios en API general, arquitectura y comunicación. 
 
-\section{Visión Artificial}
+\subsection{¿Por qué ROS 2?}
 
-\section{Gazebo}
+Como se mencionó anteriormente, ROS surgió con la idea de satisfacer las necesidades de un único modelo de robot, y lo logró; Por otro lado, a pesar de haber ampliado el framework para funcionar para otros dispositivos, como ya se mencionó, el paradigma de diseño de ROS 1 tenía varias limitantes para las necesidades emergentes de la industria y nuevas aplicaciones.
 
-\section{Software in The Loop}
+Entre los nuevos casos de uso que dirigen el desarrollo de ROS 2 se encuentran los siguientes:
+
+\begin{itemize}
+    \item Sistemas compuestos por múltiples robots: existe la posibilidad de implementarlos en ROS 1, pero no existe un estándar o un acercamiento unificado que permita el desarrollo para este tipo de sistemas.
+    \item Sistemas embebidos: se tiene por objetivo que la implementación de ROS en sistemas embebidos, como computadoras de placa única y microcontroladores, no sea a través de un controlador de dispositivo, sino, que sea posibilidad configurar el dispositivo como una computadora normal.
+    \item Sistemas en tiempo real: soporte para este tipo de sistemas de forma nativa en ROS, ofreciendo comunicación inter-proceso e inter-máquina.
+    \item Redes no ideales: desempeño estandarizado incluso si la conectividad de red es deficiente.
+    \item Ambientes de producción: seguir enfocando el desarrollo al área de investigación, pero facilitar la evolución de un mero prototipo a una aplicación comercial.
+    \item Patrones para el desarrollo y estructura de sistemas: conservar la flexibilidad en el desarrollo de soluciones pero proveer estándares y herramientas de desarrollo enfocadas al manejo de un ciclo de vida y configuraciones estáticas para su lanzamiento.
+\end{itemize}
+
+ROS 2 propone una arquitectura en donde es posible implementar el protocolo de comunicación entre nodos directamente en cualquier sistema embebido, de tal forma que cualquier dispositivo ROS dentro de la red sea descubierto de forma automática por la interfaz de ROS; se implementa una comunicación más descentralizada pues ya no existe la figura de maestro y se implementa una lógica de intercambio de información del tipo DDS (Data Distribution Service), la cual está pensada para sistemas en tiempo real. Además, la forma de crear nodos en ROS 2 está pensada para que el usuario sea capaz de decidir el tiempo  y la forma de lanzamiento de un nodo; cada nodo puede ser lanzado en procesos distintos para facilitar la depuración de estos, o, pueden ser integrados a un solo proceso para obtener un mejor rendimiento y aprovechar la comunicación inter-proceso.  
+
+Lo anterior también conlleva un cambio significativo dentro de la API de ROS; se rediseñó con el fin de mejorarla, de tal forma que los conceptos clave de la versión anterior se conservaran, pero ofreciendo una gran mejora y experiencia al usarla. Esto significa que la API de ROS 1 no será compatible con la de ROS 2, y viceversa; sin embargo se busca que el código de ambas versiones pueda coexistir en un mismo sistema e incluso que cuenten con cierto tipo de interacción; esto permite que la transición entre ambas versiones sea de forma gradual y práctica.
+
+La tabla \ref{tab:rosd} presenta un resumen de las distribuciones de ROS 2 desarrolladas hasta el momento, en ella se indica la fecha de lanzamiento de cada una y el periodo en el que se dejara de ofrecer soporte para estas. Cabe destacar que cada distribución de ROS esta asociada a una única versión LTS (Long Term Support) de Ubuntu.
+
+En cuanto a ROS 1, actualmente se encuentra activas dos distribuciones, Melodic Morenia y Noetic Ninjemys. Siendo esta última la versión final de ROS 1, cuyo soporte terminará en mayo de 2025, de tal forma que se tiene hasta entonces para que los usuarios de ROS 1 migren a ROS 2, si es que desean seguir utilizando un framework con soporte por parte de Open Robotics.
+
+\begin{table}
+    \centering
+    \begin{tabular}{||l|l|l||}
+        \hline
+        Distribución & Fecha de lanzamiento & Fin de vida útil\\
+        \hline
+        Humble Hawksbill & Mayo 23, 2022 & No especificada\\
+        Galactic Geochelone & Mayo 23, 2021 & Noviembre 2022\\
+        Foxy Fitzroy & Junio 5, 2020 & Mayo 2023\\
+        Eloquent Elusor & Noviembre  22, 2019 & Noviembre 2020\\
+        Dashing Diademata & Mayo 31, 2019 & Mayo 2021\\
+        Crystal Clemmys & Diciembre 14,2018 & Diciembre 2019\\
+        Bouncy Bolson & Julio 2, 2018 & Julio 2019\\
+        Ardent Apalone & Diciembre 8, 2017 & Diciembre 2018\\
+        beta3 & Septiembre 13, 2017 & Diciembre 2017\\
+        beta2 & Julio 5, 2017 & Septiembre 2017\\
+        beta1 & Diciembre 19, 2016 & Julio 2017\\
+        alpha1 - alpha8 & Agosto 13, 2015 & Diciembre 2016\\
+        \hline
+    \end{tabular}
+    \caption{Lista de distribuciones de ROS 2}
+    \label{tab:rosd}
+\end{table}
+
+\subsection{Diferencias entre ROS 1 y ROS 2}
+A continuación se resumen los cambios más significativos entre las versiones de ROS.
+
+\textbf{Plataformas:} ROS 1 solo trabaja de forma nativa en Ubuntu; ROS 2 soporta Ubuntu, macOS X y Windows 10.
+
+\textbf{Lenguajes de programación:} ROS 1 trabaja con C++03 y Python 2; ROS 2 usa C++11 de forma extensiva y usa algunas partes de C++14,  en un futuro también trabará con C++17. Además, Python a partir de la versión 3.5.
+
+\textbf{Lógica de comunicación:} ROS 1 utiliza una capa de comunicación diseñada prácticamente desde cero (XML-RPC); ROS 2 adopta un protocolo ya definido (DDS) para el manejo de sus comunicaciones.
+
+\textbf{Sistema de compilación:} 
 
 
+%\section{Visión Artificial}
+
+
+%\section{Software in The Loop}
+
+
+%\section{Gazebo}
 
