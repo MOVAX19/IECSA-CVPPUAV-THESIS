@@ -152,7 +152,7 @@ En cuanto a ROS 1, actualmente se encuentra activas dos distribuciones, Melodic 
         Foxy Fitzroy & Junio 5, 2020 & Mayo 2023\\
         Eloquent Elusor & Noviembre  22, 2019 & Noviembre 2020\\
         Dashing Diademata & Mayo 31, 2019 & Mayo 2021\\
-        Crystal Clemmys & Diciembre 14,2018 & Diciembre 2019\\
+        Crystal Clemmys & Diciembre 14, 2018 & Diciembre 2019\\
         Bouncy Bolson & Julio 2, 2018 & Julio 2019\\
         Ardent Apalone & Diciembre 8, 2017 & Diciembre 2018\\
         beta3 & Septiembre 13, 2017 & Diciembre 2017\\
@@ -168,7 +168,7 @@ En cuanto a ROS 1, actualmente se encuentra activas dos distribuciones, Melodic 
 \subsection{Diferencias entre ROS 1 y ROS 2}
 A continuación se resumen los cambios más significativos entre las versiones de ROS.
 
-\textbf{Plataformas:} ROS 1 solo trabaja de forma nativa en Ubuntu; ROS 2 soporta Ubuntu, macOS X y Windows 10.
+\textbf{Plataformas:} ROS 1 solo trabaja de forma nativa en Ubuntu; ROS 2 soporta Ubuntu, Mac OS X y Windows 10.
 
 \textbf{Lenguajes de programación:} ROS 1 trabaja con C++03 y Python 2; ROS 2 usa C++11 de forma extensiva y usa algunas partes de C++14,  en un futuro también trabará con C++17. Además, Python a partir de la versión 3.5.
 
@@ -183,5 +183,40 @@ A continuación se resumen los cambios más significativos entre las versiones d
 %\section{Software in The Loop}
 
 
-%\section{Gazebo}
+\section{Gazebo}
+
+\subsection{Concepto}
+Dentro del desarrollo de sistemas, es indispensable llevar a cabo un proceso de validación que permita evaluar el cumplimiento de los requerimientos funcionales del sistema desarrollado, tanto para software como para hardware. Hoy en día existen muchas herramientas que facilitan la ejecución de pruebas de validación para sistemas complejos; en este aspecto, el software de simulación corresponde a una gran alternativa pues permite realizar las pruebas de validación pertinentes bajo distintos paradigmas, en donde es necesario o no contar con un prototipo físico del sistema o un modelo matemático del mismo, lo anterior agiliza el desarrollo del sistema y probar algoritmos, diseños e incluso llevar a cabo el entrenamiento de algoritmos basados en inteligencia artificial; además, permite identificar errores y fallas en etapas tempranas del desarrollo del sistema, reduciendo costos y asegurando un mayor grado de calidad en el producto final.
+
+De acuerdo con su sitio oficial \cite{gazebo_2014}, Gazebo es un software de simulación que ofrece la posibilidad de simular de forma precisa y eficiente, conjuntos de robots en ambientes complejos de interiores y exteriores. Además, ofrece un motor de físicas robusto, gráficos de alta calidad e interfaces gráficas y programáticas convenientes. Por último, al ser un proyecto desarrollado bajo el paradigma de open-source, cuenta con una comunidad bastante amplia que distribuye el conocimiento y se encarga de darle mantenimiento a este.
+
+\subsection{Historia}
+Creado por el Dr. Andrew Howard y su estudiante Nate Koeing, Gazebo comenzó su desarrollo en otoño de 2002 en la Universidad del Sur de California \cite{gazebo_2014}. El concepto de un simulador de alta fidelidad para robots, surgió a partir de la necesidad de simular este tipo de sistemas en ambientes bajo distintas condiciones. Gazebo fue nombrado de esta forma debido a que la estructura asociada a la palabra es un claro representante de un ambiente de exteriores; sin embargo, a pesar de que la mayoría de los usuarios de Gazebo lo utilizaban para simular ambientes de interiores, el nombre persistió hasta el día de hoy.
+
+Con el paso de los años, Nate se encargó del desarrollo de Gazebo mientras terminaba su doctorado, y en 2009, John Hsu, un ingeniero en Willow garage, logró integrar ROS y el robot PR2 en Gazebo; desde entonces, Gazebo se convirtió en la herramienta de preferencia para llevar a cabo simulaciones de robots, por parte de la comunidad y usuarios de ROS.
+
+Después, en la primavera de 2011, Willow Garage comenzó a financiar el desarrollo de Gazebo, y más tarde, en 2012, la Open Source Robotics Foundation (OSRF; que más tarde se convertiría en Open Robotics) surgiría como un organismo independiente a Willow Garage, continuando con el desarrollo de Gazebo. 
+
+Hoy en día Open Robotics representa el equipo de desarrollo principal para Gazebo, en conjunto con la gran y diversa comunidad que ha acompañado al proyecto a lo largo de su desarrollo.
+
+\subsection{¿Por qué Gazebo?}
+A demás de las ventajas ya mencionadas, inherentes al uso de un simulador para la etapa de validación de un sistema, Gazebo cuenta con una serie de características que lo hacen único y por las cuales destaca.
+
+\begin{itemize}
+    \item \textbf{Proyecto de código abierto:} el código fuente de Gazebo está liberado al público, por lo que cualquier usuario experimentado puede entender su funcionamiento y contribuir a su desarrollo; además, al ser software libre, Gazebo puede ser utilizado por cualquier tipo de usuario prácticamente sin ningún tipo de restricción. 
+    \item \textbf{Simulación de dinámicas:} es posible utilizar una serie de motores de físicas de código abierto, tales como ODE (Open Dynamics Engine), Simbody y DART (Dynamic Animation and Robotics Toolkit)
+    \item \textbf{Gráficos avanzados en 3D:} Gazebo utiliza OGRE, un motor gráfico de código abierto que permite crear ambientes de simulación con gráficos realistas, incluyendo iluminación, sombras y texturas de alta calidad.
+    \item \textbf{Sensores y ruido:} permite generar datos a partir de una amplia gamma de sensores simulados, desde láseres, cámaras, sensores de movimiento, sensores de fuerza y torque, etc.
+    \item \textbf{Plugins:} es posible desarrollar plugins personalizados para sensores, robots y el control de ambiente, con base en las necesidades del usuario. 
+    \item \textbf{Modelos de robots:} Gazebo cuenta con un catálogo extenso de modelos de robots existentes en el mercado, que pueden ser utilizados por cualquier usuario; sin embargo, también existe la posibilidad de que el usuario cree su propio modelo de robot desde cero. 
+    \item \textbf{Comunicación TCP/IP:} las simulaciones pueden ser ejecutadas desde servidores remotos y accedidas a partir de un protocolo de comunicación basado en el envío de mensajes por socket.
+    \item \textbf{Simulación en la nube:} Gazebo puede ser ejecutado en una máquina virtual basada en la nube utilizando CloudSim y permite la interacción con la simulación a partir de su cliente web GzWeb.
+    \item \textbf{Herramientas basadas en la línea de comandos:} Gazebo cuenta con un conjunto de herramientas para la línea de comandos que facilitan la interacción con la simulación en ejecución y así como su control.
+\end{itemize}
+
+
+
+
+
+
 

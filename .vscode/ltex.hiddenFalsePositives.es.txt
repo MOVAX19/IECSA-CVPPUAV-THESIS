@@ -21,3 +21,4 @@
 {"rule":"SPANISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QSistemas en tiempo real:\\E$"}
 {"rule":"SPANISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QSistemas en tiempo real: soporte\\E$"}
 {"rule":"SPANISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QSistemas en tiempo real: soporte para este tipo de sistemas de forma nativa en ROS, ofreciendo comunicación inter-proceso e inter-máquina.\\E$"}
+{"rule":"MORFOLOGIK_RULE_ES","sentence":"^\\QDespués, en la primavera de 2011, Willow Garage comenzó a financiar el desarrollo de Gazebo, y más tarde, en 2012, la Open Source Robotics Foundation (OSRF; que más tarde se convertiría en Open robotics)\\E$"}

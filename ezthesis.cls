@@ -174,9 +174,9 @@
     \RequirePackage[sort&compress,round,authoryear]{natbib}
   \fi
   \if@spanish
-    \bibliographystyle{unsrt}
+    \bibliographystyle{apalike}
   \else
-    \bibliographystyle{unsrt}
+    \bibliographystyle{apalike}
   \fi
   \let\cite\citep
 \fi
