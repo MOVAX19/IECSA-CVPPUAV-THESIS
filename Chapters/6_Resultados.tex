@@ -21,10 +21,24 @@ La implementación del trabajo se realizó en una computadora portátil modelo \
     \label{tab:specs}
 \end{table}
 
+La figura \ref{fig:req} muestra con más detalle las características de hardware y software correspondientes a la computadora donde se llevó a cabo el proyecto. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.65\textwidth]{System_req.pdf}
+    \caption{Características del sistema en donde se desarrolló el proyecto}
+    \label{fig:req}
+\end{figure}
+
 Con respecto al software, se trabajó con las versiones más recientes y técnicamente compatibles del software que integra el sistema. Para el ambiente de simulación se utilizó \textit{Gazebo 11} en conjunto con \textit{ArduPilot} y el modelo ofrecido para SITL de Arducopter; Para la gestión de procesos se utilizó \textit{ROS2 Foxy}. Además, la computadora en donde se implementó el sistema viene por defecto con el sistema operativo \textit{Windows 10}; sin embargo, para poder integrar el software mencionado es necesario utilizar \textit{Ubuntu 20.04.3 LTS (Focal Fossa)}, el cual fue instalado en un disco duro externo.
 
 \subsection{Instalación de ROS 2}
 La siguiente serie de comandos fue extraída de la documentación oficial de ROS2 Foxy\cite{ros2} y se asume que la instalación se lleva a cabo en un sistema con Ubuntu 20.04 o sus derivados (\textit{Xubuntu, Kubuntu}, etc.). El proceso puede ser distinto para cualquier otra distribución de Linux o Sistema operativo no listado en la documentación oficial, o incluso puede que no sea compatible.
+
+Cabe destacar que existen dos formas de instalar ROS 2, la primera, la forma corta, es utilizar un paquete binario pre-compilado; sin embargo, este tipo de instalación no incluye la paquetería completa de ROS 2, sino, algunos paquetes base que son más que suficientes para comenzar a desarrollar aplicaciones en ROS. Este primer método puede ser consultado en la documentación oficial de ROS 2 \cite{ROS2Ubuntu}.
+
+Por otro lado, la segunda forma de instalación, la utilizada en este trabajo, corresponde a compilar ROS 2 desde cero en el sistema. A continuación se anexa la serie de comandos y configuración que corresponden a este último método de instalación.
+
 
 \begin{enumerate}
     \item Revisar que el sistema donde se instalará ROS2 admite la codificación de caracteres \textit{UTF-8}, mediante el siguiente comando.
@@ -116,7 +130,7 @@ La siguiente serie de comandos fue extraída de la documentación oficial de ROS
         $ colcon build --symlink-install
     \end{lstlisting}
 
-    \item Habilitar el API de ROS 2 en bash
+    \item Habilitar la API de ROS 2 en bash
     
     \begin{lstlisting}[language = bash]
         $ source /opt/ros/foxy/setup.bash
@@ -131,6 +145,30 @@ La siguiente serie de comandos fue extraída de la documentación oficial de ROS
 \end{enumerate}
 
 Hecho lo anterior, el sistema debe de contar con una instalación completa de ROS 2. Para comprobar que la instalación se llevó a cabo de manera correcta, se pueden ejecutar los nodos demo que vienen incluidos en la instalación de escritorio.
+
+Para ejecutar los nodos de demostración es necesario abrir dos terminales y ejecutar en cada una uno de los siguientes comandos:
+
+\begin{enumerate}
+    \item \textbf{Talker}. Nodo publicador escrito en C++
+    \begin{lstlisting}[language = bash]
+        $ ros2 run demo_nodes_cpp talker
+    \end{lstlisting}
+    
+    \item \textbf{Listener}. Nodo suscriptor escrito en Python
+    \begin{lstlisting}[language = bash]
+        $ ros2 run demo_nodes_py listener
+    \end{lstlisting}
+\end{enumerate}
+
+Las figuras \ref{fig:talker} y \ref{fig:listener} muestran la ejecución de los nodos anteriores, respectivamente. El nodo publicador envía un mensaje con un contador que va incrementando con cada mensaje enviado, mientras que el nodo subscriptor se encarga de recibir el mensaje enviado e imprimirlo en pantalla.
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Nodo publicador]{\label{fig:talker}{\includegraphics[width=0.48\textwidth]{Talker.pdf}}}\hfill
+    \subfloat[Nodos suscriptor]{\label{fig:listener}{\includegraphics[width=0.48\textwidth]{Listener.pdf}}}
+    \caption{Nodos de demostración incluidos en la instalación de ROS 2}
+    \label{fig:rosdemo}
+\end{figure}
 
 \subsection{Instalación de OpenCV}
 
@@ -177,7 +215,7 @@ Instalación de Python 3:
     \end{lstlisting}
 \end{enumerate}
 
-Una vez que se cumplió con el prerequisito anterior, se puede proceder con la instalación de OpenCV. Cabe mencionar que se aconseja usar ambientes virtuales de Python por cada proyecto, esto con el objetivo de evitar que la instalación de paquetes afecte a otros proyectos desarrollados en el mismo sistema. Sin embargo, debido a que el sistema que se utilizado estuvo enfocado exclusivamente a la elaboración de este proyecto, en este trabajo se muestra la instalación global de la librería.
+Una vez que se cumplió con el prerrequisito anterior, se puede proceder con la instalación de OpenCV. Cabe mencionar que se aconseja usar ambientes virtuales de Python por cada proyecto, esto con el objetivo de evitar que la instalación de paquetes afecte a otros proyectos desarrollados en el mismo sistema. Sin embargo, debido a que el sistema que utilizado estuvo enfocado exclusivamente a la elaboración de este proyecto, en este trabajo se muestra la instalación global de la librería.
 
 La instalación de la librería es sencilla y se puede realizar con un único comando
 
@@ -193,7 +231,14 @@ Para verificar la instalación de la librería, se puede ejecutar un pequeño sc
     >>> cv2.__version__
 \end{lstlisting}
 
-Si la instalación se realizó de forma correcta, se debe de mostrar un mensaje donde se indica la versión de OpenCV que se instaló.
+Si la instalación se realizó de forma correcta, se debe de mostrar un mensaje donde se indica la versión de OpenCV que se instaló, como se muestra en la figura \ref{fig:OpenCV_ver}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.65\textwidth]{OpenCV_ver.pdf}
+    \caption{Mensaje de validación para la instalación de OpenCV}
+    \label{fig:OpenCV_ver}
+\end{figure}
 
 \subsection{Instalación de Gazebo}
 
@@ -207,15 +252,30 @@ La instalación es sencilla y solo requiere ejecutar el siguiente comando:
 
 Al ejecutar la instrucción anterior, se instala en conjunto Gazebo y el plugin para la comunicación entre ROS y Gazebo, \textit{gazebo\_ros\_pkg}. Además, el repositorio también incluye una serie de simulaciones de prueba para demostrar la manera en la que se lleva a cabo la comunicación entre una simulación en Gazebo y un nodo de ROS. 
 
-Por otro lado, cabe destacar que, de la misma forma en la cada versión de ROS es desarrollada para trabajar bajo una versión especifica de Ubuntu, cada versión de ROS también tiene asociada una única versión compatible de Gazebo; para el caso de ROS 2 Foxy, se trabaja con la última versión disponible, Gazebo 11.
+Por otro lado, cabe destacar que, de la misma forma en la cada versión de ROS es desarrollada para trabajar bajo una versión especifica de Ubuntu, cada versión de ROS también tiene asociada una única versión compatible de Gazebo; para el caso de ROS 2 Foxy, se trabaja con la última versión disponible, Gazebo 11. La figura \ref{fig:Gazebo_ver} muestra los datos técnicos sobre la versión de Gazebo con la que se trabajó.
 
-Una vez que termino la ejecución del comando anterior, se puede verificar que la instalación se realizó de manera correcta ejecutando Gazebo desde la terminal, tal que:
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Gazebo_ver.png}
+    \caption{Ficha técnica de la versión de Gazebo}
+    \label{fig:Gazebo_ver}
+\end{figure}
+
+
+Una vez que terminó la ejecución del comando anterior, se puede verificar que la instalación se realizó de manera correcta ejecutando Gazebo desde la terminal, tal que
 
 \begin{lstlisting}[language = bash]
     $ gazebo
 \end{lstlisting}
 
-La instrucción anterior ejecuta una instancia de Gazebo, en donde al no haber ingresado ningún parámetro para cargar un mundo o ambiente de simulación existente, se abre la pantalla inicial del simulador, con un mundo vacío.
+La instrucción anterior ejecuta una instancia de Gazebo, en donde al no haber ingresado ningún parámetro para cargar un mundo o ambiente de simulación existente, se abre la pantalla inicial del simulador, con un mundo vacío, tal como se muestra en la figura \ref{fig:Gazebo_world}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{Gazebo_world.png}
+    \caption{Proyecto vacío generado al inicializar Gazebo}
+    \label{fig:Gazebo_world}
+\end{figure}
 
 Por otro lado, con el fin de comprobar la comunicación entre ROS y Gazebo, se puede ejecutar una de las simulaciones demos incluidas en la instalación. Para ello se selecciona una de las simulaciones más básicas, en donde se tiene un modelo sencillo de un robot y por medio de un topic de ROS se envían instrucciones al robot para su desplazamiento.
 
@@ -231,12 +291,39 @@ Una vez iniciada la simulación, se pueden enviar instrucciones para el robot po
     $ ros2 topic pub /demo/cmd_demo geometry_msgs/Twist '{linear: {x: 1.0}}' -1
 \end{lstlisting}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{Gazebo_ros.png}
+    \caption{Proyecto de demostración en Gazebo que incluye el plug-in para comunicarse con ROS}
+    \label{fig:Gazebo_ros}
+\end{figure}
+
+La figura \ref{fig:rossims} muestra el movimiento observado en la simulación  a partir de haber ingresado un comando por medio de la API de ROS.
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Primera posición]{\label{fig:rossim1}{\includegraphics[width=0.48\textwidth]{ROS_sim1.jpg}}}\hfill
+    \subfloat[Segunda posición]{\label{fig:rossim2}{\includegraphics[width=0.48\textwidth]{ROS_sim2.jpg}}}\\
+    \subfloat[Tercera posición]{\label{fig:rossim3}{\includegraphics[width=0.48\textwidth]{ROS_sim3.jpg}}}\hfill
+    \subfloat[Cuarta posición]{\label{fig:rossim4}{\includegraphics[width=0.48\textwidth]{ROS_sim4.jpg}}}
+    \caption{Movimiento de la simulación en Gazebo con plugin de comunicación de ROS}
+    \label{fig:rossims}
+\end{figure}
+
+
 Para consultar el resto de simulaciones de demostración incluida, se puede acceder al directorio donde se encuentra instalado ROS y listar los nombre de las simulaciones instaladas. Es posible abrir los archivos de simulación con un editor de texto y observar la documentación incluida en cada una, en donde se especifica el modo de uso de esta, la interfaz de mensajes que utilizar para la comunicación y la sintaxis necesaria para enviar mensajes utilizando ROS.
 
 \begin{lstlisting}[language = bash]
     $ cd  /opt/ros/foxy/share/gazebo_plugins/worlds
     $ ls 
 \end{lstlisting}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ROS_demos.pdf}
+    \caption{Lista de simulaciones de demostración para el uso de Gazebo con ROS 2}
+    \label{fig:ROS_demos}
+\end{figure}
 
 \subsection{Instalación de ArduPilot SITL Simulator}
 Configurar y trabajar con el framework de simulación de ArduPilot es quizás la parte más compleja en cuanto al software utilizado para el sistema propuesto. Esto es debido a que la gran parte de la documentación oficial se encuentra desactualizada y los recursos que proveen información al respecto se encuentran dispersos por foros y otros tipos de documentación no oficial. 
@@ -316,6 +403,7 @@ Una vez dentro del directorio, se puede ejecutar la simulación del vehículo co
     $ sim_vehicle.py --map --console
 \end{lstlisting}  
 
+
 El comando anterior ejecuta una instancia del SITL de ArduPilot, de tal forma que se abren dos ventanas; un mapa una terminal.
 
 La terminal que se abre al momento de ejecutar la simulación corresponde a la consola de vuelo, en esta se indican algunos parámetros de interés del dron, tal como el nivel de la batería, el modo de vuelo, la altura a la que se encuentra, un historial de eventos, entre otras cosas.
@@ -332,10 +420,35 @@ Se debe de ingresar lo siguiente en la terminal desde donde se inició la sesió
     > mode guided     #cambia el modo de vuelo
     > arm throttle    #arma los motores del dron
     > takeoff 10      #despegue
-    > position 20 0 0 #desplazamiento en x,y,z
+    > position 50 0 0 #desplazamiento en x,y,z
 \end{lstlisting}  
 
 Lo anterior corresponde a una demostración del uso básico del simulador standalone de ArduPilot; sin embargo, en este trabajo se propone Gazebo como ambiente de simulación, por lo que es necesario conectar el SITL de Ardupilot con este simulador. Lo anterior es posible realizando la instalación de un plugin específicamente diseñado con este propósito.
+
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Posición inicial]{\label{fig:Ardupilot_gc}{\includegraphics[width=0.48\textwidth]{Ardupilot_gc.pdf}}}\hfill
+    \subfloat[Posición final]{\label{fig:Ardupilot_gc1}{\includegraphics[width=0.48\textwidth]{Ardupilot_gc1.pdf}}}\\
+    \subfloat[Terminal con comando de vuelo]{\label{fig:Ardupilot_gcterminal}{\includegraphics[width=0.5\textwidth]{Ardupilot_gcterminal.pdf}}}\hfill
+    \caption{Prueba de ejecución del framework de SITL de ArduPilot}
+    \label{fig:Ardupilot}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Ardupilot_mavproxy.pdf}
+    \caption{Terminal de información del sistema de ArduPilot}
+    \label{fig:Ardupilot_mavproxy}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Ardupilot_console.png}
+    \caption{Consola de comunicación de ArduPilot}
+    \label{fig:Ardupilot_console}
+\end{figure}
+
 
 Instalación de ArduPilot Gazebo plugin:
 
@@ -378,9 +491,102 @@ Con la configuración realizada hasta este punto, el sistema del usuario debe de
 La instalación del plugin incluye una simulación de demostración para verificar la comunicación entre ambos programas; sin embargo, al momento de la escritura de este trabajo existe un bug al trabajar la simulación de prueba con Gazebo 11. 
 La simulación de demostración integra un modelo 3D de un dron \text{Iris}, el cual viene configurado de tal manera que incluye la dinámica del dron y una serie de sensores simulados, entre ellos una cámara monocular; dicho lo anterior, el bug consiste en no permitir que se cargue el modelo del dron dentro de la simulación, por lo que la comunicación entre los programas no se puede llevar a cabo.
 
-Para corregir lo anterior, es necesario realizar una pequeña modificación dentro del archivo del mundo de la simulación
+Para corregir lo anterior, es necesario realizar una pequeña modificación dentro del archivo del modelo del dron:
+
+\begin{enumerate}
+    \item Ir al directorio donde se encuentra el modelo del dron con el plugin de Ardupilot para Gazebo
+    \begin{lstlisting}[language = bash]
+        $ cd /usr/share/gazebo-11/models/iris_with_ardupilot
+    \end{lstlisting} 
+    \item Abrir el archivo \textit{model.sdf} con nano con permisos de superusuario
+    \begin{lstlisting}[language = bash]
+        $ sudo nano model.sdf
+    \end{lstlisting} 
+    \item La segunda línea del archivo debe de contener lo siguiente:
+    \begin{lstlisting}[language = bash]
+        <sdf version="1.7" xmlns:xacro='http://ros.org/wiki/xacro'>
+    \end{lstlisting} 
+    \item Modificar la línea de código anterior de la siguiente manera
+    \begin{lstlisting}[language = bash]
+        <sdf version="1.7">
+    \end{lstlisting}  
+    \item Guardar los cambios y cerrar el archivo
+\end{enumerate}
+
+Con la corrección anterior, el usuario debe de ser capaz de ejecutar la simulación de demostración en Gazebo que incluye el plugin de SITL de ArduPilot, de la siguiente manera:
+
+\begin{enumerate}
+    \item Abrir 2 terminales
+    \item Ejecutar el SITL de ArduPilot en una de las terminales
+    \begin{lstlisting}[language = bash]
+        cd ~/ardupilot/ArduCopter
+    \end{lstlisting}  
+    \begin{lstlisting}[language = bash]
+        sim_vehicle.py -f gazebo-iris --console
+    \end{lstlisting} 
+    \item Ejecutar la simulación de Gazebo en la segunda terminal
+    \begin{lstlisting}[language = bash]
+        gazebo --verbose worlds/iris_arducopter_runway.world
+    \end{lstlisting} 
+    \item Esperar a que esté listo para recibir comandos de vuelo
+    \item Ejecutar los comandos de vuelo utilizados para validar la instalación del SITL de ArduPilot
+\end{enumerate}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{Gazebo_SITL.png}
+    \caption{Modelo en Gazebo del dron Iris}
+    \label{fig:Gazebo_SITL}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Posición inicial]{\label{fig:Ardupilot_sim1}{\includegraphics[width=0.48\textwidth]{Ardupilot_sim1.jpg}}}\hfill
+    \subfloat[Despegue]{\label{fig:Ardupilot_sim2}{\includegraphics[width=0.48\textwidth]{Ardupilot_sim2.jpg}}}\\
+    \subfloat[Movimiento de 20 m en x]{\label{fig:Ardupilot_sim3}{\includegraphics[width=0.48\textwidth]{Ardupilot_sim3.jpg}}}\hfill
+    \subfloat[Terminal de ArduPilot lista para recibir comandos de vuelo]{\label{fig:Ardupilot_Ready}{\includegraphics[width=0.48\textwidth]{ArduPilot_Ready.pdf}}}
+    \caption{Prueba de integración entre Gazebo y el SITL de ArduPilot}
+    \label{fig:Gazebo_Ardupilot}
+\end{figure}
+
+\subsection{Instalación de Pymavlink}
+Por último, en cuento a la configuración del sistema, es necesario instalar Pymavlink para entablar la comunicación con el framework SITL de ArduPilot, de tal manera que se puedan enviar instrucciones de modos de vuelo, así como comandos que permitan definir la trayectoria de vuelo del dron, a través de un script en Python sin necesidad de ingresar estas instrucciones directamente en una terminal.
+
+La librería Pymavlink está contenida en un módulo de Python, por lo que su instalación resulta un tanto trivial; sin embargo, cabe destacar que es necesario haber instalado el gestor de paquetes de Python 3 para ejecutar los siguientes comandos:
+
+\begin{enumerate}
+    \item Actualizar los repositorios y paqueterías del sistema
+    \begin{lstlisting}[language = bash]
+        $ sudo apt update && sudo apt -y full-upgrade
+    \end{lstlisting} 
+    
+    \item Instala el módulo que contiene la librería
+    \begin{lstlisting}[language = bash]
+        $ pip3 install mavproxy
+    \end{lstlisting} 
+\end{enumerate}
+
+Para verificar la instalación de la librería se puede abrir el intérprete de Python 3 en una terminal y transcribir la siguiente serie de comandos
+
+\begin{lstlisting}[language = bash]
+    $ python3
+    >>> import pymavlink
+    >>> print(pymavlink.__doc__)
+\end{lstlisting} 
+
+Al ejecutar lo anterior, se debe de generar una impresión en la terminal de la figura \ref{fig:Pymavlink_ver}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Pymavlink_ver.pdf}
+    \caption{Validación de instalación de Pymavlink}
+    \label{fig:Pymavlink_ver}
+\end{figure}
+
 
 \section{Sistema de Visión Artificial}
+
+
 
 \section{ROS}
 
