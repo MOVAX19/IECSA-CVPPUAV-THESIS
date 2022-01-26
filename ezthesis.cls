@@ -170,8 +170,10 @@
 \if@natbib
   \if@bibnumbers
     \RequirePackage[sort&compress,square,numbers]{natbib}
+    %\RequirePackage[authoryear]{natbib}
   \else
-    \RequirePackage[sort&compress,round,authoryear]{natbib}
+   %\RequirePackage[sort&compress,round,authoryear]{natbib}
+    \RequirePackage[authoryear]{natbib}
   \fi
   \if@spanish
     \bibliographystyle{apalike}
