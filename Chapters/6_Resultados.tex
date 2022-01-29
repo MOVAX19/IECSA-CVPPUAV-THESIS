@@ -680,13 +680,44 @@ A continuación se muestran los resultados obtenidos en cada una de las etapas m
 
 \subsection{Conexión entre Pymavlink y ArduPilot}
 
+Inevitablemente, lo primero que se realizó fue comprobar la comunicación entre el script de Pymavlink y el SITL de ArduPilot. Por esta razón, el script perteneciente a esta etapa es bastante sencillo; sin embargo, representa la base de las subsecciones posteriores.
+
+A grandes rasgos, lo más destacable la inclusión de la librería Pymavlink y la creación de un objeto que sirve como intermediario entre el script y el piloto automático simulado. Dicho esto, para crear el objeto es necesario especificar la dirección que se utilizará para entablar la conexión; esta se especifica al momento de iniciar el SITL de ArduPilot en un terminal. Además, ArduPilot provee dos direcciones para realizar la conexión. En este caso, se escogió la \textit{14551} de forma arbitraria, sin ninguna razón en específico.
+
+Una vez que se entabló la conexión entre ambas partes es posible tener acceso a toda clase de datos de vuelo, entre ellos la actitud del dron. Cabe mencionar que, en los mensajes que recibe Pymavlink por parte de ArduPilot es una trama de datos de gran longitud, y debido a se creó un objeto de Python para entablar la conexión, es posible acceder a un dato en específico como se accede a un atributo en la instancia de una clase. En este caso, se decidió imprimir en consola el dato del ángulo de roll de dron con el fin de comprobar que la comunicación se dio de forma exitosa. 
+
 \subsection{Configuración de modo de vuelo}
+
+De acuerdo con la documentación oficial de ArduPilot \cite{Ardu_modes}, el Arducopter cuenta con una gran variedad de modos de vuelo, no obstante, en este trabajo solo se utilizan únicamente dos modos, \textit{guided} y \textit{land}; el primero permite enviar comando de vuelo de forma directa al piloto automático a través de mensajes, mientras que el segundo ejecuta una rutina de aterrizaje para el dron. Este último modo de vuelo se aborda en la subsección marcada como extra.
+
+Entonces, previo a la secuencia de despegue del dron, es necesario configurar el modo de vuelo en guided, pues al iniciar el SITL de ArduPilot, este inicializa con el modo de vuelo "stabilize", de tal forma que el piloto automático no es capaz de recibir comandos de vuelo ingresado directamente por el usuario. Esto representa un problema pues se busca que la trayectoria de vuelo del dron sea determinada a partir de un conjunto predefinido de waypoints.
+
+Con base en lo anterior, el script perteneciente a esta subsección busca el código perteneciente de al modo de vuelo indicado dentro de una tabla de valores pre-configurados dentro de la librería, y utiliza el objeto de la subsección anterior para enviar el comando de selección de modo de vuelo al piloto automático. En dado caso de que el modo de vuelo especificado tenga un registro válido dentro de la tabla de la librería, se imprime un mensaje en donde se confirma que el modo de vuelo ha sido cambiado.
+
 
 \subsection{Secuencia de despegue}
 
+Una vez que se logró entablar la comunicación con el piloto automático y se seleccionó en modo de vuelo adecuado, la secuencia de despegue resulto bastante sencilla de implementar, pues solo consta de dos pasos; enviar el comando para el armado de motores y enviar el comando de despegue especificando la altura deseada. Sin embargo, para que lo anterior se logre ejecutar de manera correcta, es necesario esperar a que los sistemas la computadora de vuelo se inicialicen por completo, en especial aquellos sensores que sirven para la estimación de posición del dron, pues se requiere de estos para que el dron pueda despegar y elevarse a la altura solicitada por el usuario.
+
+Esto último representó un problema al momento de crear el nodo de la misión de vuelo en ROS, pues si los filtros de estimación no se encuentran listos al momento de ejecutar el comando de despegue, la instrucción no se ejecuta y el dron es incapaz de iniciar su rutina de vuelo. La solución a este problema se aborda en la respectiva sección de ROS.
+
+Dicho lo anterior, el script perteneciente a esta subsección no cuenta con la etapa de la selección del modo de vuelo, pues es necesario ejecutar el programa en el momento en el que los filtros del sistema han sido inicializados, y si se corre el script al mismo tiempo que  se inicia el SITL, el comando de despegue es rechazado. Entonces, para ejecutar el programa, el usuario tiene que cambiar el modo de vuelo de forma manual dentro de la terminal de ArduPilot, de esta forma se asegura que el sistema está listo para recibir la instrucción de despegue.
+
+
+
 \subsection{Seguimiento de trayectoria}
 
+Hecho todo lo anterior, la última prueba que se tuvo que realizar, en cuanto a una funcionalidad en específica de Pymavlink, fue la del seguimiento de trayectoria por medio de comandos de vuelo directos, en forma de waypoints. Sin embargo, debido al problema mencionado en la etapa anterior, el script perteneciente a esta subsección no ejecuta las etapas anteriores, sino que para poder ejecutar el programa, el usuario tiene que esperar a que la terminal de Ardupilot permita el cambio de modo de vuelo de forma manual, y después ejecutar los respectivos comandos de vuelo para realizar la secuencia de despegue del dron.
+
+Ahora bien, la prueba realizada para esta etapa fue sencilla, se enviaron dos waypoint utilizando el marco de referencia local, en donde el origen, o la coordenada (0,0,0), corresponde al punto inicial del mundo creado, denotado de forma visual por 3 barras ortogonales de color azul para el eje \textit{z}, azul para el eje \textit{x} y verde para el eje \textit{y}.
+
+Agregando a lo anterior, los waypoints son enviados utilizando el comando de vuelo \textit{MAVLink\_set\_position\_target\_local\_ned\_message}, 
+
 \subsection{Misión de vuelo}
+
+Con la etapa anterior se culminaron las pruebas por módulos; en esta subsección se describe el proceso realizado para integrar todas las etapas descritas hasta el momento.
+
+
 
 \subsection{Aterrizaje (extra)}
 
