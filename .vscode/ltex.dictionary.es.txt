@@ -151,3 +151,10 @@ Arducopter
 guided
 stabilize
 MAVLinksetpositiontargetlocalnedmessage
+timebootms
+targetsystem
+targetcomponent
+coordinateframe
+typemask
+Dummy23
+commandlongsend

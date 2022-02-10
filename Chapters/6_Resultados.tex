@@ -652,6 +652,48 @@ Para realizar la sintonización del rango de valores para el espacio de color HS
 
 Debido al alcance y las limitaciones del presente trabajo, el circuito elaborado es sencillo y consta de 4 compuertas con el diseño utilizado en el IROS. Tres de las compuertas tienen una altura de 3.5 m y la compuerta restante mide 2.5 m de altura. Las cuatro compuertas se encuentran distanciadas por longitudes distintas y describen un arreglo rectangular.
 
+\begin{figure}[ht]
+    \centering
+    \subfloat[]{\label{fig:cv_gate1}{\includegraphics[width=0.48\textwidth]{Gate.png}}}\hfill
+    \subfloat[]{\label{fig:cv_gate2}{\includegraphics[width=0.48\textwidth]{Gate2.jpg}}}\\
+    \subfloat[]{\label{fig:cv_gate3}{\includegraphics[width=0.48\textwidth]{Gate3.jpg}}}\hfill
+    \subfloat[]{\label{fig:cv_gate4}{\includegraphics[width=0.48\textwidth]{Gate4.png}}}\hfill
+
+    \caption{Imágenes utilizadas para la sintonización del rango de color}
+    \label{fig:cv_gates}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[]{\label{fig:cv_gate1th1}{\includegraphics[width=0.48\textwidth]{Gate1_TH1.png}}}\hfill
+    \subfloat[]{\label{fig:cv_gate2th1}{\includegraphics[width=0.48\textwidth]{Gate2_TH1.png}}}\\
+    \subfloat[]{\label{fig:cv_gate3th1}{\includegraphics[width=0.48\textwidth]{Gate3_TH1.png}}}\hfill
+    \subfloat[]{\label{fig:cv_gate4th1}{\includegraphics[width=0.48\textwidth]{Gate4_TH1.png}}}\hfill
+
+    \caption{Detección de compuerta con el primer rango de color}
+    \label{fig:cv_gatesth1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[]{\label{fig:cv_gate1th2}{\includegraphics[width=0.48\textwidth]{Gate1_TH2.png}}}\hfill
+    \subfloat[]{\label{fig:cv_gate2th2}{\includegraphics[width=0.48\textwidth]{Gate2_TH2.png}}}\\
+    \subfloat[]{\label{fig:cv_gate3th2}{\includegraphics[width=0.48\textwidth]{Gate3_TH2.png}}}\hfill
+    \subfloat[]{\label{fig:cv_gate4th2}{\includegraphics[width=0.48\textwidth]{Gate4_TH2.png}}}\hfill
+
+    \caption{Resintonización del rango de color}
+    \label{fig:cv_gatesth2}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[]{\label{fig:cv_gate1th3}{\includegraphics[width=0.48\textwidth]{Gate1_TH3.png}}}\hfill
+    \subfloat[]{\label{fig:cv_gate4th3}{\includegraphics[width=0.48\textwidth]{Gate4_TH3.png}}}
+
+    \caption{Intento de sintonización utilizando la cuarta imagen de referencia como base}
+    \label{fig:cv_gatesth3}
+\end{figure}
+
 
 
 \section{Pymavlink}
@@ -682,9 +724,28 @@ A continuación se muestran los resultados obtenidos en cada una de las etapas m
 
 Inevitablemente, lo primero que se realizó fue comprobar la comunicación entre el script de Pymavlink y el SITL de ArduPilot. Por esta razón, el script perteneciente a esta etapa es bastante sencillo; sin embargo, representa la base de las subsecciones posteriores.
 
-A grandes rasgos, lo más destacable la inclusión de la librería Pymavlink y la creación de un objeto que sirve como intermediario entre el script y el piloto automático simulado. Dicho esto, para crear el objeto es necesario especificar la dirección que se utilizará para entablar la conexión; esta se especifica al momento de iniciar el SITL de ArduPilot en un terminal. Además, ArduPilot provee dos direcciones para realizar la conexión. En este caso, se escogió la \textit{14551} de forma arbitraria, sin ninguna razón en específico.
+A grandes rasgos, lo más destacable la inclusión de la librería Pymavlink y la creación de un objeto que sirve como intermediario entre el script y el piloto automático simulado. Dicho esto, para crear el objeto es necesario especificar la dirección que se utilizará para entablar la conexión; esta se especifica al momento de iniciar el SITL de ArduPilot en un terminal. Además, ArduPilot provee dos direcciones para realizar la conexión. En este caso, se escogió la \textit{14551} de forma arbitraria, sin ninguna razón en específico. La figura \ref{fig:Ardupilot_Py} muestra la información generada por ArduPilot durante el inicio de una instancia del SITL, a simple vista es mucha información; sin embargo, los datos de interés para esta subsección se encuentran en la línea en donde se indican las direcciones disponibles para recibir los datos manejados por el piloto automático, al observar la figura de forma detenida es posible percatarse que hay dos direcciones detonadas por la palabra \textit{"out"}, la 127.0.0.1:14550 y la 127.0.0.1:14551, en donde los últimos 5 dígitos indican la dirección que se tiene que especificar en el script de Pymavlink para entablar comunicación con ArduPilot. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Ardupilot_Py.pdf}
+    \caption{Datos de conexión de ArduPilot}
+    \label{fig:Ardupilot_Py}
+\end{figure}
 
 Una vez que se entabló la conexión entre ambas partes es posible tener acceso a toda clase de datos de vuelo, entre ellos la actitud del dron. Cabe mencionar que, en los mensajes que recibe Pymavlink por parte de ArduPilot es una trama de datos de gran longitud, y debido a se creó un objeto de Python para entablar la conexión, es posible acceder a un dato en específico como se accede a un atributo en la instancia de una clase. En este caso, se decidió imprimir en consola el dato del ángulo de roll de dron con el fin de comprobar que la comunicación se dio de forma exitosa. 
+
+Por último con respecto a esta subsección, la figura \ref{fig:pymav_listen} muestra el resultado de haber entablado una comunicación exitosa entre Pymavlink y el piloto automático, en la figura \ref{fig:pymav_atitude} se logra apreciar la trama completa con los datos referentes a la actitud del dron al momento de llevar a cabo la comunicación, mientras que la figura \ref{fig:pymav_roll} presenta esta trama de forma filtrada, de tal manera que solo se imprime el ángulo de roll del dron.
+ 
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Trama de datos de la actitud del dron]{\label{fig:pymav_atitude}{\includegraphics[width=0.95\textwidth]{pymav_atitude.pdf}}}\\
+    \subfloat[Datos del roll]{\label{fig:pymav_roll}{\includegraphics[width=0.4\textwidth]{pymav_roll.pdf}}}
+    \caption{Datos obtenidos a partir de la conexión entre ArduPilot y Pymavlink} 
+    \label{fig:pymav_listen}
+\end{figure}
+
 
 \subsection{Configuración de modo de vuelo}
 
@@ -693,6 +754,17 @@ De acuerdo con la documentación oficial de ArduPilot \cite{Ardu_modes}, el Ardu
 Entonces, previo a la secuencia de despegue del dron, es necesario configurar el modo de vuelo en guided, pues al iniciar el SITL de ArduPilot, este inicializa con el modo de vuelo "stabilize", de tal forma que el piloto automático no es capaz de recibir comandos de vuelo ingresado directamente por el usuario. Esto representa un problema pues se busca que la trayectoria de vuelo del dron sea determinada a partir de un conjunto predefinido de waypoints.
 
 Con base en lo anterior, el script perteneciente a esta subsección busca el código perteneciente de al modo de vuelo indicado dentro de una tabla de valores pre-configurados dentro de la librería, y utiliza el objeto de la subsección anterior para enviar el comando de selección de modo de vuelo al piloto automático. En dado caso de que el modo de vuelo especificado tenga un registro válido dentro de la tabla de la librería, se imprime un mensaje en donde se confirma que el modo de vuelo ha sido cambiado.
+
+Por último, el método utilizado para establecer el modo de vuelo fue \textit{set\_mode\_send} el cual recibe solamente 3 parámetros, el atributo del sistema del objeto de la conexión, el comando para establecer el modo de vuelo, y el código de identificación del modo de vuelo especificado. La figura \ref{fig:pymav_modes} muestra el resultado que se obtuvo al ejecutar el código desarrollado para esta subsección, en la figura \ref{fig:pymav_mode} se observa el mensaje de ejecución del script como tal, y por otro lado, la figura \ref{fig:Ardupilot_mode} presenta la aceptación del comando y el cambio de modo de vuelo reflejado en la terminal de ArduPilot.
+
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Respuesta en Pymavlink]{\label{fig:pymav_mode}{\includegraphics[width=0.48\textwidth]{pymav_mode.pdf}}}\hfill
+    \subfloat[Respuesta en ArduPilot]{\label{fig:Ardupilot_mode}{\includegraphics[width=0.48\textwidth]{Ardupilot_mode.pdf}}}
+    \caption{Ejecución del script para la configuración del modo de vuelo}
+    \label{fig:pymav_modes}
+\end{figure}
 
 
 \subsection{Secuencia de despegue}
@@ -703,23 +775,190 @@ Esto último representó un problema al momento de crear el nodo de la misión d
 
 Dicho lo anterior, el script perteneciente a esta subsección no cuenta con la etapa de la selección del modo de vuelo, pues es necesario ejecutar el programa en el momento en el que los filtros del sistema han sido inicializados, y si se corre el script al mismo tiempo que  se inicia el SITL, el comando de despegue es rechazado. Entonces, para ejecutar el programa, el usuario tiene que cambiar el modo de vuelo de forma manual dentro de la terminal de ArduPilot, de esta forma se asegura que el sistema está listo para recibir la instrucción de despegue.
 
+Además, en este caso el script envía los comandos al piloto automático mediante la instrucción command\_long\_send, la cual recibe 11 parámetros; en donde los primeros 2 corresponden al sistema y al componente de MAVLink, los cuales son atributos pertenecientes al objeto creado al momento de establecer la comunicación con el piloto automático. Por otro lado, el siguiente parámetro corresponde al comando de vuelo que se desea enviar y los siguientes 8 sus respectivos atributos. Recordando que un comando de MAVLink puede recibir hasta 7 atributos, existen muchos comando en donde no se ocupan por completo esta cantidad de atributos, en estos casos, es necesario revisar la documentación perteneciente al comando en cuestión y verificar la cantidad especifica de atributos requeridos, el resto de parámetros no utilizados se debe de dejar en 0.
 
+Entonces, en el caso de esta etapa, los comandos de vuelo utilizados fueron \textit{MAV\_ CMD\_COMPONENT\_ARM\_DISARM} para el armado de los motores y \textit{MAV\_CMD\_NAV\_ TAKEOFF} para la orden de despegue.
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[]{\label{fig:pymav_takeoff1}{\includegraphics[width=0.48\textwidth]{pymav_takeoff1.jpg}}}\hfill
+    \subfloat[]{\label{fig:pymav_takeoff2}{\includegraphics[width=0.48\textwidth]{pymav_takeoff2.jpg}}}
+    \caption{Comportamiento de la simulación ante el comando de despegue}
+    \label{fig:pymav_takeoff}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{pymav_takeoffz.pdf}
+    \caption{Respuesta en la altura para el comando de despegue.}
+    \label{fig:pymav_takeoffz}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{pymav_takeoffvz.pdf}
+    \caption{Gráfica de velocidad de despegue.}
+    \label{fig:pymav_takeoffvz}
+\end{figure}
 
 \subsection{Seguimiento de trayectoria}
 
 Hecho todo lo anterior, la última prueba que se tuvo que realizar, en cuanto a una funcionalidad en específica de Pymavlink, fue la del seguimiento de trayectoria por medio de comandos de vuelo directos, en forma de waypoints. Sin embargo, debido al problema mencionado en la etapa anterior, el script perteneciente a esta subsección no ejecuta las etapas anteriores, sino que para poder ejecutar el programa, el usuario tiene que esperar a que la terminal de Ardupilot permita el cambio de modo de vuelo de forma manual, y después ejecutar los respectivos comandos de vuelo para realizar la secuencia de despegue del dron.
 
-Ahora bien, la prueba realizada para esta etapa fue sencilla, se enviaron dos waypoint utilizando el marco de referencia local, en donde el origen, o la coordenada (0,0,0), corresponde al punto inicial del mundo creado, denotado de forma visual por 3 barras ortogonales de color azul para el eje \textit{z}, azul para el eje \textit{x} y verde para el eje \textit{y}.
+Ahora bien, la prueba realizada para esta etapa fue sencilla, se envió un waypoint utilizando el marco de referencia local, en donde el origen, o la coordenada (0,0,0), corresponde al punto inicial del mundo creado, denotado de forma visual por 3 barras ortogonales de color azul para el eje \textit{z}, azul para el eje \textit{x} y verde para el eje \textit{y}. Por otro lado, a pesar de que se mencionó que solo se envió un waypoint para establecer la trayectoria de vuelo, el script utilizado en realidad contiene 2 waypoints, [10,0,-3] y [30 0 -3]; Dicho esto, se buscó comprobar si el piloto automático espera a que el dron llegue al primer waypoint para dirigirse hacía el segundo, sin embargo, esto no sucede y el piloto automático ejecuta el segundo waypoint definido, pues no hay ningún tiempo de espera o bandera que le indique al piloto que debe de esperar a que se termine la ejecución del primer waypoint. La solución para el problema anterior se describe en la siguiente subsección.
 
-Agregando a lo anterior, los waypoints son enviados utilizando el comando de vuelo \textit{MAVLink\_set\_position\_target\_local\_ned\_message}, 
+Continuando con los resultados de la prueba, en este caso el script solo ejecuta las instrucciones para guiar el vuelo del dron, por lo que es necesario que el usuario realice todo el pre-proceso necesario para el despegue del dron. En el caso de la prueba realizada la altitud de despegue indicada fue de 10 m, por lo que para el seguimiento del waypoint, el dron tuvo que descender a 3 m de altura al mismo tiempo que avanzó 10 m en el eje x, y después otros 20 m. Cabe mencionar que para el piloto automático, una altura negativa indica un punto sobre la referencia inicial, y análogamente, una altura positiva corresponde a un punto por debajo de la referencia inicial. 
+
+Además, los waypoints son enviados utilizando el comando de vuelo \textit{MAVLink\_set\_ position\_target\_local\_ned\_message}, el cual requiere 16 parámetros para realizar el seguimiento de un waypoint. La tabla \ref{tab:waypoint} enlista los parámetros y muestra una breve descripcción de los mismos; Por otro lado, el parámetro type\_mask  es algo complejo de explicar, por lo que, por motivos de practicidad y legibilidad, se describe a más detalle fuera de la tabla.
+
+Retomando lo anterior, el parámetro type\_mask indica la cantidad de parámetros que el comando de vuelo tiene que tomar en cuenta de acuerdo a lo que el usuario desee indicar, dígase posición, velocidad, aceleración o las tres magnitudes anteriores. Dicho esto, mencionando un ejemplo, si se desea enviar un comando de velocidad, es necesario especificar la velocidad de referencia para los 3 ejes cartesianos y el resto de parámetros serán ignorados independiente del valor indicado en el comando.
+
+Adicionalmente, la tabla \ref{tab:waypoint_mask} muestra los distintos valores que se le pueden asignar al parámetro de máscara. En el caso de este trabajó se utilizó el primer tipo de máscara, debido a que solo se buscó que el dron siguiera una trayectoria, con la máxima velocidad que el vehículo pudiera proporcionar.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{||l|l||}
+        \hline
+        Parámetro & Descripción\\
+        \hline
+        time\_boot\_ms & Tiempo de arranque del sistema en ms\\
+        target\_system & Identificador del sistema\\
+        target\_component & Identificador del componente o controlador de vuelo\\
+        coordinate\_frame & Marco de referencia\\
+        type\_mask & Indica los campos que se deben de ignorar\\
+        x & Posición en el eje \textit{x} en m\\
+        y & Posición en el eje \textit{y} en m\\
+        z & Posición en el eje \textit{z} en m\\
+        vx & Velocidad en el eje \textit{x} en m/s\\
+        vy & Velocidad en el eje \textit{y} en m/s\\
+        vz & Velocidad en el eje \textit{z} en m/s\\
+        afx & Aceleración en el eje \textit{x} en m/$s^2$\\
+        afy & Aceleración en el eje \textit{y} en m/$s^2$\\
+        afz & Aceleración en el eje \textit{z} en m/$s^2$\\
+        yaw & Ángulo de guiñada en radianes\\
+        yaw rate & Aceleración de la guiñada en rad/s\\
+        \hline
+    \end{tabular}
+    \caption{Parámetros de la instrucción para seguimiento de waypoints}
+    \label{tab:waypoint}
+\end{table}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{||l|l|l|l||}
+        \hline
+        Tipo & Binario & Hexadecimal & Decimal\\
+        \hline
+        Posición & 0b110111111000 & 0x0DF8  & 3576 \\
+        Velocidad & 0b110111000111 & 0x0DC7  & 3527\\
+        Aceleración & 0b110000111111 & 0x0C3F & 3135 \\
+        Pos + Vel & 0b110111000000 & 0x0DC0 & 3520\\  
+        Pos + Vel + Acel & 0b110000000000 & 0x0C00 & 3072\\
+        Guiñada & 0b100111111111 &  0x09FF & 2559\\
+        Velocidad de  guiñada& 0b010111111111  & 0x05FF & 1535\\
+        \hline
+    \end{tabular}
+    \caption{Tipos de máscara para el comando de seguimiento de trayectoria}
+    \label{tab:waypoint_mask}
+\end{table}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[]{\label{fig:pymav_movement1}{\includegraphics[width=0.48\textwidth]{pymav_movement1.jpg}}}\hfill
+    \subfloat[]{\label{fig:pymav_movement2}{\includegraphics[width=0.48\textwidth]{pymav_movement2.jpg}}}\\
+    \subfloat[]{\label{fig:pymav_movement3}{\includegraphics[width=0.48\textwidth]{pymav_movement3.jpg}}}\hfill
+    \subfloat[]{\label{fig:pymav_movement4}{\includegraphics[width=0.48\textwidth]{pymav_movement4.jpg}}}\hfill
+
+    \caption{Etapas de la prueba de seguimiento de trayectoria}
+    \label{fig:pymav_movement}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pymav_movementxy.pdf}
+    \caption{Recorrido realizado por el dron}
+    \label{fig:pymav_movementxy}
+\end{figure}
+
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Eje X]{\label{fig:pymav_movementx}{\includegraphics[width=0.48\textwidth]{pymav_movementx.pdf}}}\hfill
+    \subfloat[Eje Y]{\label{fig:pymav_movementy}{\includegraphics[width=0.48\textwidth]{pymav_movementy.pdf}}}\\
+    \subfloat[Eje Z]{\label{fig:pymav_movementz}{\includegraphics[width=0.48\textwidth]{pymav_movementz.pdf}}}\hfill
+
+    \caption{Gráficas de desplazamiento para los tres ejes}
+    \label{fig:pymav_movementd}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Eje X]{\label{fig:pymav_movementvx}{\includegraphics[width=0.48\textwidth]{pymav_movementvx.pdf}}}\hfill
+    \subfloat[Eje Y]{\label{fig:pymav_movementvy}{\includegraphics[width=0.48\textwidth]{pymav_movementvy.pdf}}}\\
+    \subfloat[Eje Z]{\label{fig:pymav_movementvz}{\includegraphics[width=0.48\textwidth]{pymav_movementvz.pdf}}}\hfill
+
+    \caption{Comportamiento de la velocidad lineal de vuelo en los tres ejes}
+    \label{fig:pymav_movementv}
+\end{figure}
+
 
 \subsection{Misión de vuelo}
 
 Con la etapa anterior se culminaron las pruebas por módulos; en esta subsección se describe el proceso realizado para integrar todas las etapas descritas hasta el momento.
 
+En sí, esta etapa es un compilado de las etapas anteriores, de tal forma que la integración sigue el orden de las etapas conforme fueron explicadas en las subsecciones anteriores. Adicionalmente, esta etapa representa la culminación del seguimiento de trayectoria, pues se buscó eliminar la necesidad de que el usuario ingresara algún tipo de comando de forma manual en la terminal de ArduPilot, y que el dron fuera capaz de seguir una serie de waypoints, por lo que también se dio solución a algunos de los errores especificados en las etapas anteriores, entre ellos el hecho de que sin la existencia de alguna bandera que indicara la llegada a cierto waypoint, el script de seguimiento de trayectoria ejecuta el último waypoints enviado, ignorando los posibles waypoints que se hubieran enviado antes.
+
+Lo anterior se solucionó realizando la lectura del mensaje de estado generado por el controlador de vuelo, existe un parámetro que indica la distancia faltante para llegar al último waypoint enviado. Realizada esta lectura, el siguiente waypoint es enviado hasta que la distancia leída es cero. 
+
+La solución que se acaba de mencionar, permitió establecer un arreglo con los waypoints necesarios para que el dron completara el circuito de vuelo, de forma sistemática y cíclica.
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[]{\label{fig:pymav_mission1}{\includegraphics[width=0.48\textwidth]{pymav_mission1.jpg}}}\hfill
+    \subfloat[]{\label{fig:pymav_mission2}{\includegraphics[width=0.48\textwidth]{pymav_mission2.jpg}}}\\
+    \subfloat[]{\label{fig:pymav_mission3}{\includegraphics[width=0.48\textwidth]{pymav_mission3.jpg}}}\hfill
+    \subfloat[]{\label{fig:pymav_mission4}{\includegraphics[width=0.48\textwidth]{pymav_mission4.jpg}}}\hfill
+
+    \caption{Seguimiento de misión de vuelo completa}
+    \label{fig:pymav_mission}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]{pymav_missionxy.pdf}
+    \caption{Recorrido realizado por el dron}
+    \label{fig:pymav_missionxy}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Eje X]{\label{fig:pymav_missionx}{\includegraphics[width=0.48\textwidth]{pymav_missionx.pdf}}}\hfill
+    \subfloat[Eje Y]{\label{fig:pymav_missiony}{\includegraphics[width=0.48\textwidth]{pymav_missiony.pdf}}}\\
+    \subfloat[Eje Z]{\label{fig:pymav_missionz}{\includegraphics[width=0.48\textwidth]{pymav_missionz.pdf}}}\hfill
+
+    \caption{Gráficas de desplazamiento para los tres ejes}
+    \label{fig:pymav_missiond}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[Eje X]{\label{fig:pymav_missionvx}{\includegraphics[width=0.48\textwidth]{pymav_missionvx.pdf}}}\hfill
+    \subfloat[Eje Y]{\label{fig:pymav_missionvy}{\includegraphics[width=0.48\textwidth]{pymav_missionvy.pdf}}}\\
+    \subfloat[Eje Z]{\label{fig:pymav_missionvz}{\includegraphics[width=0.48\textwidth]{pymav_missionvz.pdf}}}\hfill
+
+    \caption{Comportamiento de la velocidad lineal de vuelo en los tres ejes}
+    \label{fig:pymav_missionv}
+\end{figure}
 
 
 \subsection{Aterrizaje (extra)}
+
+Por último, con respecto al algoritmo de seguimiento de trayectoria, esta subsección se maneja como extra debido a que en la implementación final, el dron no realiza la secuencia de aterrizaje, pues se decidió que completara el circuito de forma indefinida. Sin embargo, se consideró que es importante mencionar que durante las pruebas realizadas sí se implementó una lógica que permitiera aterrizar el dron una vez que completo el circuito de vuelo. 
+
+Se consideraron dos posibles implementaciones para el aterrizaje, la primera, utilizar 2 waypoints más para guiar al dron hacía el origen y, por otro lado, el uso del modo de vuelo integrado en el piloto automático. La segunda opción resultó ser más factible, pues al utilizar waypoints para el descenso del dron, este lo hace de forma brusca y al entrar en contacto con el suelo se observa un rebote derivado de la velocidad de descenso.
+
+Entonces, para implementar el modo de vuelo de aterrizaje, se realizó el mismo proceso implementado en la subsección de la secuencia de despegue, la diferencia se encuentra en que ahora el modo de vuelo especificado es \textit{LAND}, y por supuesto, en este caso no se requiere enviar el comando de vuelo para el despegue.
+
 
 \section{ROS}
 
