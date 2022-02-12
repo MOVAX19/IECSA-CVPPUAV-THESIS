@@ -24,3 +24,4 @@
 {"rule":"MORFOLOGIK_RULE_ES","sentence":"^\\QDespués, en la primavera de 2011, Willow Garage comenzó a financiar el desarrollo de Gazebo, y más tarde, en 2012, la Open Source Robotics Foundation (OSRF; que más tarde se convertiría en Open robotics)\\E$"}
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Qsame .\\E$"}
 {"rule":"MORFOLOGIK_RULE_ES","sentence":"^\\QPara ello es necesario abrir una terminal dentro del directorio donde se encuentra el proyecto y ejecutar el comando rm con permisos de administrador.\\E$"}
+{"rule":"SE_CREO","sentence":"^\\QDebido a que se trabajo con un paradigma de módulos, en donde cada etapa descrita corresponde a un modulo,\\E$"}
