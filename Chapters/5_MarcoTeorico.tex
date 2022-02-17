@@ -120,9 +120,11 @@ A partir de lo anterior, en 2014 una nueva versión de ROS con un enfoque y estr
 
 \subsection{¿Por qué ROS 2?}
 
-Como se mencionó anteriormente, ROS surgió con la idea de satisfacer las necesidades de un único modelo de robot, y lo logró; Por otro lado, a pesar de haber ampliado el framework para funcionar para otros dispositivos, como ya se mencionó, el paradigma de diseño de ROS 1 tenía varias limitantes para las necesidades emergentes de la industria y nuevas aplicaciones.
+Como se mencionó anteriormente, ROS surgió con la idea de satisfacer las necesidades de un único modelo de robot, y lo logró; Por otro lado, a pesar de haber ampliado el framework para funcionar para otros dispositivos, como ya se mencionó, con el paso del tiempo los desarrolladores del proyecto de algunas características importantes de las que carece ROS 1, pues si bien es cierto que en lo últimos años ROS ha adquirido una importante relevancia, su uso se ha visto limitado a aplicaciones con fines académicos y no ha podido despegar en el sector industrial debido a las limitaciones con las que cuenta, dentro de ellas cabe mencionar el hecho de no estar diseñado para trabajar con sistemas en tiempo real, además de carecer de estándares de seguridad para llevar a cabo certificaciones de este tipo. 
 
-Entre los nuevos casos de uso que dirigen el desarrollo de ROS 2 se encuentran los siguientes:
+Las características mencionadas anteriormente no son para nada triviales y modificar el framework de ROS 1 para implementarlas implica realizar una gran cantidad de cambios, los cuales pueden provocar inestabilidad en el proyecto, pues son adiciones que no se planificaron dentro de la etapa de diseño del framework. Entonces, la opción más razonable para el quipo de desarrollo fue crear un nuevo framework desde cero; ROS 2. 
+
+Dicho lo anterior, se tiene definidos nuevos casos de uso que dirigen el desarrollo de ROS 2, al mencionar algunos de los más importantes se encuentran los siguientes:
 
 \begin{itemize}
     \item Sistemas compuestos por múltiples robots: existe la posibilidad de implementarlos en ROS 1, pero no existe un estándar o un acercamiento unificado que permita el desarrollo para este tipo de sistemas.
@@ -135,18 +137,18 @@ Entre los nuevos casos de uso que dirigen el desarrollo de ROS 2 se encuentran l
 
 ROS 2 propone una arquitectura en donde es posible implementar el protocolo de comunicación entre nodos directamente en cualquier sistema embebido, de tal forma que cualquier dispositivo ROS dentro de la red sea descubierto de forma automática por la interfaz de ROS; se implementa una comunicación más descentralizada pues ya no existe la figura de maestro y se implementa una lógica de intercambio de información del tipo DDS (Data Distribution Service), la cual está pensada para sistemas en tiempo real. Además, la forma de crear nodos en ROS 2 está pensada para que el usuario sea capaz de decidir el tiempo  y la forma de lanzamiento de un nodo; cada nodo puede ser lanzado en procesos distintos para facilitar la depuración de estos, o, pueden ser integrados a un solo proceso para obtener un mejor rendimiento y aprovechar la comunicación inter-proceso.  
 
-Lo anterior también conlleva un cambio significativo dentro de la API de ROS; se rediseñó con el fin de mejorarla, de tal forma que los conceptos clave de la versión anterior se conservaran, pero ofreciendo una gran mejora y experiencia al usarla. Esto significa que la API de ROS 1 no será compatible con la de ROS 2, y viceversa; sin embargo se busca que el código de ambas versiones pueda coexistir en un mismo sistema e incluso que cuenten con cierto tipo de interacción; esto permite que la transición entre ambas versiones sea de forma gradual y práctica.
+Lo anterior también conlleva un cambio significativo dentro de la API de ROS; se rediseñó con el fin de mejorarla, de tal forma que los conceptos clave de la versión anterior se conservaron, pero se ofrece una gran mejora y experiencia al usarla. Esto significa que la API de ROS 1 no es compatible con la de ROS 2, y viceversa; sin embargo, se busca que el código de ambas versiones pueda coexistir en un mismo sistema e incluso que cuenten con cierto tipo de interacción; esto permite que la transición entre ambas versiones sea de forma gradual y práctica.
 
 La tabla \ref{tab:rosd} presenta un resumen de las distribuciones de ROS 2 desarrolladas hasta el momento, en ella se indica la fecha de lanzamiento de cada una y el periodo en el que se dejara de ofrecer soporte para estas. Cabe destacar que cada distribución de ROS esta asociada a una única versión LTS (Long Term Support) de Ubuntu.
 
-En cuanto a ROS 1, actualmente se encuentra activas dos distribuciones, Melodic Morenia y Noetic Ninjemys. Siendo esta última la versión final de ROS 1, cuyo soporte terminará en mayo de 2025, de tal forma que se tiene hasta entonces para que los usuarios de ROS 1 migren a ROS 2, si es que desean seguir utilizando un framework con soporte por parte de Open Robotics.
+En cuanto a ROS 1, actualmente se encuentra activas dos distribuciones, Melodic Morenia y Noetic Ninjemys. Siendo esta última la versión final de ROS 1, cuyo objetivo es implementar Python 3 para aquellas organizaciones y empresas que necesitan seguir trabajando con ROS 1 por un tiempo. Por otro lado, el servicio de soporte técnico para esta última versión terminará en mayo de 2025, de tal forma que se tiene hasta entonces para que los usuarios de ROS 1 migren a ROS 2, si es que desean seguir utilizando un framework con un desarrollo activo por parte de Open Robotics.
 
 \begin{table}
     \centering
-    \begin{tabular}{||l|l|l||}
+    \begin{tabular}{lll}
         \hline
-        Distribución & Fecha de lanzamiento & Fin de vida útil\\
-        \hline
+        \textbf{Distribución} & \textbf{Fecha de lanzamiento} & \textbf{Fin de vida útil}\\
+        \hline \hline
         Humble Hawksbill & Mayo 23, 2022 & No especificada\\
         Galactic Geochelone & Mayo 23, 2021 & Noviembre 2022\\
         Foxy Fitzroy & Junio 5, 2020 & Mayo 2023\\
@@ -159,25 +161,41 @@ En cuanto a ROS 1, actualmente se encuentra activas dos distribuciones, Melodic 
         beta2 & Julio 5, 2017 & Septiembre 2017\\
         beta1 & Diciembre 19, 2016 & Julio 2017\\
         alpha1 - alpha8 & Agosto 13, 2015 & Diciembre 2016\\
-        \hline
+        \hline \hline
     \end{tabular}
     \caption{Lista de distribuciones de ROS 2}
     \label{tab:rosd}
 \end{table}
 
 \subsection{Diferencias entre ROS 1 y ROS 2}
-A continuación se resumen los cambios más significativos entre las versiones de ROS.
+Con base en todo lo que se mencionó en las secciones anteriores, la tabla \ref{tab:ROS1ROS2} hace un compilado de todas las diferencias importantes entre ROS 1 y ROS 2.
 
-\textbf{Plataformas:} ROS 1 solo trabaja de forma nativa en Ubuntu; ROS 2 soporta Ubuntu, Mac OS X y Windows 10.
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{p{0.2\linewidth} p{0.35\linewidth}p{0.35\linewidth}}
+        \hline
+        \textbf{Característica} & \textbf{ROS 1} & \textbf{ROS 2} \\ \hline \hline
+        Plataformas & Únicamente soporta de forma nativa Ubuntu. & Soporta Ubuntu, Mac OS X y Windows 10. \\ \hline
+        Programación & Trabaja con C++03 y Python 2; Python 3 en su última versión con plan de soporte. & Utiliza C++11 de forma extensiva y usa algunas partes de C++14 y Python a partir de la versión 3.5.\\ \hline
+        Comunicación & Utiliza una capa de comunicación diseñada desde cero (XML-RPC) & Adopta un protocolo ya definido (DDS) \\ \hline
+        Compilación & Utiliza \textit{catkin} para compilar e instalar sus paquetes & Implementa \textit{Ament}, un nuevo sistema de compilación que integra a \textit{colcon}.\\ \hline
+        POO & No hay un estándares, cada implementación es única & Existen pautas definidas par escribir los nodos \\ \hline
+        Archivos de lanzamiento & Se crean utilizando XML y Python, sin embargo, de este último no hay documentación sobre como hacerlo & Permite crearlos de forma nativa en Python ofreciendo una mayor personalización en cada archivo. \\ \hline
+        Servicios & Son síncronos & Son asíncronos. \\ \hline
+        Paquetes & Se crean los paquetes y se añaden archivos de forma indistinta & Se tiene que especificar si el paquete se basara en Python o C++.\\ \hline \hline
+    \end{tabular}
+    \caption{ROS 1 vs. ROS 2}
+    \label{tab:ROS1ROS2}
+\end{table}
 
-\textbf{Lenguajes de programación:} ROS 1 trabaja con C++03 y Python 2; ROS 2 usa C++11 de forma extensiva y usa algunas partes de C++14,  en un futuro también trabará con C++17. Además, Python a partir de la versión 3.5.
+Tomando como referencia la tabla \ref{tab:ROS1ROS2} es evidente que el paradigma que rige el diseño de ROS 2 es por mucho muy superior en cuanto a estructura, practicidad y mantenibilidad; sin embargo, hoy en día muchas de las implementaciones que estas relacionadas con ROS son realizadas con la primera versión del framework, por lo que ROS 1 sigue teniendo una presencia bastante sólida en comparación con la nueva versión desarrollada. Esto tenderá a cambiar con el paso del tiempo, pero se trata de un proceso gradual que puede llegar a tomar años.
 
-\textbf{Lógica de comunicación:} ROS 1 utiliza una capa de comunicación diseñada prácticamente desde cero (XML-RPC); ROS 2 adopta un protocolo ya definido (DDS) para el manejo de sus comunicaciones.
+Por otro lado, la comunidad de ROS recomienda a los usuarios nuevos formar parte de la transición e iniciar por aprender los fundamentos de ROS 2. En contraste con lo anterior, aprender las implicaciones y la forma de trabajo de ROS 1 puede resultar benéfico para los nuevos usuarios también, pues otorgaría una formación más sólida con el objetivo de tener un panorama más detallado sobre la forma de trabajo con ROS, en general.
 
-\textbf{Sistema de compilación:} 
-
+Por último, existe otro obstáculo que dificulta la transición hacía la nueva versión de ROS, y es que para el usuario promedio puede que el porteo de proyecto de una versión a otra no conlleve tanto esfuerzo, en especial si se trata de proyectos pequeños; sin embargo, al hablar de organizaciones y empresas con proyectos a gran escala, esta actividad puede llegar a representar una cantidad considerable de tiempo y esfuerzo, por lo que es entendible que en estos casos se opte por seguir utilizando ROS 1, y que para nuevos proyectos se opte por utilizar ROS 2.
 
 \section{Visión Artificial}
+
 
 
 \section{Software in The Loop}

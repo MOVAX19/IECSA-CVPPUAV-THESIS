@@ -45,14 +45,21 @@ Además, la realización de pruebas con el sistema físico, para verificar y val
 
 A partir de todo lo anterior, en este trabajo se propone el diseño y la simulación de un algoritmo de visión por computadora para la detección de compuertas rectangulares, similares a aquellas utilizadas en las competencias de drones autónomos, para definir la trayectoria de vuelo de un dron autónomo con el fin de que sea capaz de completar un circuito definido.  El entrenamiento e implementación se realizan dentro de un framework de simulación de SIL, y la gestión y comunicación entre procesos se implementan a partir de una arquitectura diseñada en ROS2, todo lo anterior bajo el paradigma de código abierto con el fin de aprovechar las ventajas previamente mencionadas y aportar los esquemas de configuración y diseño a la comunidad.
 
-\vfill
 
+\section{Planteamiento del problema}
+Los sistemas aéreos de navegación autónomos han tenido un hito importante en los últimos años, de tal forma que al día de hoy existen propuestas bastante sofisticadas de sistemas para la creación de rutas para misiones de vuelo, basadas en la detección de guías visuales utilizando visión artificial. En este trabajo se propone la integración de diversas herramientas de última generación, bajos requerimientos de hardware, multiplataforma y de código abierto para la creación de un ambiente de simulación en 3D con físicas realistas, integrando un modelo de dron comercial y en donde sea posible implementar algoritmos de visión artificial y de seguimiento de trayectoria, de tal forma que puedan interactuar con un controlador de vuelo simulado y guiar al dron a través de un circuito de vuelo.    
 
+En todo su conjunto, lo anterior representa las bases de un framework de software in the loop para validar todo tipo de algoritmos asociados al vuelo autónomo de un dron.
 
-%\section{Planteamiento del problema}
+\section{Contribuciones}
 
+Este trabajo cuenta con 3 principales aportaciones al campo de estudio:
 
-%\section{Contribuciones}
+\begin{itemize}
+    \item El diseño y la implementación de un ambiente de simulación basado en ROS 2, para la validación de algoritmos de detección y navegación enfocados en misiones de vuelo de drones autónomos
+    \item La documentación detallada del proceso seguido para la creación del ambiente de simulación también representa una contribución importante, pues debido a que ROS 2 es una tecnología emergente, no existe mucha documentación relacionada con implementaciones de este tipo para el campo de estudio en cuestión.
+    \item Por último, debido a la naturaleza de las tecnologías utilizadas para el proyecto, el código fuente, en conjunto con las intrucciones de creación y utilización del framework, se comparten bajo el paradigma de código abierto, con el objetivo de beneficiar a la comunidad y usuarios de ROS, así como formar parte de la descentralización del conocimiento.
+\end{itemize}
 
 
 \section{Metodología}
