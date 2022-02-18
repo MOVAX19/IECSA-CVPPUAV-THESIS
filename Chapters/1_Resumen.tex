@@ -1,7 +1,23 @@
 \chapter*{Resumen}
-\begin{center}
-  %\textbf{\Huge Resumen}
-\end{center}
+En este trabajo se integra un conjunto de software de código libre con el objetivo de proponer e implementar un ambiente de simulación para software in the loop, que permita la validación de un sistema propio para la misión de vuelo de un quadrotor; el sistema en cuestión se encuentra integrado por un lado, por un algoritmo de visión por computadora, que cumple con la función de detectar un tipo de compuerta especial que utilizado en competencias de drones autónomos para delimitar un circuito de vuelo, y por otro lado, por un algoritmo de seguimiento de trayectoria basado en waypoints, en donde un programa desarrollado desde cero, se comunica con el firmware de un piloto automático simulado, de tal forma que se envían comandos de vuelo específicos para que el dron sea capaz de volar a través de una serie de compuertas que definen la trayectoria a seguir.
+
+Como se mencionó anteriormente, el sistema de misión de vuelo propuesto está conformado por una serie de aplicaciones y paquetes, entre los cuales se tienen los siguientes:
+
+\textbf{OpenCV}: una paquetería robusta para aplicaciones de visión artificial, con ella se implementó la detección de compuertas
+
+\textbf{PymavLink}: una librería que cuenta con una API basada en MAVLink, con la cual se implementó el seguimiento de trayectoria del dron
+
+\textbf{Gazebo}: un ambiente de simulación para robots, en donde se elaboró el circuito de vuelo 
+
+\textbf{ArduPilot}: un firmware para pilotos automáticos que ofrece herramientas para realizar simulación de software in the loop.
+
+\textbf{ROS 2}: la nueva versión del framework de desarrollo de aplicaciones de robótica; parte esencial para la integración de los algoritmos.
+
+\textbf{GNU/Linux}:  el sistema operativo en donde se desarrolló el proyecto en su conjunto.
+
+
+Por último, se documenta con gran detalle el proceso de integración de todas las herramientas de software utilizadas, así como el comportamiento final del sistema propuesto.
+
 
 
 

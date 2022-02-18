@@ -1054,6 +1054,17 @@ Entonces, para implementar el modo de vuelo de aterrizaje, se realizó el mismo 
 
 \section{ROS}
 
+En esta última sección de resultados se desglosa el proceso llevado a cabo para la implementación de los nodos del algoritmo de visión artificial y el seguimiento de trayectoria. Cabe mencionar que en esta última parte no es tan extensa como las anteriores, pues básicamente la creación de los nodos puede ser vista como un proceso de integración. De hecho, se parte de lo últimos códigos desarrollados en cada sección, de tal forma que el contenido de cada nodo es en esencia lo desarrollado en su respectiva subsección.
+
+\section{Visión Artificial}
+La implementación del algoritmo de detección de compuertas fue quizás la más sencilla, pues al utilizar funciones básicas de OpenCV, no fue necesario incluir librerías adicionales a las utilizadas en el script final de la sección donde se abordan los resultados de algoritmo. Entonces, la implementación de la aplicación resulta ser bastante intuitiva y lineal.
+
+\section{Seguimiento de trayectoria}
+A diferencia del algoritmo de visión artificial, la implementación del nodo para el seguimiento de trayectoria si representó un reto, principalmente por la problemática mencionada sobre la asincronía del firmware del piloto automático y la aplicación de seguimiento de trayectoria. Y es que la lógica seguida sigue siendo la misma, sin embargo, fue difícil encontrar una forma de crear un tiempo muerto o de espera, que permitiera que el piloto automático inicializara por completo.
+
+
+\section{Integración}
+Por último, la integración del ambiente no solo conllevó el conjuntar los nodos creados en las secciones anterior, pues esa fue la parte sencilla, sino que, también se tuvo que buscar la forma de ejecutar Gazebo y Ardupilot a partir de un archivo de lanzamiento creado con ROS.
 
 
 

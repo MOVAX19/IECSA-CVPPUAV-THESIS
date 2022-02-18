@@ -177,3 +177,4 @@ Ament
 catkin
 colcon
 Matlab
+PymavLink
