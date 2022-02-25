@@ -168,17 +168,16 @@
 
 %% Bibliography - natbib
 \if@natbib
-  \if@bibnumbers
-    \RequirePackage[sort&compress,square,numbers]{natbib}
-    %\RequirePackage[authoryear]{natbib}
-  \else
-   %\RequirePackage[sort&compress,round,authoryear]{natbib}
-    \RequirePackage[authoryear]{natbib}
-  \fi
+  %\if@bibnumbers
+  %  \RequirePackage[sort&compress,square,numbers]{natbib}
+  %\else
+  %  \RequirePackage[sort&compress,round,authoryear]{natbib}
+  %\fi
+  \RequirePackage[sort&compress,round,authoryear]{natbib}
   \if@spanish
-    \bibliographystyle{apalike}
+    \bibliographystyle{apalike2}
   \else
-    \bibliographystyle{apalike}
+    \bibliographystyle{plainnat}
   \fi
   \let\cite\citep
 \fi

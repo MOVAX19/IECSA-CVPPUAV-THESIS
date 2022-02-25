@@ -178,3 +178,10 @@ catkin
 colcon
 Matlab
 PymavLink
+International
+Conference
+on
+Intelligent
+and
+systems
+plugins
