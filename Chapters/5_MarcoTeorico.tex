@@ -23,6 +23,8 @@ En cada edición del ADR, las compuertas utilizadas para delimitar el circuito h
 
 Para cada equipo, la competencia comenzaba con el despegue del dron de forma manual, este era posicionado en un punto de inicio y en cuanto se diera la señal, los equipos cedían el control del dron a su sistema de piloto automático; es decir, se tenía que suspenderse toda clase de interacción humana con el sistema de vuelo del dron, y permitir que navegara de forma autónoma hasta completar el circuito. 
 
+
+
 \subsection{AlphaPilot Challenge}
 Como se mencionó, el APC es otra competencia enfocada en las carreras de drones autónomos, fue presentado como un reto de innovación con un gran premio de \$1 millón de dólares para el equipo ganador; la iniciativa fue creada y lanzada al público por Lockheed Martin en conjunto con La Liga de Carrera de drones, en 2019. El objetivo del desafío fue desarrollar un dron completamente autónomo que pudiera navegar por un circuito de vuelo utilizando visión por computadora; a diferencia de otras competencias, el APC no solo buscaba poner a prueba la capacidad de navegación de los sistemas, sino que, se buscaba explotar por completo los sistemas de vuelo, de tal forma que se buscó evaluar también la velocidad de vuelo y agilidad de las maniobras en una pista  más grande y compleja en comparación con la de ADR. 
 
@@ -198,19 +200,19 @@ Por último, existe otro obstáculo que dificulta la transición hacía la nueva
 
 \subsection{Concepto}
 
-El objetivo de la visión por computadora es extraer información de imágenes, y a pesar de que el concepto suene sencillo, ha representado un reto a lo largo del tiempo. Se le ha dedicado una gran cantidad de esfuerzo por parte de las mentes más brillantes y creativas de las últimas décadas, y a pesar de ello, el avance tecnológico parece indicar que aún no se logra por completo el objetivo de desarrollar una máquina de propósito general capaz de observar la realidad como lo hace el sistema conjunto del ojo y el cerebro humano.
+La visión artificial o visión por computadora es un campo de la informática que tiene por objetivo extraer información de imágenes, y a pesar de que el concepto suene sencillo, ha representado un reto a lo largo del tiempo. Se le ha dedicado una gran cantidad de esfuerzo por parte de las mentes más brillantes y creativas de las últimas décadas, y a pesar de ello, el avance tecnológico parece indicar que aún no se logra por completo el objetivo de desarrollar una máquina de propósito general capaz de observar la realidad como lo hace el sistema conjunto del ojo y el cerebro humano.
 
 
 
-\subsection{segmentación utilizando el espacio de color HSV}
+\subsection{Segmentación de color utilizando el modelo HSV}
 
-Generalmente, las imágenes digitales se encuentran definidas bajo un modelo de color de tres componentes: rojo, verde y azul (RGB), en donde a cada color se le asigna una matriz de las mismas dimensiones de la imagen, a tal forma que las tres matrices en conjunto conforman la concentración de color en los píxeles de la imagen en cuestión.
+Generalmente, las imágenes digitales se encuentran definidas bajo un modelo de color de tres componentes: rojo, verde y azul (RGB), en donde a cada color se le asigna una matriz de las mismas dimensiones de la imagen, a tal forma que las tres matrices en conjunto conforman la concentración de color en los píxeles de la imagen en cuestión \cite{saravanakumar2011multiple}.
 
-Los la concentración de cada color está definida por 8 bits; es decir, este parámetro puede tener un valor entre el 0 y el 255, que representan la menor y mayor concentración, respectivamente. El modelo de color RGB representa una forma sencilla para representar la concentración de color en una imagen, sin embargo, cuando se requiere buscar una tonalidad de color especifica en una imagen, utilizando este espacio de color, la situación puede llegar a complicarse cuando existen cambios de iluminación en el ambiente. 
+La concentración de cada color está definida por 8 bits; es decir, este parámetro puede tener un valor entre el 0 y el 255, que representan la menor y mayor concentración, respectivamente. El modelo de color RGB representa una forma sencilla para representar la concentración de color en una imagen, sin embargo, cuando se requiere buscar una tonalidad de color especifica en una imagen, utilizando este espacio de color, la situación puede llegar a complicarse cuando existen cambios de iluminación en el ambiente. 
 
 Debido a lo anterior, cuando se quiere realizar operaciones de procesamiento de imágenes, se suele cambiar el modelo de color de la imagen de RBG a HSV, pues este espacio de color permite manejar los cambios de iluminación con más facilidad y utiliza un sistema para la definición del tono mucho más sencillo de utilizar. 
 
-De manera similar e intuitiva, el espacio de color HSV está compuesto por tres parámetros para la definición de la concentración de color: el matiz (hue; H), la saturación (saturation; S) y el valor (value; V). Estos tres parámetros son organizados en una lista en el orden mencionado, y contienen un rango de valor asociado a cada uno. A continuación, la tabla \ref{tab:hsv_param} contiene la descripcción de los parámetros utilizados por este modelo de color así colo su rango de valores.
+De manera similar e intuitiva, el espacio de color HSV está compuesto por tres parámetros para la definición de la concentración de color: el matiz (hue; H), la saturación (saturation; S) y el valor (value; V). Estos tres parámetros son organizados en una lista en el orden mencionado, y contienen un rango de valor asociado a cada uno. A continuación, la tabla \ref{tab:hsv_param} contiene la descripción de los parámetros utilizados por este modelo de color así colo su rango de valores.
 
 \begin{table}[ht]
     \centering
@@ -238,7 +240,7 @@ La primera versión alfa de OpenCV surgió a inicios de 1999, fue desarrollada p
 
 De esta manera, OpenCV fue concebida como una infraestructura estándar que buscaba estar disponible para cualquier desarrollador alrededor del mundo. El desarrollo y optimización de la librería fue delegado a un grupo de expertos pertenecientes a Intel, en Rusia \cite{bradski2008learning}. Vadim Pisarevsky fue el líder del proyecto y participó de forma activa en la optimización y codificación de la librería, tal que gran parte del código desarrollado por él continúa siendo el núcleo funcional de la librería. En conjunto con Vadim, Victor Eruhimov apoyó en el desarrollo prematuro de la infraestructura, al igual que Valery Kuriakin, quien gestionó el laboratorio y aportó de forma continua al proyecto. 
 
-A partir de lo anterior, OpenCV basó sus desarrolló en algunos pilares u objetivos:
+A partir de lo anterior, OpenCV basó su desarrollo en algunos pilares u objetivos:
 
 \begin{itemize}
     \item Proveer una infraestructura para visión artificial, no solo abierta, sino también optimizada; evitar reinventar la rueda.
@@ -258,8 +260,8 @@ OpenCV fue diseñado con una estructura modular, es decir, el paquete en su conj
     \begin{tabular}{p{0.3\linewidth}p{0.6\linewidth}}
         \hline
         \textbf{Módulo} & \textbf{Descripción}\\ \hline \hline
-        Funcionalidad nuclear & define las estructura de datos base e incluye funciones altamente sofisticadas para operaciones con arreglos multidimensionales y funciones utilizadas por otros módulos \\ \hline
-        Procesamiento de imágenes & incluye filtros lineales y no lineales para el procesamiento de imágenes, transformaciones geométricas, conversión de espacio de color, histogramas y más.\\ \hline
+        Funcionalidad nuclear & Define las estructura de datos base e incluye funciones altamente sofisticadas para operaciones con arreglos multidimensionales y funciones utilizadas por otros módulos \\ \hline
+        Procesamiento de imágenes & Incluye filtros lineales y no lineales para el procesamiento de imágenes, transformaciones geométricas, conversión de espacio de color, histogramas y más.\\ \hline
         Análisis de video & Constituido por funciones para estimación de movimiento, extracción de fondo, y algoritmos para seguimiento de objetos.\\ \hline
         Calibración de cámaras y reconstrucción 3D & Algoritmos multi-geométricos básicos, estimación de posición de objetos, reconstrucción  3D de elementos.\\ \hline
         Funcionalidades en 2D &  Detectores de características, descriptores y descriptores enlazadores\\ \hline
@@ -274,13 +276,13 @@ OpenCV fue diseñado con una estructura modular, es decir, el paquete en su conj
 
 \section{Software in The Loop}
 
-El paradigma de simulación de Software in The Loop (SIL) conlleva la generación de un código fuente compilado a partir de un modelo matemático simulado, de tal forma que se crea un ambiente de simulación práctico para el desarrollo y validación de estrategias de control para sistemas complejos y de gran escala. 
+El paradigma de simulación de Software in The Loop (SIL) conlleva la generación de un código fuente compilado a partir de un modelo matemático simulado, de tal forma que se crea un ambiente de simulación práctico para el desarrollo y validación de estrategias de control para sistemas complejos y de gran escala \cite{SIL_OPAL}. 
 
 Con SIL, los ingenieros pueden utilizar una computadora de escritorio para interactuar con la simulación y modificar su código fuente, integrando su algoritmo de control a una planta virtual, substituyendo los prototipos costosos o los bancos de pruebas complejos. El SIL posibilita las pruebas del software antes de la inicialización de la fase de prototipaje, mejorando de forma significativa los tiempos del ciclo de desarrollo del sistema. 
 
 Complementando lo anterior, la simulación de SIL permite detectar bugs o defectos en el código fuente en etapas tempranas de del ciclo de desarrollo, reduciendo los costos derivados de la solución de estos errores en etapas más avanzadas del desarrollo del sistema, cuando el número de componentes e interacciones entre ellos son más complejas y numerosas. 
 
-A manera general, la simulación de SIL contempla la simulación del comportamiento de un algoritmo de control sobre el modelo de una planta o proceso; a diferencia otros paradigmas como Hardware in The Loop (HIL) o Rapid Control Prototyping (RCP), en una simulación de SIL tanto el sistema de control como el proceso de interés son completamente simulados a partir de modelos matemáticos; es decir, no se requiere ningún tipo de prototipaje físico más que el dispositivo simulador y una computadora para interactuar con la simulación.
+A manera general, la simulación de SIL contempla la simulación del comportamiento de un algoritmo de control sobre el modelo de una planta o proceso; a diferencia otros paradigmas como Hardware in The Loop (HIL, \citet{HIL_OPAL})  o Rapid Control Prototyping (RCP, \citet{RCP_OPAL}), en una simulación de SIL tanto el sistema de control como el proceso de interés son completamente simulados a partir de modelos matemáticos; es decir, no se requiere ningún tipo de prototipaje físico más que el dispositivo simulador y una computadora para interactuar con la simulación.
 
 
 Algunas de las ventajas inherentes del paradigma de SIL son: 
@@ -297,19 +299,19 @@ Algunas de las ventajas inherentes del paradigma de SIL son:
 \subsubsection{Concepto}
 Ardupilot es definido por sus autores \cite{ArduPilot} como un sistema de piloto automático confiable, versátil y de código abierto, capaz de funcionar en diversos vehículos, tales como: multi-copteros, helicópteros, aeronaves de ala fija, botes, submarinos, rovers y más. Al igual que otros proyectos grandes de código abierto, su desarrollo es llevado a cabo por una gran comunidad de profesionales y entusiastas.  
 
-El firmware de ArduPilot hace permite desarrollar sistemas de navegación para vehículos autónomos no tripulados prácticamente de cualquier tipo, y al ser de código abierto, se encuentra en un estado de mejora continua, más aún, el equipo de desarrollo trabaja de forma colaborativa con socios comerciales para añadir funcionalidades por el beneficio de toda la comunidad. Por otro lado, si bien es cierto que ArduPilot no se dedica a la manufacturación de hardware, su firmware trabaja en una amplia gama de hardware para el control de vehículos no tripulados.  
+El firmware de ArduPilot permite desarrollar sistemas de navegación para vehículos autónomos no tripulados prácticamente de cualquier tipo, y al ser de código abierto, se encuentra en un estado de mejora continua, más aún, el equipo de desarrollo trabaja de forma colaborativa con socios comerciales para añadir funcionalidades por el beneficio de toda la comunidad. Por otro lado, si bien es cierto que ArduPilot no se dedica a la manufacturación de hardware, su firmware trabaja en una amplia gama de hardware para el control de vehículos no tripulados.  
 
-Actualmente, se estima que ArduPilot ha sido instalado en más de un millón de vehículos alrededor del mundo; además, integra un registro de datos avanzados, herramientas de análisis y simulación, por lo que ha pasado por un proceso de validación bastante extenso, lo que le da una fiabilidad y seguridad bastante alta para sistemas de piloto automático. Además, los usuarios de ArduPilot tienen acceso a una gran cantidad de interfaces para sensores, computadoras de compañía y sistemas de comunicación.
+Actualmente, se estima que ArduPilot ha sido instalado en más de un millón de vehículos alrededor del mundo \cite{ArduPilot}; además, integra un registro de datos avanzados, herramientas de análisis y simulación, por lo que ha pasado por un proceso de validación bastante extenso, lo que le da una fiabilidad y seguridad bastante alta para sistemas de piloto automático. Además, los usuarios de ArduPilot tienen acceso a una gran cantidad de interfaces para sensores, computadoras de compañía y sistemas de comunicación.
 
 Por último, ArduPilot ha adquirido una relevancia tal que, es usado ampliamente en vehículos desarrollados por instituciones y corporaciones de gran importancia, tales como la NASA, Intel, Boeing y una gran cantidad de universidades y colegios de alrededor del mundo.
 
 \subsubsection{Framework de SIL}
 
-Por otro lado, pese a que ArduPilot está diseñado para ser instalado en hardware físico, como se mencionó en el apartado anterior, también cuenta con herramientas avanzadas de simulación, tal es el caso de su framework destinado a simulaciones de SITL, lo que permite ejecutar perfiles de pilotos automáticos de vehículos como aviones, multi-copteros o rovers, con el objetivo de observar el comportamiento del piloto automático sin necesidad de contar con el vehículo o computadora de vuelo en físico.
+Por otro lado, pese a que ArduPilot está diseñado para ser instalado en hardware físico, como se mencionó en el apartado anterior, también cuenta con herramientas avanzadas de simulación, tal es el caso de su framework destinado a simulaciones de SIL, lo que permite ejecutar perfiles de pilotos automáticos de vehículos como aviones, multi-copteros o rovers, con el objetivo de observar el comportamiento del piloto automático sin necesidad de contar con el vehículo o computadora de vuelo en físico.
 
-El framework de SITL de ArduPilot permite ejecutar ArduPilot en cualquier computadora de escritorio, sin necesidad de cualquier otro tipo de hardware especial. Esto es debido a que ArduPilot puede ser visto como un piloto automático portable que puede instalado y ejecutado en una gran variedad de plataformas. Dicho de esta forma, una computadora personal puede ser vista como un dispositivo más, en donde se desea instalar ArduPilot.
+El framework de SIL de ArduPilot permite ejecutar ArduPilot en cualquier computadora de escritorio, sin necesidad de cualquier otro tipo de hardware especial. Esto es debido a que ArduPilot puede ser visto como un piloto automático portable que puede ser instalado y ejecutado en una gran variedad de plataformas. Dicho de esta forma, una computadora personal puede ser vista como un dispositivo más, en donde se desea instalar ArduPilot.
 
-Es importante aclara que cuando la simulación de SITL es ejecutada, los datos \textit{supuestamente} leídos por los sensores del piloto automático son generados a partir de las dinámicas de vuelo del simulador de vuelo. ArduPilot cuenta con una gran variedad de simuladores para distintos vehículos, y puede integrarse con simuladores externos. Lo anterior permite desarrollar aplicaciones para distintos vehículos y sensores, entre ellos: 
+Es importante aclara que cuando la simulación de SIL es ejecutada, los datos \textit{supuestamente} leídos por los sensores del piloto automático son generados a partir de las dinámicas de vuelo del simulador de vuelo. ArduPilot cuenta con una gran variedad de simuladores para distintos vehículos, y puede integrarse con simuladores externos. Lo anterior permite desarrollar aplicaciones para distintos vehículos y sensores, entre ellos: 
 
 \begin{itemize}
     \item Aeronaves multi-rotor
@@ -321,15 +323,15 @@ Es importante aclara que cuando la simulación de SITL es ejecutada, los datos \
     \item Sensores ópticos
 \end{itemize}
 
-Además, el framework de SITL provee al usuario con una suite de herramientas de desarrollo, tales como depuradores de código, analizadores estáticos, herramientas de análisis dinámico. El ambiente de SITL fue desarrollado para ejecutarse de forma nativa en los sistemas operativos Linux y Windows.
+Además, el framework de SIL provee al usuario con una suite de herramientas de desarrollo, tales como depuradores de código, analizadores estáticos, herramientas de análisis dinámico. El ambiente de SIL fue desarrollado para ejecutarse de forma nativa en los sistemas operativos Linux y Windows.
 
-Por último en cuanto al ambiente de simulación de ArduPilot, la figura \ref{Ardupilot_SITL}, proporciona una perspectiva ejemplo de los puertos de comunicación utilizados para la comunicación de ArduPilot con más software.
+Por último en cuanto al ambiente de simulación de ArduPilot, la figura \ref{Ardupilot_SIL}, proporciona una perspectiva ejemplo de los puertos de comunicación utilizados para la comunicación de ArduPilot con más software.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.65\textwidth]{Ardupilot_SITL.jpg}
     \caption{Ejemplo de puertos de comunicación de Ardupilot}
-    \label{Ardupilot_SITL}
+    \label{Ardupilot_SIL}
 \end{figure}
 
 \subsubsection{PymavLink}
@@ -371,10 +373,3 @@ A demás de las ventajas ya mencionadas, inherentes al uso de un simulador para 
     \item \textbf{Simulación en la nube:} Gazebo puede ser ejecutado en una máquina virtual basada en la nube utilizando CloudSim y permite la interacción con la simulación a partir de su cliente web GzWeb.
     \item \textbf{Herramientas basadas en la línea de comandos:} Gazebo cuenta con un conjunto de herramientas para la línea de comandos que facilitan la interacción con la simulación en ejecución y así como su control.
 \end{itemize}
-
-
-
-
-
-
-

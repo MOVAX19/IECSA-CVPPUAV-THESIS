@@ -587,7 +587,7 @@ Al ejecutar lo anterior, se debe de generar una impresión en la terminal de la 
 \section{Circuito de Vuelo Virtual}
 La sección anterior corresponde a la configuración que se realizó para instalar y validar las herramientas que se utilizaron para la elaboración del proyecto. En los siguientes capítulos se detallan el uso específico que se le dio al software instalado, así como las pruebas y los resultados obtenidos; en esta sección se especifica el proceso de elaboración de la simulación con el circuito de vuelo para el dron simulado.
 
-La figura \ref{fig:Circuit} presenta un diagrama con en donde se especifica la estructura del circuito elaborado, en el se pueden apreciar las cotas con las distancias presentes entre cada una de las compuertas, así como el orden del recorrido realizado por el dron. Cabe destacar que el modelo de compuerta que se seleccionó para el circuito de vuelo, fue el utilizado en las distintas competencias del IROS.
+La figura \ref{fig:Circuit} presenta un diagrama con en donde se especifica la estructura del circuito elaborado, en él se pueden apreciar las cotas con las distancias presentes entre cada una de las compuertas, así como el orden del recorrido realizado por el dron. Cabe destacar que el modelo de compuerta que se seleccionó para el circuito de vuelo, fue el utilizado en las distintas competencias del IROS.
 
 \begin{figure}[ht]
     \centering
@@ -598,9 +598,9 @@ La figura \ref{fig:Circuit} presenta un diagrama con en donde se especifica la e
 
 A partir del esquema antes mencionado, la elaboración del circuito dentro de la simulación se llevó a cabo utilizando algunos modelos ya elaborados por la comunidad de Gazebo. Para el terreno y el modelo de la compuerta se utilizaron los modelos elaborados por \cite{rojas2020deeppilot}, los cuales fueron usados para entrenar su red neuronal profunda. Por otro lado, el modelo del dron Iris fue provisto por
 
-Por otro lado, existe un bug al utilizar Gazebo, pues al crear mundo nuevo, no es posible guarda el proyecto con los cambios realizados, el menú de diálogo que aparece la opción de guarda proyecto simplemente no se muestra de forma correcta, por lo que crear un proyecto nuevo resulta imposible de esta forma. Debido o a lo anterior, en este trabajo se propone una solución para sobrellevar el problema anterior; para que el menú se muestre forma correcta es necesario ejecutar Gazebo con permisos de administrador; sin embargo, al utilizar privilegios de administrador para crear el archivo del proyecto, este se encontrará protegido contra escritura, y resulta muy poco práctico necesitar permisos de administrador para realizar modificaciones sobre el proyecto.
+Por otro lado, existe un bug al utilizar Gazebo, pues al crear mundo nuevo, no es posible guarda el proyecto con los cambios realizados, el menú de diálogo que aparece la opción de guarda proyecto simplemente no se muestra de forma correcta, por lo que crear un proyecto nuevo resulta imposible de esta forma. Debido o a lo anterior, en este trabajo se propone una solución para sobrellevar el problema anterior; para que el menú se muestre de forma correcta es necesario ejecutar Gazebo con permisos de administrador; sin embargo, al utilizar privilegios de administrador para crear el archivo del proyecto, este se encontrará protegido contra escritura, y resulta muy poco práctico necesitar permisos de administrador para realizar modificaciones sobre el proyecto.
 
-Entonces, para solucionar este segundo problema se debe de crear un archivo utilizando el comando \textit{touch} con la extensión \textit{.world}. Lo anterior generar un archivo un proyecto de Gazebo completamente vacío. Ahora, debido a que este tipo de archivos solamente contiene la descripcción de los componentes utilizados en determinado proyecto, así como sus características físicas como posición, es posible abrir el archivo del proyecto con cualquier editor de texto y ver su contenido. Por lo tanto, se puede copiar el contenido del proyecto creado con privilegios de administrador y pegarlo dentro del nuevo proyecto vacío que se acaba de crear.
+Entonces, para solucionar este segundo problema se debe de crear un archivo utilizando el comando \textit{touch} con la extensión \textit{.world}. Lo anterior genera un archivo un proyecto de Gazebo completamente vacío. Ahora, debido a que este tipo de archivos solamente contiene la descripción de los componentes utilizados en determinado proyecto, así como sus características físicas como posición, es posible abrir el archivo del proyecto con cualquier editor de texto y ver su contenido. Por lo tanto, se puede copiar el contenido del proyecto creado con privilegios de administrador y pegarlo dentro del nuevo proyecto vacío que se acaba de crear.
 
 Hecho lo anterior, lo que queda es eliminar el proyecto protegido contra escritura. Para ello es necesario abrir una terminal dentro del directorio donde se encuentra el proyecto y ejecutar el comando \textit{rm} con permisos de administrador. A continuación se anexa un ejemplo:
 
@@ -610,7 +610,7 @@ Hecho lo anterior, lo que queda es eliminar el proyecto protegido contra escritu
 
 La figura \ref{fig:Gazebo_gates} muestra los modelos 3D utilizados para la elaboración de la simulación; como se mencionó, se ocuparon dos tamaños de compuerta y por lo tanto dos modelos.
 
-Adicionalmente, la figura \ref{fig:Gazebo_iris} presenta el modelo 3D del dron iris utilizado. Cabe destacar que la principal diferencia entre el modelo provisto por y el modelo incluido en la simulación de demostración del plugin de Ardupilot para Gazebo, es la posición es la orientación de la cámara. En la simulación de demostración, la cámara se encuentra apuntando hacia el suelo, mientras que en el modelo mostrado en la figura, apunta hacía al frente de la dirección de vuelo del dron.
+Adicionalmente, la figura \ref{fig:Gazebo_iris} presenta el modelo 3D del dron iris utilizado. Cabe destacar que la principal diferencia entre el modelo provisto por \cite{IQ} y el modelo incluido en la simulación de demostración del plugin de Ardupilot para Gazebo, es la orientación de la cámara. En la simulación de demostración, la cámara se encuentra apuntando hacia el suelo, mientras que en el modelo mostrado en la figura, apunta hacía al frente de la dirección de vuelo del dron.
 
 \begin{figure}[ht]
     \centering
@@ -628,7 +628,7 @@ Adicionalmente, la figura \ref{fig:Gazebo_iris} presenta el modelo 3D del dron i
     \subfloat[Vista lateral]{\label{fig:Gazebo_iris2}{\includegraphics[width=0.48\textwidth]{Gazebo_iris2.jpg}}}\\
     \subfloat[Vista superior]{\label{fig:Gazebo_iris3}{\includegraphics[width=0.48\textwidth]{Gazebo_iris3.jpg}}}\hfill
 
-    \caption{Modelo de dron iris con cámara frontal provisto por}
+    \caption{Modelo de dron iris con cámara frontal provisto por \citet{IQ}}
     \label{fig:Gazebo_iris}
 \end{figure}
 
@@ -661,7 +661,7 @@ Por lo tanto, a partir de la figura \ref{fig:cv_hsv} la escala base seleccionada
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{cv_hsv.pdf}
-    \caption{Mapa de color en escala HSV}
+    \caption{Mapa de color en escala HSV \cite{dey_2020}}
     \label{fig:cv_hsv}
 \end{figure}
 
@@ -671,7 +671,7 @@ Cabe destacar que  con las figuras \ref{fig:cv_gate3} y \ref{fig:cv_gate4} se bu
 
 A partir de lo ya mencionado, para realizar la sintonización del rango de color se elaboró un script de Python, en donde se hizo uso de OpenCV para cargar las imágenes mostradas en la figura \ref{fig:cv_gates}, convertir su modelo de color de BGR a HSV, y posteriormente ejecutar el algoritmo de detección con la escala de color base. Lo anterior se realizó de manera individual con cada una de las imágenes, de tal manera que con cada una se ajustó la escala base de forma gradual hasta observar una detección aceptable; es decir, hasta que la detección eliminara la mayor cantidad de falsos positivos en la imagen, dejando solamente las siluetas de las compuertas. 
 
-Es importante mencionar que en este punto del desarrollo del trabajo, el algoritmo no se encontraba ejecutándose de forma indefinida en algún proceso, sino que, se ejecuta una sola vez sobre cada imagen, por lo que lo único que se necesitó para realizar la sintonización fueron las imágenes en cuestión para realizar el ajuste; es decir, el script elaborado no requiere de la ejecución del ambiente creado en Gazebo o de una instancia del SITL de ArduPilot para realizar el ajuste de la escala, este funciona de forma independiente. La proceso seguido para ejecutar el algoritmo desde un nodo en ROS se describe más adelante, en su respectiva sección.
+Es importante mencionar que en este punto del desarrollo del trabajo, el algoritmo no se encontraba ejecutándose de forma indefinida en algún proceso, sino que, se ejecuta una sola vez sobre cada imagen, por lo que lo único que se necesitó para realizar la sintonización fueron las imágenes en cuestión para realizar el ajuste; es decir, el script elaborado no requiere de la ejecución del ambiente creado en Gazebo o de una instancia del SITL de ArduPilot para realizar el ajuste de la escala, este funciona de forma independiente. El proceso seguido para ejecutar el algoritmo desde un nodo en ROS se describe más adelante, en su respectiva sección.
 
 
 \begin{figure}[ht]
@@ -685,7 +685,7 @@ Es importante mencionar que en este punto del desarrollo del trabajo, el algorit
     \label{fig:cv_gates}
 \end{figure}
 
-Entonces, a partir de la escala base se realizó la primera prueba del algoritmo de detección sobre la colección de imágenes. La figura \ref{fig:cv_gatesth1} muestra los resultados obtenidos en esta prueba. Tomando en cuenta el contexto anterior, la figura \ref{fig:cv_gate1th1} muestra la detección efectuada la imagen en primer plano de una de las compuertas, como se puede observar, la detección es prácticamente perfecta y se logra aislar con gran precisión la compuerta del fondo, el suelo y el fragmento visible de pala de uno de los rotores del dron. A manera de secuencia, la figura \ref{fig:cv_gate2th1} presenta la fotografía en tercera persona de las dos compuertas, se aprecia que se logra aislar de gran manera el control de las compuertas, dejando a un lado el suelo y el dron;  sin embargo, el algoritmo no es capaz de detectar el fragmento de compuerta que se observa en la previsualización de la toma de la cámara del dron. Después, la figura \ref{fig:cv_gate3th1} presenta el comportamiento que se presentó sobre la imagen con cambio de ambiente, es posible observar que en este caso la detección es menos exacta, pues si bien es posible apreciar el aislamiento de gran parte del contorno de la compuerta, el suelo del ambiente también forma parte de la detección, pues su tonalidad entra en el rango de color de la escala base. Por último, la figura \ref{fig:cv_gate4th1},presenta el efecto de la detección sobre la imagen con el edificio del ambiente de simulación en el fondo, en esta primera prueba, está último caso presenta el peor desempeño por parte del algoritmo de detección, pues no fue capaz de captar en absoluto las compuertas de la imagen, sino que, más bien aisló la fachada rojiza del edificio; estos dos últimos casos son un claro ejemplo del porqué fue necesario realizar ajustes en el rango de color utilizado.
+Entonces, a partir de la escala base se realizó la primera prueba del algoritmo de detección sobre la colección de imágenes. La figura \ref{fig:cv_gatesth1} muestra los resultados obtenidos en esta prueba. Tomando en cuenta el contexto anterior, la figura \ref{fig:cv_gate1th1} muestra la detección efectuada en la imagen en primer plano de una de las compuertas, como se puede observar, la detección es prácticamente perfecta y se logra aislar con gran precisión la compuerta del fondo, el suelo y el fragmento visible de pala de uno de los rotores del dron. A manera de secuencia, la figura \ref{fig:cv_gate2th1} presenta la fotografía en tercera persona de las dos compuertas, se aprecia que se logra aislar de gran manera el control de las compuertas, dejando a un lado el suelo y el dron;  sin embargo, el algoritmo no es capaz de detectar el fragmento de compuerta que se observa en la previsualización de la toma de la cámara del dron. Después, la figura \ref{fig:cv_gate3th1} presenta el comportamiento que se presentó sobre la imagen con cambio de ambiente, es posible observar que en este caso la detección es menos exacta, pues si bien es posible apreciar el aislamiento de gran parte del contorno de la compuerta, el suelo del ambiente también forma parte de la detección, pues su tonalidad entra en el rango de color de la escala base. Por último, la figura \ref{fig:cv_gate4th1},presenta el efecto de la detección sobre la imagen con el edificio del ambiente de simulación en el fondo, en esta primera prueba, está último caso presenta el peor desempeño por parte del algoritmo de detección, pues no fue capaz de captar en absoluto las compuertas de la imagen, sino que, más bien aisló la fachada rojiza del edificio; estos dos últimos casos son un claro ejemplo del porqué fue necesario realizar ajustes en el rango de color utilizado.
 
 
 \begin{figure}[ht]
@@ -701,9 +701,9 @@ Entonces, a partir de la escala base se realizó la primera prueba del algoritmo
 
 Dándole continuidad a lo observado, realizando el ajuste del rango base, se llegó una serie de valores que mejoraron notablemente el desempeño del algoritmo de detección. El proceso para la sintonización fue el ya expresado, de tal manera que se jugó con el límite inferior de cada parámetro en el modelo de color HSV, hasta que se observó una mejora en la detección de cada una de las imágenes, principalmente en las últimas dos, pues son las que presentaron los resultados más paupérrimos en las primeras pruebas. Entonces, el rango de color que se obtuvo con el reajuste es el siguiente: \[H:5-25;\text{ } S:99-255;\text{ } V:77-171\]
 
-Se observa que el rango para el matiz permaneció igual, mientras que los parámetros de saturación y valor percibieron un cambió un tanto significativo. La figura \ref{fig:cv_gatesth2} muestra los resultados obtenidos a partir de sintonización realizada, a grandes rasgos presenta el mismo número de imágenes que en la prueba anterior, y es posible observar que la detección para la figura \ref{fig:cv_gate1th2} y \ref{fig:cv_gate2th2} permaneció practicamente igual aun que no del todo. Realmente el desempeño logrado en la figura \ref{fig:cv_gate1th2} fue bastante bueno, por lo que en este caso no se observa ninguna mejor en particular, por otro lado, en cuanto a la figura \ref{fig:cv_gate2th2}, es posible observar que el reajuste provoco la eliminación de algunas secciones de la compuerta más cercana al dron, y en cuento a segunda compuerta de la imagen, se observa una perdida bastante significativa en cuanto a la detección; sin embargo, esto no representa un comportamiento no deseado, del todo, pues tomando en cuenta el objetivo del algoritmo de detección y la ruta de vuelo seguida por el dron, se puede llegar a la conclusión de que realmente en ningún momento del vuelo el dron tendrá en su campo de visión a más de una compuerta a la vez, y si lo llega a hacer, lo que se buscó es que el dron fuera capaz de detectar la compuerta más cercana a él, por lo que las compuertas del fondo pierden cierto grado de relevancia para esta aplicación en particular. 
+Se observa que el rango para el matiz permaneció igual, mientras que los parámetros de saturación y valor percibieron un cambió un tanto significativo. La figura \ref{fig:cv_gatesth2} muestra los resultados obtenidos a partir de sintonización realizada, a grandes rasgos presenta el mismo número de imágenes que en la prueba anterior, y es posible observar que la detección para la figura \ref{fig:cv_gate1th2} y \ref{fig:cv_gate2th2} permaneció prácticamente igual, aun que no del todo. Realmente el desempeño logrado en la figura \ref{fig:cv_gate1th2} fue bastante bueno, por lo que en este caso no se observa ninguna mejora en particular, por otro lado, en cuanto a la figura \ref{fig:cv_gate2th2}, es posible observar que el reajuste provocó la eliminación de algunas secciones de la compuerta más cercana al dron, y en cuento a segunda compuerta de la imagen, se observa una perdida bastante significativa en cuanto a la detección; sin embargo, esto no representa un comportamiento no deseado, del todo, pues tomando en cuenta el objetivo del algoritmo de detección y la ruta de vuelo seguida por el dron, se puede llegar a la conclusión de que realmente en ningún momento del vuelo el dron tendrá en su campo de visión a más de una compuerta a la vez, y si lo llega a hacer, lo que se buscó es que el dron fuera capaz de detectar la compuerta más cercana a él, por lo que las compuertas del fondo pierden cierto grado de relevancia para esta aplicación en particular. 
 
-En contraste con el caso anterior, el desempeño referente a la figura \ref{fig:cv_gate3th2} presenta una gran mejor con respecto a la primera prueba realizada, a tal grado que el porcentaje de falsos positivos obtenidos por la tonalidad del suelo resulta ser mucho menor, y en este caso ya es posible observar en mayor proporción el contorno y superficie de la compuerta. Por otro lado, la detección efectuada en la figura \ref{fig:cv_gate4th2} sigue siendo bastante pobre, y al realizar el reajuste de la escala de color, ya no fue posible detectar ningún objeto dentro de esta imagen, por lo que la imagen resultante se encuentra completamente en negro.
+En contraste con el caso anterior, el desempeño referente a la figura \ref{fig:cv_gate3th2} presenta una gran mejora con respecto a la primera prueba realizada, a tal grado que el porcentaje de falsos positivos obtenidos por la tonalidad del suelo resulta ser mucho menor, y en este caso ya es posible observar en mayor proporción el contorno y superficie de la compuerta. Por otro lado, la detección efectuada en la figura \ref{fig:cv_gate4th2} sigue siendo bastante pobre, y al realizar el reajuste de la escala de color, ya no fue posible detectar ningún objeto dentro de esta imagen, por lo que la imagen resultante se encuentra completamente en negro.
 
 
 \begin{figure}[ht]
@@ -766,7 +766,7 @@ A continuación se muestran los resultados obtenidos en cada una de las etapas m
 
 Inevitablemente, lo primero que se realizó fue comprobar la comunicación entre el script de Pymavlink y el SITL de ArduPilot. Por esta razón, el script perteneciente a esta etapa es bastante sencillo; sin embargo, representa la base de las subsecciones posteriores.
 
-A grandes rasgos, lo más destacable la inclusión de la librería Pymavlink y la creación de un objeto que sirve como intermediario entre el script y el piloto automático simulado. Dicho esto, para crear el objeto es necesario especificar la dirección que se utilizará para entablar la conexión; esta se especifica al momento de iniciar el SITL de ArduPilot en un terminal. Además, ArduPilot provee dos direcciones para realizar la conexión. En este caso, se escogió la \textit{14551} de forma arbitraria, sin ninguna razón en específico. La figura \ref{fig:Ardupilot_Py} muestra la información generada por ArduPilot durante el inicio de una instancia del SITL, a simple vista es mucha información; sin embargo, los datos de interés para esta subsección se encuentran en la línea en donde se indican las direcciones disponibles para recibir los datos manejados por el piloto automático, al observar la figura de forma detenida es posible percatarse que hay dos direcciones denotadas por la palabra \textit{out}, la 127.0.0.1:14550 y la 127.0.0.1:14551, en donde los últimos 5 dígitos indican la dirección que se tiene que especificar en el script de Pymavlink para entablar comunicación con ArduPilot. 
+A grandes rasgos, lo más destacable es la inclusión de la librería Pymavlink y la creación de un objeto que sirve como intermediario entre el script y el piloto automático simulado. Dicho esto, para crear el objeto es necesario especificar la dirección que se utilizará para entablar la conexión; esta se especifica al momento de iniciar el SITL de ArduPilot en un terminal. Además, ArduPilot provee dos direcciones para realizar la conexión. En este caso, se escogió la \textit{14551} de forma arbitraria, sin ninguna razón en específico. La figura \ref{fig:Ardupilot_Py} muestra la información generada por ArduPilot durante el inicio de una instancia del SITL, a simple vista es mucha información; sin embargo, los datos de interés para esta subsección se encuentran en la línea en donde se indican las direcciones disponibles para recibir los datos manejados por el piloto automático, al observar la figura de forma detenida es posible percatarse que hay dos direcciones denotadas por la palabra \textit{out}, la 127.0.0.1:14550 y la 127.0.0.1:14551, en donde los últimos 5 dígitos indican la dirección que se tiene que especificar en el script de Pymavlink para entablar comunicación con ArduPilot. 
 
 \begin{figure}[ht]
     \centering
@@ -775,7 +775,7 @@ A grandes rasgos, lo más destacable la inclusión de la librería Pymavlink y l
     \label{fig:Ardupilot_Py}
 \end{figure}
 
-Una vez que se entabló la conexión entre ambas partes es posible tener acceso a toda clase de datos de vuelo, entre ellos la actitud del dron. Cabe mencionar que, en los mensajes que recibe Pymavlink por parte de ArduPilot es una trama de datos de gran longitud, y debido a se creó un objeto de Python para entablar la conexión, es posible acceder a un dato en específico como se accede a un atributo en la instancia de una clase. En este caso, se decidió imprimir en consola el dato del ángulo de roll de dron con el fin de comprobar que la comunicación se dio de forma exitosa. 
+Una vez que se entabló la conexión entre ambas partes es posible tener acceso a toda clase de datos de vuelo, entre ellos la actitud del dron. Cabe mencionar que, en los mensajes que recibe Pymavlink por parte de ArduPilot es una trama de datos de gran longitud, y debido a que se creó un objeto de Python para entablar la conexión, es posible acceder a un dato en específico como se accede a un atributo en la instancia de una clase. En este caso, se decidió imprimir en consola el dato del ángulo de roll de dron con el fin de comprobar que la comunicación se dio de forma exitosa. 
 
 Por último con respecto a esta subsección, la figura \ref{fig:pymav_listen} muestra el resultado de haber entablado una comunicación exitosa entre Pymavlink y el piloto automático, en la figura \ref{fig:pymav_atitude} se logra apreciar la trama completa con los datos referentes a la actitud del dron al momento de llevar a cabo la comunicación, mientras que la figura \ref{fig:pymav_roll} presenta esta trama de forma filtrada, de tal manera que solo se imprime el ángulo de roll del dron.
  
@@ -795,7 +795,7 @@ De acuerdo con la documentación oficial de ArduPilot \cite{Ardu_modes}, el Ardu
 
 Entonces, previo a la secuencia de despegue del dron, es necesario configurar el modo de vuelo en guided, pues al iniciar el SITL de ArduPilot, este inicializa con el modo de vuelo "stabilize", de tal forma que el piloto automático no es capaz de recibir comandos de vuelo ingresado directamente por el usuario. Esto representa un problema pues se busca que la trayectoria de vuelo del dron sea determinada a partir de un conjunto predefinido de waypoints.
 
-Con base en lo anterior, el script perteneciente a esta subsección busca el código perteneciente de al modo de vuelo indicado dentro de una tabla de valores pre-configurados dentro de la librería, y utiliza el objeto de la subsección anterior para enviar el comando de selección de modo de vuelo al piloto automático. En dado caso de que el modo de vuelo especificado tenga un registro válido dentro de la tabla de la librería, se imprime un mensaje en donde se confirma que el modo de vuelo ha sido cambiado.
+Con base en lo anterior, el script perteneciente a esta subsección busca el identificador perteneciente al modo de vuelo indicado, dentro de una tabla de valores pre-configurados dentro de la librería, y utiliza el objeto de la subsección anterior para enviar el comando de selección de modo de vuelo al piloto automático. En dado caso de que el modo de vuelo especificado tenga un registro válido dentro de la tabla de la librería, se imprime un mensaje en donde se confirma que el modo de vuelo ha sido cambiado.
 
 Por último, el método utilizado para establecer el modo de vuelo fue \textit{set\_mode\_send}, el cual recibe solamente 3 parámetros, el atributo del sistema del objeto de la conexión, el comando para establecer el modo de vuelo, y el código de identificación del modo de vuelo especificado. La figura \ref{fig:pymav_modes} muestra el resultado que se obtuvo al ejecutar el código desarrollado para esta subsección, en la figura \ref{fig:pymav_mode} se observa el mensaje de ejecución del script como tal, y por otro lado, la figura \ref{fig:Ardupilot_mode} presenta la aceptación del comando y el cambio de modo de vuelo reflejado en la terminal de ArduPilot.
 
@@ -811,7 +811,7 @@ Por último, el método utilizado para establecer el modo de vuelo fue \textit{s
 
 \subsection{Secuencia de despegue}
 
-Una vez que se logró entablar la comunicación con el piloto automático y se seleccionó en modo de vuelo adecuado, la secuencia de despegue resulto bastante sencilla de implementar, pues solo consta de dos pasos; enviar el comando para el armado de motores y enviar el comando de despegue especificando la altura deseada. Sin embargo, para que lo anterior se logre ejecutar de manera correcta, es necesario esperar a que los sistemas la computadora de vuelo se inicialicen por completo, en especial aquellos sensores que sirven para la estimación de posición del dron, pues se requiere de estos para que el dron pueda despegar y elevarse a la altura solicitada por el usuario.
+Una vez que se logró entablar la comunicación con el piloto automático y se seleccionó en modo de vuelo adecuado, la secuencia de despegue resulto bastante sencilla de implementar, pues solo consta de dos pasos; enviar el comando para el armado de motores y enviar el comando de despegue especificando la altura deseada. Sin embargo, para que lo anterior se logre ejecutar de manera correcta, es necesario esperar a que los sistemas de la computadora de vuelo se inicialicen por completo, en especial aquellos sensores que sirven para la estimación de posición del dron, pues se requiere de estos para que el dron pueda despegar y elevarse a la altura solicitada por el usuario.
 
 Esto último representó un problema al momento de crear el nodo de la misión de vuelo en ROS, pues si los filtros de estimación no se encuentran listos al momento de ejecutar el comando de despegue, la instrucción no se ejecuta y el dron es incapaz de iniciar su rutina de vuelo. La solución a este problema se aborda en la respectiva sección de ROS.
 
@@ -819,7 +819,7 @@ Dicho lo anterior, el script perteneciente a esta subsección no cuenta con la e
 
 Además, en este caso el script envía los comandos al piloto automático mediante la instrucción command\_long\_send, la cual recibe 11 parámetros; en donde los primeros 2 corresponden al sistema y al componente de MAVLink, los cuales son atributos pertenecientes al objeto creado al momento de establecer la comunicación con el piloto automático. Por otro lado, el siguiente parámetro corresponde al comando de vuelo que se desea enviar y los siguientes 8 sus respectivos atributos. Recordando que un comando de MAVLink puede recibir hasta 7 atributos, existen muchos comando en donde no se ocupan por completo esta cantidad de atributos, en estos casos, es necesario revisar la documentación perteneciente al comando en cuestión y verificar la cantidad especifica de atributos requeridos, el resto de parámetros no utilizados se debe de dejar en 0.
 
-Entonces, en el caso de esta etapa, los comandos de vuelo utilizados fueron \textit{MAV\_ CMD\_COMPONENT\_ARM\_DISARM} para el armado de los motores y \textit{MAV\_CMD\_NAV\_ TAKEOFF} para la orden de despegue. La figura \ref{fig:pymav_takeoff} muestra el compotamiento observado en la simulación tras la ejecución del script con la secuencia de despegue, la figura \ref{fig:pymav_takeoff1} presenta el estado inicial de la simulación, antes de que se enviara el comando de vuelo, por otro lado, la figura \ref{fig:pymav_takeoff2} muestra el dron en vuelo, tras haber alcanzado la altura indicada en el comando de vuelo. Entonces, a simple vista se logra apreciar que el comando se ejecutó de manera correcta y el dron despega sin ningún tipo de problema.  
+Entonces, en el caso de esta etapa, los comandos de vuelo utilizados fueron \textit{MAV\_ CMD\_COMPONENT\_ARM\_DISARM} para el armado de los motores y \textit{MAV\_CMD\_NAV\_ TAKEOFF} para la orden de despegue. La figura \ref{fig:pymav_takeoff} muestra el comportamiento observado en la simulación tras la ejecución del script con la secuencia de despegue, la figura \ref{fig:pymav_takeoff1} presenta el estado inicial de la simulación, antes de que se enviara el comando de vuelo, por otro lado, la figura \ref{fig:pymav_takeoff2} muestra el dron en vuelo, tras haber alcanzado la altura indicada en el comando de vuelo. Entonces, a simple vista se logra apreciar que el comando se ejecutó de manera correcta y el dron despega sin ningún tipo de problema.  
 
 \begin{figure}[ht]
     \centering
@@ -830,14 +830,16 @@ Entonces, en el caso de esta etapa, los comandos de vuelo utilizados fueron \tex
 \end{figure}
 
 
-Si bien la figura \ref{fig:pymav_takeoff} muestra de manera acertada la correcta ejecución de la secuencia de despegue, a simple vista resulta difícil decir con exactitud sin el dron alcanzó, o no, la altura desea. Debido a lo anterior, se recopilaron los datos correspondientes a la posición y velocidad del dron durante su ascenso, a partir de uno de los mensajes de Mavlink que permite obtener acceso a esta información manejada por el piloto automático. En consecuencia, la figura \ref{fig:pymav_takeoffz} es una gráfica que muestra la altura del dron durante su despegue, de tal forma que es posible apreciar que, en efecto, el dron logra alcanzar la altitud deseada durante su despegue con un ligero sobre paso, aproximadamente a los 13 segundos después de comenzar a ejecutar el comando de vuelo. Adicionalmente, la figura \ref{fig:pymav_takeoffvz} corresponde a una gráfica que describe el comportamiento de la velocidad de ascenso del dron, y de manera congruente con la gráfica mencionada anteriormente, se puede apreciar un descenso en la velocidad de ascenso en el intervalo de tiempo de 10 s y 15 s, lapso en el que el dron logra llegar a la referencia y por lo tanto ya no es necesario ascender más;  además, se observa una velocidad máxima de ascenso de 2.21 $\frac{m}{s}$.
+Si bien la figura \ref{fig:pymav_takeoff} muestra de manera acertada la correcta ejecución de la secuencia de despegue, a simple vista resulta difícil decir con exactitud sin el dron alcanzó, o no, la altura desea. Debido a lo anterior, se recopilaron los datos correspondientes a la posición y velocidad del dron durante su ascenso, a partir de uno de los mensajes de MavLink que permite obtener acceso a esta información manejada por el piloto automático. En consecuencia, la figura \ref{fig:pymav_takeoffz} es una gráfica que muestra la altura del dron durante su despegue, de tal forma que es posible apreciar que, en efecto, el dron logra alcanzar la altitud deseada durante su despegue con un ligero sobre paso, aproximadamente a los 13 segundos después de comenzar a ejecutar el comando de vuelo. Por otro lado, cabe mencionar que, debido al marco de referencia con el que se está trabajando, un desplazamiento hacia arriba en el eje \textit{z} es considerado negativo, mientras que un desplazamiento hacia abajo en ese eje se considera positivo; sin embargo, para fines de una interpretación de datos más intuitiva, se invirtió el signo de la lectura de datos en el eje \textit{z}. 
 
-\begin{figure}[ht]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{pymav_takeoffz.pdf}
     \caption{Respuesta en la altura para el comando de despegue.}
     \label{fig:pymav_takeoffz}
 \end{figure}
+
+Adicionalmente, la figura \ref{fig:pymav_takeoffvz} corresponde a una gráfica que describe el comportamiento de la velocidad de ascenso del dron, y de manera congruente con la gráfica mencionada anteriormente, se puede apreciar un descenso en la velocidad de ascenso en el intervalo de tiempo de 10 s y 15 s, lapso en el que el dron logra llegar a la referencia y por lo tanto ya no es necesario ascender más;  además, se observa una velocidad máxima de ascenso de 2.21 $\frac{m}{s}$.
 
 \begin{figure}[ht]
     \centering
@@ -846,13 +848,11 @@ Si bien la figura \ref{fig:pymav_takeoff} muestra de manera acertada la correcta
     \label{fig:pymav_takeoffvz}
 \end{figure}
 
-\newpage
-
 \subsection{Seguimiento de trayectoria}
 
-Hecho todo lo anterior, la última prueba que se tuvo que realizar, en cuanto a una funcionalidad en específica de Pymavlink, fue la del seguimiento de trayectoria por medio de comandos de vuelo directos, en forma de waypoints. Sin embargo, debido al problema mencionado en la etapa anterior, el script perteneciente a esta subsección no ejecuta las etapas anteriores, sino que para poder ejecutar el programa, el usuario tiene que esperar a que la terminal de Ardupilot permita el cambio de modo de vuelo de forma manual, y después ejecutar los respectivos comandos de vuelo para realizar la secuencia de despegue del dron.
+Hecho todo lo anterior, la última prueba que se tuvo que realizar, en cuanto a una funcionalidad en específico de Pymavlink, fue la del seguimiento de trayectoria por medio de comandos de vuelo directos, en forma de waypoints. Sin embargo, debido al problema mencionado en la etapa anterior, el script perteneciente a esta subsección no ejecuta las etapas anteriores, sino que para poder ejecutar el programa, el usuario tiene que esperar a que la terminal de Ardupilot permita el cambio de modo de vuelo de forma manual, y después ejecutar los respectivos comandos de vuelo para realizar la secuencia de despegue del dron.
 
-Ahora bien, la prueba realizada para esta etapa fue sencilla, se enviaron dos waypoint utilizando el marco de referencia local, en donde el origen, o la coordenada (0,0,0), corresponde al punto inicial del mundo creado, denotado de forma visual por 3 barras ortogonales de color azul para el eje \textit{z}, azul para el eje \textit{x} y verde para el eje \textit{y}. Además, como se mencionó, la trayectoria de vuelo está compuesta por dos waypoints, los cuales fueron definidos de tal manera que se buscó que el dron cruzara por las dos primeras compuertas del circuito de vuelo, dichos waypoint son [10,0,-3] y [30 0 -3]; Dicho esto, la secuencia pensada para la ejecución de esta prueba fue, primero hacer ascender el dron a una altura de 10 m y después indicarle su trayectoria de vuelo a partir de los waypoints especificados. 
+Ahora bien, la prueba realizada para esta etapa fue sencilla, se enviaron dos waypoint utilizando el marco de referencia local, en donde el origen, o la coordenada (0,0,0), corresponde al punto inicial del mundo creado, denotado de forma visual por 3 barras ortogonales de color azul para el eje \textit{z}, azul para el eje \textit{x} y verde para el eje \textit{y}. Además, como se mencionó, la trayectoria de vuelo está compuesta por dos waypoints, los cuales fueron definidos de tal manera que se buscó que el dron cruzara por las dos primeras compuertas del circuito de vuelo, dichos waypoint son [35,0,3] y [35, 17, 2]; Dicho esto, la secuencia pensada para la ejecución de esta prueba fue, primero hacer ascender el dron a una altura de 10 m y después indicarle su trayectoria de vuelo a partir de los waypoints especificados. 
 
 Asimismo, se buscó comprobar si el piloto automático espera a que el dron llegue al primer waypoint para dirigirse hacía el segundo, sin embargo, esto no sucede y el piloto automático ejecuta el segundo waypoint definido, pues no hay ningún tiempo de espera o bandera que le indique al piloto que debe de esperar a que se termine la ejecución del primer waypoint. Entonces, para evitar que el piloto automático ignorara el primer waypoint, se utilizó un mensaje de MAVLink definido como \textit{NAV\_CONTROLLER\_OUTPUT} el cual publica información relacionada sobre el comando de vuelo enviado al piloto automático, entre la cual se encuentra la distancia faltante para que el dron llegue al waypoint especificado al momento de lectura del mensaje. Entonces, la instrucción para el seguimiento del segundo waypoint es enviada al piloto automático hasta que el mensaje especifica que la distancia restante para llegar al primer waypoint es igual a cero.
 
@@ -946,7 +946,9 @@ De forma subsecuente, la figura \ref{fig:pymav_movementd} presenta el comportami
     \label{fig:pymav_movementd}
 \end{figure}
 
-Asimismo, el conjunto de gráficas en la figura \ref{fig:pymav_movementv}, esta esta relacionada con las velocidades lineales asociadas a cada uno de los 3 ejes de desplazamiento del dron. Dicho lo anterior, en la figura \ref{fig:pymav_movementvx}, se observa como en el eje \textit{x} se alcanza la velocidad máxima de 8.35 $\frac{m}{s}$, en el segundo 3.5, antes del tiempo de transición de waypoints, de tal manera que para el segundo 10, la velocidad a lo largo de este eje ha decrecido de forma significativa y de forma intuitiva, se aprecia en la figura \ref{fig:pymav_movementvy} que como es que la velocidad a lo largo del eje \textit{y} comienza su ascenso a partir del tiempo de transición de waypoints, llegando un máximo de 5.58 $\frac{m}{s}$ en el segundo 11 del vuelo del dron. En consecuencia, en la figura \ref{fig:pymav_movementvz} se logra observar como la velocidad máxima de ascenso se presenta durante la etapa de despegue del dron, para posicionarlo a 10 m de altura, de tal manera que se alcanzan los 1.58 $\frac{m}{s}$ en los primeros 1.75 s del vuelo del dron, después se presenta un descenso gradual en la velocidad, y durante la transición de waypoints se observa un incremento en la misma para luego decrementar otra vez y mantenerse en cero una vez alcanzada la altura necesaria para cruzar por la segunda compuerta.
+Asimismo, el conjunto de gráficas en la figura \ref{fig:pymav_movementv}, esta esta relacionada con las velocidades lineales asociadas a cada uno de los 3 ejes de desplazamiento del dron. Dicho lo anterior, en la figura \ref{fig:pymav_movementvx}, se observa como en el eje \textit{x} se alcanza la velocidad máxima de 8.34 $\frac{m}{s}$, en el segundo 3.75, antes del tiempo de transición de waypoints, de tal manera que para el segundo 10, la velocidad a lo largo de este eje ha decrecido de forma significativa y de forma intuitiva, se aprecia en la figura \ref{fig:pymav_movementvy} que como es que la velocidad a lo largo del eje \textit{y} comienza su ascenso a partir del tiempo de transición de waypoints, llegando un máximo de 5.59 $\frac{m}{s}$ en el segundo 11.25 del vuelo del dron. 
+
+Por otra parte, la figura \ref{fig:pymav_movementvz} muestra el comportamiento de la velocidad a lo largo del eje \textit{z}; es importante no perder de vista que, como se mencionó en la subsección de la etapa de despegue, los signos de las velocidades fueron invertidos para que el análisis de resultados correspondiera de forma visual con el comportamiento observado durante la ejecución de la simulación. Dicho esto, en la figura \ref{fig:pymav_movementvz} se destaca una pendiente negativa en los primeros 2 segundos de la simulación, esto se debe a que el dron inició a una altura de 10 m y tuvo que descender a 3 m, por lo que el sentido del vector de velocidad fue hacia abajo, llegando a una velocidad de -1.56 $\frac{m}{s}$ en el segundo 2, después de este lapso, el dron tuvo que disminuir su velocidad pues se fue aproximando cada vez más a la altura deseada de 3 m, lo cual ocurrió poco después del segundo 5, con base en la figura \ref{fig:pymav_movementz}; en la gráfica se puede observar un pequeño sobrepaso con una velocidad positiva de 0.0634 $\frac{m}{s}$. Luego, un poco antes del segundo 10, ocurre la transición al siguiente waypoint, por lo que el dron tuvo que descender a los 2 m de altura, una vez más, presentando una velocidad negativa para después detenerse de forma gradual hasta llegar a la altura de referencia. Por último, se observa que el dron finaliza con su recorrido aproximadamente en el segundo 15, pues la velocidad se mantiene en cero después de ese punto.
 
 \begin{figure}[ht]
     \centering
@@ -958,6 +960,14 @@ Asimismo, el conjunto de gráficas en la figura \ref{fig:pymav_movementv}, esta 
     \label{fig:pymav_movementv}
 \end{figure}
 
+Por último con respecto a esta prueba, la figura \ref{fig:pymav_pathfollowing} presenta una proyección en 3D del la trayectoria de vuelo ejecutada por el dron. Esta gráfica presenta de manera más visual la ruta observada durante la ejecución de la simulación y es posible observar los 3 instantes más significativos de esta prueba. Primero, el dron inicia con una altura de 10 m; después se le comanda el primer waypoint [35,0,3], lo que corresponde al descenso pronunciado observado en la gráfica; cuando el dron llega a su primera referencia, se le comanda el segundo waypoint [35,17,2], donde se observa otro descenso, menos pronunciado y un movimiento a lo largo del eje \textit{y}.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.45\textwidth]{pymav_pathfollowing.pdf}
+    \caption{Gráfica en 3D de la trayectoria seguida por el dron.}
+    \label{fig:pymav_pathfollowing}
+\end{figure}
 
 \subsection{Misión de vuelo}
 
@@ -1018,7 +1028,7 @@ Por otro lado, cabe mencionar que MAVLink acepta misiones de vuelo de forma nati
     \label{fig:pymav_missionxy}
 \end{figure}
 
-Siguiendo con los resultados obtenidos en esta subsección, la figura \ref{fig:pymav_missiond} muestra el desplazamiento lineal capturado durante el vuelo del dron. Es posible observar un comportamiento bastante peculiar en todos los ejes, por un lado en la figura \ref{fig:pymav_missionx} se puede apreciar como para el primer waypoint el desplazamiento en el eje \textit{x} incrementa de forma gradual hasta llegar a 35 m, en aproximadamente 10 segundos, después, ocurre la transición para el segundo waypoint, sin embargo la posición en el eje \textit{x} se mantiene intacta, por eso el dron permanece en 35, hasta el segundo 16, en donde ocurre la transición al tercer waypoint y es necesario disminuir el desplazamiento hasta llegar a 0 m en el eje \textit{x}, en donde el dron se mantiene hasta finalizar su recorrido. Por otro lado, en la figura \ref{fig:pymav_missiony} se aprecia un comportamiento en el eje \textit{y} de cierta forma complementario al del eje \textit{x}, en los primeros 10 segundos del recorrido, el dron no presenta ningún desplazamiento en \textit{y} por lo que su posición con respecto a este eje se mantiene en 0, posteriormente, ocurre la transición al segundo waypoint y es cuando ocurre el primer desplazamiento en \textit{y}, de tal forma que el dron avanza 17 m, después, en el segundo 25, se da la transición al tercer waypoint y la posición en \textit{y} comienza a decrementar, de tal forma que para el segundo 30 el dron ya se encuentra en el origen del circuito de vuelo. De manera similar, a partir de la figura \ref{fig:pymav_missionz} es posible intuir el comportamiento de la altura del dron durante su vuelo, el cual resulta ser más sencillo que los dos anteriores pues en este caso, la altitud solamente osciló entre dos valores 3 y 2 m, donde a los 10 segundos de vuelo ocurre un descenso a los 2 m de altura, pues ocurre la transición al segundo waypoint y la compuerta correspondiente  a este waypoint es de menor tamaño, por lo que es necesario que el dron descienda y luego vuelva a ascender a los 3 m cuando ocurre la siguiente transición de waypoints.
+Siguiendo con los resultados obtenidos en esta subsección, la figura \ref{fig:pymav_missiond} muestra el desplazamiento lineal capturado durante el vuelo del dron. Es posible observar un comportamiento bastante peculiar en todos los ejes, por un lado en la figura \ref{fig:pymav_missionx} se puede apreciar como para el primer waypoint el desplazamiento en el eje \textit{x} incrementa de forma gradual hasta llegar a 35 m, en aproximadamente 10 segundos, después, ocurre la transición para el segundo waypoint, sin embargo la posición en el eje \textit{x} se mantiene intacta, por eso el dron permanece en 35, hasta el segundo 16, en donde ocurre la transición al tercer waypoint y es necesario disminuir el desplazamiento hasta llegar a 0 m en el eje \textit{x}, en donde el dron se mantiene hasta finalizar su recorrido. Por otro lado, en la figura \ref{fig:pymav_missiony} se aprecia un comportamiento en el eje \textit{y} de cierta forma complementario al del eje \textit{x}, en los primeros 10 segundos del recorrido, el dron no presenta ningún desplazamiento en \textit{y} por lo que su posición con respecto a este eje se mantiene en 0, posteriormente, ocurre la transición al segundo waypoint y es cuando ocurre el primer desplazamiento en \textit{y}, de tal forma que el dron avanza 17 m, después, en el segundo 25, se da la transición al tercer waypoint y la posición en \textit{y} comienza a decrementar, de tal forma que para el segundo 30 el dron ya se encuentra en el origen del circuito de vuelo. De manera similar, a partir de la figura \ref{fig:pymav_missionz} es posible intuir el comportamiento de la altura del dron durante su vuelo, el cual resulta ser más sencillo que los dos anteriores pues en este caso, la altitud solamente osciló entre dos valores 3 y 2 m, donde a los 10 segundos de vuelo ocurre un descenso a los 2 m de altura, pues ocurre la transición al segundo waypoint y la compuerta correspondiente  a este waypoinzt es de menor tamaño, por lo que es necesario que el dron descienda y luego vuelva a ascender a los 3 m cuando ocurre la siguiente transición de waypoints.
 
 \begin{figure}[ht]
     \centering
@@ -1030,7 +1040,11 @@ Siguiendo con los resultados obtenidos en esta subsección, la figura \ref{fig:p
     \label{fig:pymav_missiond}
 \end{figure}
 
- Así mismo, la figura \ref{fig:pymav_missionv} presenta el comportamiento de la velocidad lineal en los tres ejes de desplazamiento.
+ Así mismo, la figura \ref{fig:pymav_missionv} presenta el comportamiento de la velocidad lineal en los tres ejes de desplazamiento. La gráfica de la figura \ref{fig:pymav_missionvx} presenta el comportamiento en el eje \textit{x}, mientras que la figura \ref{fig:pymav_missionvy} hace lo respectivo con el eje \textit{y}; como se observa, ambas gráficas presentan comportamientos bastantes similares. El primer waypoint 35,0,3 involucra un desplazamiento positivo en el eje \textit{x}, sin desplazarse en el eje \textit{y}, por lo que en los primeros 10 segundos de la simulación se observa el máximo en $v_x$ de 8.42 $\frac{m}{s}$, mientras que $v_y$ permanence en 0; el decremento de $v_x$ se debe a que el dron comienza a detenerse conforme se acerca a la referencia de posición, y poco antes del segundo 10 se observa un incremento en $v_y$, debido a la transición al segundo waypoint 35,17,2, donde $v_y$ alcanza su máximo de 5.53 $\frac{m}{s}$ en el segundo 11.25 para después disminuir su velocidad.
+ 
+ Luego, se observa una pendiente negativa en $v_x$ pues el tercer waypoint [0,17,3] implica un retroceso en el desplazamiento en \textit{x}, de tal forma que después del segundo 18.5 también se observa una reducción en la magnitud de $v_x$ hasta llegar a cero. Este comportamiento también se observa para el cuarto waypoint [0,0,0] en donde $v_y$ presenta la pendiente negativa y posteriormente un detenimiento completo.
+
+ Por último, en la figura \ref{fig:pymav_missionvz} es posible observar el comportamiento de $v_z$. Se aprecia que al inicio de la gráfica se presenta el máximo de velocidad (0.67 $\frac{m}{s}$), esto se debe a que la adquisición de datos comenzó justo después de que la etapa de despegue hubiera concluido, por lo que el dron ya contaba con cierta velocidad, después de eso, se observan decrementos graduales en $v_z$ con el fin de detener su movimiento, por la llegada a la altura de referencia; sin embargo, en el segundo 10 ocurre el comando del segundo waypoint, el cual cambia la referencia a 2 m, por lo que el dron tuvo que descender para alcanzar esa altura, y posteriormente, el tercer waypoint provoco que el dron volviera a ascender, debido a esto se observa picos positivos en el segundo 15 aproximadamente. 
 
 \begin{figure}[ht]
     \centering
@@ -1041,6 +1055,8 @@ Siguiendo con los resultados obtenidos en esta subsección, la figura \ref{fig:p
     \caption{Comportamiento de la velocidad lineal de vuelo en los tres ejes}
     \label{fig:pymav_missionv}
 \end{figure}
+
+
 
 
 \subsection{Aterrizaje (extra)}
@@ -1056,16 +1072,90 @@ Entonces, para implementar el modo de vuelo de aterrizaje, se realizó el mismo 
 
 En esta última sección de resultados se desglosa el proceso llevado a cabo para la implementación de los nodos del algoritmo de visión artificial y el seguimiento de trayectoria. Cabe mencionar que en esta última parte no es tan extensa como las anteriores, pues básicamente la creación de los nodos puede ser vista como un proceso de integración. De hecho, se parte de lo últimos códigos desarrollados en cada sección, de tal forma que el contenido de cada nodo es en esencia lo desarrollado en su respectiva subsección.
 
-\section{Visión Artificial}
+\subsection{Visión Artificial}
 La implementación del algoritmo de detección de compuertas fue quizás la más sencilla, pues al utilizar funciones básicas de OpenCV, no fue necesario incluir librerías adicionales a las utilizadas en el script final de la sección donde se abordan los resultados de algoritmo. Entonces, la implementación de la aplicación resulta ser bastante intuitiva y lineal.
 
-\section{Seguimiento de trayectoria}
+\begin{figure}[ht]
+    \centering
+    \subfloat[ ]{\label{fig:ROS_gate1og1}{\includegraphics[width=0.2\textwidth]{ROS_gate1og1.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate1og2}{\includegraphics[width=0.2\textwidth]{ROS_gate1og2.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate1og3}{\includegraphics[width=0.2\textwidth]{ROS_gate1og3.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate1og4}{\includegraphics[width=0.2\textwidth]{ROS_gate1og4.png}}} \\
+    \subfloat[ ]{\label{fig:ROS_gate1th1}{\includegraphics[width=0.2\textwidth]{ROS_gate1th1.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate1th2}{\includegraphics[width=0.2\textwidth]{ROS_gate1th2.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate1th3}{\includegraphics[width=0.2\textwidth]{ROS_gate1th3.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate1th4}{\includegraphics[width=0.2\textwidth]{ROS_gate1th4.png}}}
+    
+    \caption{Comportamiento de la velocidad lineal de vuelo en los tres ejes}
+    \label{fig:ROS_gate1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[ ]{\label{fig:ROS_gate2og1}{\includegraphics[width=0.2\textwidth]{ROS_gate2og1.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate2og2}{\includegraphics[width=0.2\textwidth]{ROS_gate2og2.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate2og3}{\includegraphics[width=0.2\textwidth]{ROS_gate2og3.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate2og4}{\includegraphics[width=0.2\textwidth]{ROS_gate2og4.png}}} \\
+    \subfloat[ ]{\label{fig:ROS_gate2th1}{\includegraphics[width=0.2\textwidth]{ROS_gate2th1.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate2th2}{\includegraphics[width=0.2\textwidth]{ROS_gate2th2.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate2th3}{\includegraphics[width=0.2\textwidth]{ROS_gate2th3.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate2th4}{\includegraphics[width=0.2\textwidth]{ROS_gate2th4.png}}}
+    
+    \caption{Comportamiento de la velocidad lineal de vuelo en los tres ejes}
+    \label{fig:ROS_gate2}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[ ]{\label{fig:ROS_gate3og1}{\includegraphics[width=0.2\textwidth]{ROS_gate3og1.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate3og2}{\includegraphics[width=0.2\textwidth]{ROS_gate3og2.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate3og3}{\includegraphics[width=0.2\textwidth]{ROS_gate3og3.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate3og4}{\includegraphics[width=0.2\textwidth]{ROS_gate3og4.png}}} \\
+    \subfloat[ ]{\label{fig:ROS_gate3th1}{\includegraphics[width=0.2\textwidth]{ROS_gate3th1.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate3th2}{\includegraphics[width=0.2\textwidth]{ROS_gate3th2.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate3th3}{\includegraphics[width=0.2\textwidth]{ROS_gate3th3.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate3th4}{\includegraphics[width=0.2\textwidth]{ROS_gate3th4.png}}}
+    
+    \caption{Comportamiento de la velocidad lineal de vuelo en los tres ejes}
+    \label{fig:ROS_gate3}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \subfloat[ ]{\label{fig:ROS_gate4og1}{\includegraphics[width=0.2\textwidth]{ROS_gate4og1.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate4og2}{\includegraphics[width=0.2\textwidth]{ROS_gate4og2.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate4og3}{\includegraphics[width=0.2\textwidth]{ROS_gate4og3.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate4og4}{\includegraphics[width=0.2\textwidth]{ROS_gate4og4.png}}} \\
+    \subfloat[ ]{\label{fig:ROS_gate4th1}{\includegraphics[width=0.2\textwidth]{ROS_gate4th1.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate4th2}{\includegraphics[width=0.2\textwidth]{ROS_gate4th2.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate4th3}{\includegraphics[width=0.2\textwidth]{ROS_gate4th3.png}}} \hspace{0.2 pt}
+    \subfloat[ ]{\label{fig:ROS_gate4th4}{\includegraphics[width=0.2\textwidth]{ROS_gate4th4.png}}}
+    
+    \caption{Comportamiento de la velocidad lineal de vuelo en los tres ejes}
+    \label{fig:ROS_gate4}
+\end{figure}
+
+
+
+\subsection{Seguimiento de trayectoria}
 A diferencia del algoritmo de visión artificial, la implementación del nodo para el seguimiento de trayectoria si representó un reto, principalmente por la problemática mencionada sobre la asincronía del firmware del piloto automático y la aplicación de seguimiento de trayectoria. Y es que la lógica seguida sigue siendo la misma, sin embargo, fue difícil encontrar una forma de crear un tiempo muerto o de espera, que permitiera que el piloto automático inicializara por completo.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.45\textwidth]{pymav_flightmission.pdf}
+    \caption{Recorrido realizado por el dron}
+    \label{fig:pymav_flightmission}
+\end{figure}
 
-\section{Integración}
+\subsection{Integración}
 Por último, la integración del ambiente no solo conllevó el conjuntar los nodos creados en las secciones anterior, pues esa fue la parte sencilla, sino que, también se tuvo que buscar la forma de ejecutar Gazebo y Ardupilot a partir de un archivo de lanzamiento creado con ROS.
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{ROS_graph.pdf}
+    \caption{Recorrido realizado por el dron}
+    \label{fig:ROS_graph}
+\end{figure}
 
 
 

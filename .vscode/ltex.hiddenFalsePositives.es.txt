@@ -27,3 +27,6 @@
 {"rule":"SE_CREO","sentence":"^\\QDebido a que se trabajo con un paradigma de módulos, en donde cada etapa descrita corresponde a un modulo,\\E$"}
 {"rule":"AGREEMENT_ADJ_NOUN","sentence":"^\\QCaracterística ROS 1 ROS 2 Plataformas Únicamente soporta de forma nativa Ubuntu Soporta Ubuntu, Mac OS X y Windows 10 ROS 1 vs ROS 2\\E$"}
 {"rule":"AGREEMENT_ADJ_NOUN","sentence":"^\\QCaracterística ROS 1 ROS 2 Plataformas Únicamente soporta de forma nativa Ubuntu Soporta Ubuntu, Mac OS X y Windows 10 Lenguajes de programación ROS 1 vs ROS 2\\E$"}
+{"rule":"MORFOLOGIK_RULE_ES","sentence":"^\\QEntonces, en el caso de esta etapa, los comandos de vuelo utilizados fueron MAV CMDCOMPONENTARMDISARM para el armado de los motores y MAVCMDNAV TAKEOFF para la orden de despegue.\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QEntonces, para solucionar este segundo problema se debe de crear un archivo utilizando el comando touch con la extensión .world.\\E$"}
+{"rule":"MORFOLOGIK_RULE_ES","sentence":"^\\QSi bien la figura \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q muestra de manera acertada la correcta ejecución de la secuencia de despegue, a simple vista resulta difícil decir con exactitud sin el dron alcanzó, o no, la altura desea.\\E$"}
