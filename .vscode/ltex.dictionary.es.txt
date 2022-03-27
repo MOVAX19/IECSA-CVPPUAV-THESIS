@@ -256,3 +256,9 @@ AirSimDummy17
 Programming
 the
 loop
+SYSSTATUS
+motorsarmedwait
+waypointsnode
+computervisionnode
+cameracontroller
+camimageraw
