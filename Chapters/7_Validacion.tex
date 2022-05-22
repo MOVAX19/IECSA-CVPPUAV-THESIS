@@ -1,7 +1,7 @@
 \chapter{Validación del algoritmo de visión artificial}
 
 
-\section{Descripción del sistema y forma de trabajo}
+\section{Metodología}
 En esta sección se describe el procedimiento realizado para llevar a cabo la adecuación del algoritmo de visión artificial para la detección de compuertas dentro del circuito de vuelo. Cabe mencionar que, como se mostró en la sección anterior, el tipo de compuertas seleccionadas para la formación del circuito de vuelo fue un modelo similar al utilizado en las competencias del IROS, con un característico color naranja. Ahora bien, debido a que el algoritmo de visión artificial está basado en la detección de color y no utiliza redes neuronales el aspecto más importante para adecuar el algoritmo es encontrar el rango de color en la escala HSV para nuestro objeto, o mejor dicho el color de nuestro objeto.
 
 Entonces, para lograr sintonizar lo mejor posible la escala de color, se utilizó como base un rango de color adecuado para detectar el color naranja, pues este es el color principal del objeto de interés; sin embargo, el color de las compuertas es una de la infinidad de tonalidades derivadas del naranja, por lo que fue necesario ajustar más el rango para que, de ser posible, el algoritmo fuera capaz de detectar exclusivamente las compuertas y no diera falsos positivos con objetos con una tonalidad derivada del naranja. Por otro lado, dentro del circuito de vuelo el único objeto con una tonalidad similar al color naranja es el edificio que se encuentra detrás de la primera compuerta, por lo que, se están asumiendo condiciones prácticamente ideales para la detección de las compuertas.
