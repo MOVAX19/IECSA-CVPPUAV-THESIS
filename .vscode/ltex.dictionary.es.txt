@@ -262,3 +262,9 @@ waypointsnode
 computervisionnode
 cameracontroller
 camimageraw
+hue
+saturation
+value
+Skydio
+Parrot
+DJI

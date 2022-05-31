@@ -8,16 +8,16 @@ A partir de lo anterior, la comunidad científica, en especial aquella dedicada 
 
 Sumando a lo ya expresado, se han creado una serie de instituciones y eventos con el fin de financiar, potenciar y motivar el desarrollo tecnológico en este campo emergente, dando lugar a lo que se conoce como \textit{carreras de drones autónomos}. Dentro de los eventos o competencias más significativas se encuentra el \textit{Autonomous Drone Racing (ADR)}\cite{moon2017iros}, llevado a cabo cada año en la Conferencia Internacional de Sistemas y Robots Inteligentes (IROS, por sus siglas en inglés),  el \textit{AlphaPilot Challenge (APC)}\cite{foehn2020alphapilot}, organizado por Lockheed Martin en colaboración con Nvidia y la Liga de Carrera de Drones (DRL); y \textit{Game of Drones (GOD)}\cite{madaan2020airsim}, gestionada por Microsoft para la Conferencia Anual de Sistemas de Procesamiento de Información Neuronal (NeurIPS) de 2019.
 
-Los eventos anteriores representan un punto de encuentro a nivel internacional que ha permitido dirigir los esfuerzo e intelectos alrededor del mundo, a la propuesta de soluciones, ya sea de forma parcial o general, para el dilema ya expresado; y de hecho, es ahí en donde se ha presentado el estado del arte de este enfoque, pues se busca poner a prueba las implementaciones propuestas por los participantes en circuitos y retos con distintas características y composición. En las siguientes subsecciones se describe con más detalle las características, requisitos y relevancia de cada una de las competencias mencionadas.
+Los eventos anteriores representan un punto de encuentro a nivel internacional que ha permitido dirigir los esfuerzo e intelectos alrededor del mundo, a la propuesta de soluciones, ya sea de forma parcial o general, para el dilema ya expresado; de hecho, es ahí en donde se ha presentado el estado del arte de este enfoque, pues se busca poner a prueba las implementaciones propuestas por los participantes en circuitos y retos con distintas características y composición. En las siguientes subsecciones se describe con más detalle las características, requisitos y relevancia de cada una de las competencias mencionadas.
 
 \subsection{Autonomous Drone Racing}
 A grandes rasgos, el ADR es una competencia que busca promover soluciones para vuelos autónomos ágiles en ambientes angostos de interiores. En el desafío se combinan técnicas y enfoques que buscan optimizar distintos parámetros de desempeño, como la generación de trayectoria de vuelo, el tiempo de recorrido de los circuitos, esquemas de control, detección de obstáculos, localización y mapeo, entre otros. 
 
 El ADR debutó como evento en la edición de 2016 del IROS, en Daejeon, Corea. A partir de entonces siguió teniendo presencia en 3 ediciones más del IROS; en 2017 con sede en Vancouver, Canadá, en 2018 en Madrid, España y en 2019 Macao, China. Cabe recalcar que el IROS per se sigue llevando a cabo, sin embargo, la última ADR tuvo lugar en la edición 2019 de este evento, posiblemente por las restricciones derivadas en 2020 por la pandemia provocada por el virus SARS-CoV-2; además, la edición 2021 del IROS, se llevó a cabo de forma virtual.  
 
-En general, en cada edición se propuso una única pista, dentro de una zona techada, con 5 pruebas de vuelo para los equipos participantes; velocidad de vuelo en línea recta a través de una serie de compuertas incompleta, vuelo en curva cerrada, recorrido de un circuito en zigzag, recorrido de un circuito en espiral y a través de compuertas cerradas y vuelo por un corredor con obstáculos dinámicos. 
+En general, en cada edición se propuso una única pista, dentro de una zona techada, con 5 pruebas de vuelo para los equipos participantes; velocidad de vuelo en línea recta a través de una serie de compuertas, vuelo en curva cerrada, recorrido de un circuito en zigzag, recorrido de un circuito en espiral y a través de compuertas cerradas y vuelo por un corredor con obstáculos dinámicos. 
 
-En la edición de 2016, las compuertas fueron identificadas con un número embebido en un código QR, para facilitar su localización. El tamaño de los drones se limitó a un volumen máximo de  1 m x 1 m x 1 m; a los equipos se les compartieron detalles estructurales sobre el circuito antes de la competencia, por lo que les era posible generar mapas les pudieran auxiliar en la navegación del dron. Además, se les permitió el uso de cualquier tipo de sensor, siempre y cuando este estuviera montado en el chasis del vehículo; se utilizaron distintos tipos de sensores para su participación, incluyendo lidares, láseres, radares y sensores ultrasónicos.
+En la edición de 2016, las compuertas fueron identificadas con un número embebido en un código QR, para facilitar su localización. El tamaño de los drones se limitó a un volumen máximo de  1 m x 1 m x 1 m. A los equipos se les compartieron detalles estructurales sobre el circuito, antes de la competencia, por lo que les era posible generar mapas pudieran auxiliar al dron en su navegación. Además, se les permitió el uso de cualquier tipo de sensor, siempre y cuando este estuviera montado en el chasis del vehículo; incluyendo lidares, láseres, radares y sensores ultrasónicos.
 
 En cada edición del ADR, las compuertas utilizadas para delimitar el circuito han conservado un característico color naranja; en cada evento los circuitos cumplieron con los requerimientos y pruebas mencionadas anterior mente, excepto en la edición 2019 en donde el circuito estuvo compuesto por dos grupos de compuertas LED, alfombras con patrones y luces controladas; además, el tamaño de este circuito fue reducido para producir una pista mucho más angosta, con el objetivo de incrementar la dificultad en el desafió \cite{rojas2021board}.   
 
@@ -26,7 +26,7 @@ Para cada equipo, la competencia comenzaba con el despegue del dron de forma man
 
 
 \subsection{AlphaPilot Challenge}
-Como se mencionó, el APC es otra competencia enfocada en las carreras de drones autónomos, fue presentado como un reto de innovación con un gran premio de \$1 millón de dólares para el equipo ganador; la iniciativa fue creada y lanzada al público por Lockheed Martin en conjunto con La Liga de Carrera de drones, en 2019. El objetivo del desafío fue desarrollar un dron completamente autónomo que pudiera navegar por un circuito de vuelo utilizando visión por computadora; a diferencia de otras competencias, el APC no solo buscaba poner a prueba la capacidad de navegación de los sistemas, sino que, se buscaba explotar por completo los sistemas de vuelo, de tal forma que se buscó evaluar también la velocidad de vuelo y agilidad de las maniobras en una pista  más grande y compleja en comparación con la de ADR. 
+Como se mencionó, el APC es otra competencia enfocada en las carreras de drones autónomos. Fue presentado como un reto de innovación con un gran premio de \$1 millón de dólares para el equipo ganador; la iniciativa fue creada y lanzada al público por Lockheed Martin en conjunto con La Liga de Carrera de drones, en 2019. El objetivo del desafío era desarrollar un dron completamente autónomo que pudiera navegar por un circuito de vuelo utilizando visión por computadora. A diferencia de otras competencias, el APC no solo buscaba poner a prueba la capacidad de navegación de los sistemas, sino que, se buscaba explotar por completo los sistemas de vuelo, de tal forma que también se evaluó la velocidad de vuelo y agilidad de las maniobras, en un circuito más grande y complejo, en comparación con el del ADR. 
 
 Entonces, en el APC se buscó implementar soluciones más complejas que permitieran percibir el ambiente del dron por medio sistemas de visión artificial y que los sistemas de control de vuelo fueran capaces de llevar al límite la velocidad de navegación de este; el objetivo era claro, se buscaba ampliar el estado del arte y desarrollar implementaciones que pudieran competir con el desempeño de los mejores pilotos humanos. 
 
@@ -56,11 +56,13 @@ Por último, las características del dron utilizado fueron estandarizadas, por 
 \end{table}
 
 \subsection{Game of Drones}
-En la tercera edición de la Conferencia Anual de Sistemas de Procesamiento de Información Neuronal (NeurIPS), en 2019, el equipo de desarrollo de AirSim\cite{foehn2020alphapilot} en conjunto con la Universidad de Stanford y la Universidad de Zúrich buscaron fomentar el avance de las tecnologías utilizadas den las carreras de drones, gestionando la competencia Game of Drones.
+En la tercera edición de la Conferencia Anual de Sistemas de Procesamiento de Información Neuronal (NeurIPS), en 2019, el equipo de desarrollo de AirSim\cite{foehn2020alphapilot} en conjunto con la Universidad de Stanford y la Universidad de Zúrich, buscaron fomentar el avance de las tecnologías utilizadas en las carreras de drones, gestionando la competencia Game of Drones.
 
-De manera similar a las competencias anteriores, el GOD buscó explotar el potencial de los algoritmos de machine learning y visión por computadora, junto con los avances en cuestión de técnicas de planificación de trayectoria, control y estimación de estado de quadrotores; sin embargo, a diferencia de los otros eventos, el GOD se basó completamente en la utilización de un simulador de vuelo con gráficas foto-realistas para la implementación de las propuestas desarrolladas por los equipos. 
+De manera similar a las competencias anteriores, el GOD buscó explotar el potencial de los algoritmos de machine learning y visión por computadora, junto con los avances en cuestión de técnicas de planificación de trayectoria, control y estimación de estado de quadrotores; sin embargo, a diferencia de los otros eventos, el GOD se basó completamente en el uso de un simulador de vuelo con gráficas foto-realistas para la implementación de las propuestas desarrolladas por los equipos. 
 
-El simulador utilizado para la competencia  fue Microsoft AirSim\cite{airsim2017fsr}, el cual fue desarrollado con el objetivo de hacer más accesible el ámbito de las carreras de drones para ingenieros e investigadores, que tiene un conocimiento bastante amplio sobre algoritmos de machine learning e inteligencia artificial, pero que quizás no estén tan familiarizados con el hardware utilizado por estos sistemas de robótica. AirSim se define como un ambiente de simulación para multi-rotores, que integra un motor de físicas de consumo reducido, controlador de vuelo, sensores inerciales, y gracias al uso del motor gráfico Unreal Engine (UE), cuenta con un ambiente con gráficos foto-realistas. Además, también ofrece una API (Application Programming Interface) que permite interactuar y comunicarse con los algoritmos de machine learning, y también provee datos sobre el progreso del recorrido, el desempeño del dron y la habilidad de imponer reglas o normas para la carrera, asociadas a infracciones por colisiones y descalificaciones dentro de la competencia.
+El simulador utilizado para la competencia  fue Microsoft AirSim\cite{airsim2017fsr}, el cual fue desarrollado con el objetivo de hacer más accesible el ámbito de las carreras de drones para ingenieros e investigadores, que tiene un conocimiento bastante amplio sobre algoritmos de machine learning e inteligencia artificial, pero que quizás no estén tan familiarizados con el hardware utilizado por estos sistemas de robótica. 
+
+AirSim se define como un ambiente de simulación para multi-rotores, que integra un motor de físicas de consumo reducido, controlador de vuelo, sensores inerciales, y gracias al uso del motor gráfico Unreal Engine (UE), cuenta con un ambiente con gráficos foto-realistas. Además, también ofrece una API (Application Programming Interface) que permite interactuar y comunicarse con los algoritmos de machine learning, y también provee datos sobre el progreso del recorrido, el desempeño del dron y la habilidad de imponer reglas o normas para la carrera, asociadas a infracciones por colisiones y descalificaciones dentro de la competencia.
 
 La competencia se enfocó en control y planificación de trayectoria, visión artificial y evasión de obstáculos (otro dron oponente). Lo anterior se llevó a cabo en tres niveles con base en el enfoque: 
 
@@ -96,9 +98,9 @@ Hoy en día, ROS es utilizado en una amplia gama de robots, desde robots con rue
 
 \textbf{Paquetes:} son la unidad principal para organizar software en ROS. Un paquete puede contener procesos (nodos), liberarías, conjuntos de datos, archivos de configuración o cualquier otro tipo de archivo que pertenezca a un conjunto funcional.  Los paquetes representan la unidad atómica en ROS.
 
-\textbf{Tipos de mensajes:} descripción de mensajes, definen la estructura de los datos para los mensajes manejados por ROS.
+\textbf{Tipos de mensajes:} definen la estructura de los datos para los mensajes manejados por ROS.
 
-\textbf{Tipos de servicios:} descripción de servicios, define la estructura solicitada o enviada para los datos utilizados en los servicios de ROS.
+\textbf{Tipos de servicios:} define la estructura solicitada o enviada para los datos utilizados en los servicios de ROS.
 
 \textbf{Nodos:} son procesos que llevan a cabo cálculos. ROS está diseñado para ser modular. Un sistema robótico generalmente está compuesto por múltiples nodos encargos de distintas tareas como la lectura de un sensor, control de un actuador, ejecución de algoritmos, etc.
 
@@ -118,17 +120,17 @@ En ROS 1, los nodos comúnmente utilizan la API \textit{Node}, la cual implement
 
 En cuanto al proceso de lanzamiento, el sistema de lanzamiento de ROS 1 solo inicializa un conjunto de procesos, y no provee ningún tipo de retroalimentación fuera de sí el proceso fue iniciado o no. Sin embargo, es común que los desarrolladores escriban sus procesos para que esperen una cierta cantidad de tiempo o una bandera de estado, que indique que todo está bien antes de comenzar a procesar los datos. 
 
-Además, en sistemas complejos la observabilidad de los procesos y la posibilidad de una configuración dinámica se vuelven mucho más relevantes. En ROS 1 los nodos no tiene ningún estado asociado y solo algunos componentes una interfaz para obtener información o manipular el sistema durante su ejecución.  
+Además, en sistemas complejos la observabilidad de los procesos y la posibilidad de una configuración dinámica se vuelven mucho más relevantes. En ROS 1 los nodos no tiene ningún estado asociado antes o durante su ejecución.
    
 A partir de lo anterior, en 2014 una nueva versión de ROS con un enfoque y estructura distinta es anunciada por Open Robotics.  ROS 2 surge como un completo rediseño para lo que había sido el entorno de trabajo hasta entonces, con esta reestructuración se busca cubrir necesidades y funcionalidades que no habían sido consideradas con  ROS 1, pero que habían sido exigidas por la comunidad y la industria. Lo anterior dio lugar al desarrollo de un nuevo conjunto de paquetes con cambios en API general, arquitectura y comunicación. 
 
 \subsection{¿Por qué ROS 2?}
 
-Como se mencionó anteriormente, ROS surgió con la idea de satisfacer las necesidades de un único modelo de robot, y lo logró; Por otro lado, a pesar de haber ampliado el framework para funcionar para otros dispositivos, como ya se mencionó, con el paso del tiempo los desarrolladores del proyecto de algunas características importantes de las que carece ROS 1, pues si bien es cierto que en lo últimos años ROS ha adquirido una importante relevancia, su uso se ha visto limitado a aplicaciones con fines académicos y no ha podido despegar en el sector industrial debido a las limitaciones con las que cuenta, dentro de ellas cabe mencionar el hecho de no estar diseñado para trabajar con sistemas en tiempo real, además de carecer de estándares de seguridad para llevar a cabo certificaciones de este tipo. 
+Como se mencionó anteriormente, ROS surgió con la idea de satisfacer las necesidades de un único modelo de robot, y lo logró; Por otro lado, a pesar de haber ampliado el framework para funcionar para otros dispositivos, como ya se mencionó, con el paso del tiempo los desarrolladores del proyecto identificaron algunas características importantes de las que carece ROS 1, pues si bien es cierto que en lo últimos años ROS ha adquirido una importante relevancia, su uso se ha visto limitado a aplicaciones con fines académicos y no ha podido despegar en el sector industrial debido a las limitaciones con las que cuenta, dentro de ellas cabe mencionar el hecho de no estar diseñado para trabajar con sistemas en tiempo real, además de carecer de estándares de seguridad para llevar a cabo certificaciones de este tipo. 
 
 Las características mencionadas anteriormente no son para nada triviales y modificar el framework de ROS 1 para implementarlas implica realizar una gran cantidad de cambios, los cuales pueden provocar inestabilidad en el proyecto, pues son adiciones que no se planificaron dentro de la etapa de diseño del framework. Entonces, la opción más razonable para el quipo de desarrollo fue crear un nuevo framework desde cero; ROS 2. 
 
-Dicho lo anterior, se tiene definidos nuevos casos de uso que dirigen el desarrollo de ROS 2, al mencionar algunos de los más importantes se encuentran los siguientes:
+Con base en lo ya mencionado, se tiene definidos nuevos casos de uso que dirigen el desarrollo de ROS 2, al mencionar algunos de los más importantes se encuentran los siguientes:
 
 \begin{itemize}
     \item Sistemas compuestos por múltiples robots: existe la posibilidad de implementarlos en ROS 1, pero no existe un estándar o un acercamiento unificado que permita el desarrollo para este tipo de sistemas.
@@ -181,12 +183,12 @@ Con base en todo lo que se mencionó en las secciones anteriores, la tabla \ref{
         \textbf{Característica} & \textbf{ROS 1} & \textbf{ROS 2} \\ \hline \hline
         Plataformas & Únicamente soporta de forma nativa Ubuntu. & Soporta Ubuntu, Mac OS X y Windows 10. \\ \hline
         Programación & Trabaja con C++03 y Python 2; Python 3 en su última versión con plan de soporte. & Utiliza C++11 de forma extensiva y usa algunas partes de C++14 y Python a partir de la versión 3.5.\\ \hline
-        Comunicación & Utiliza una capa de comunicación diseñada desde cero (XML-RPC) & Adopta un protocolo ya definido (DDS) \\ \hline
+        Comunicación & Capa de comunicación diseñada desde cero (XML-RPC) & Adopta un protocolo ya definido (DDS) \\ \hline
         Compilación & Utiliza \textit{catkin} para compilar e instalar sus paquetes & Implementa \textit{Ament}, un nuevo sistema de compilación que integra a \textit{colcon}.\\ \hline
-        POO & No hay un estándares, cada implementación es única & Existen pautas definidas par escribir los nodos \\ \hline
-        Archivos de lanzamiento & Se crean utilizando XML y Python, sin embargo, de este último no hay documentación sobre como hacerlo & Permite crearlos de forma nativa en Python ofreciendo una mayor personalización en cada archivo. \\ \hline
+        POO & No hay un estándares & Existen pautas definidas par escribir los nodos. \\ \hline
+        Archivos de lanzamiento & Se crean utilizando XML y Python & Permite crearlos de forma nativa en Python. \\ \hline
         Servicios & Son síncronos & Son asíncronos. \\ \hline
-        Paquetes & Se crean los paquetes y se añaden archivos de forma indistinta & Se tiene que especificar si el paquete se basara en Python o C++.\\ \hline \hline
+        Paquetes & se añaden archivos de forma indistinta & Se tiene que especificar el lenguaje de programación utilizado.\\ \hline \hline
     \end{tabular}
     \caption{ROS 1 vs. ROS 2}
     \label{tab:ROS1ROS2}
@@ -210,11 +212,13 @@ La visión artificial o visión por computadora es un campo de la informática q
 
 Generalmente, las imágenes digitales se encuentran definidas bajo un modelo de color de tres componentes: rojo, verde y azul (RGB), en donde a cada color se le asigna una matriz de las mismas dimensiones de la imagen, a tal forma que las tres matrices en conjunto conforman la concentración de color en los píxeles de la imagen en cuestión \cite{saravanakumar2011multiple}.
 
-La concentración de cada color está definida por 8 bits; es decir, este parámetro puede tener un valor entre el 0 y el 255, que representan la menor y mayor concentración, respectivamente. El modelo de color RGB representa una forma sencilla para representar la concentración de color en una imagen, sin embargo, cuando se requiere buscar una tonalidad de color especifica en una imagen, utilizando este espacio de color, la situación puede llegar a complicarse cuando existen cambios de iluminación en el ambiente. 
+La concentración de cada color está definida por 8 bits; es decir, este parámetro puede tener un valor entre el 0 y el 255, que representan la menor y mayor concentración, respectivamente. El modelo de color RGB resulta ser una forma sencilla para representar la concentración de color en una imagen; sin embargo, cuando se requiere buscar una tonalidad de color especifica en una imagen utilizando este espacio de color, la situación puede llegar a complicarse cuando existen cambios de iluminación en el ambiente. 
 
-Debido a lo anterior, cuando se quiere realizar operaciones de procesamiento de imágenes, se suele cambiar el modelo de color de la imagen de RBG a HSV, pues este espacio de color permite manejar los cambios de iluminación con más facilidad y utiliza un sistema para la definición del tono mucho más sencillo de utilizar. 
+Debido a lo anterior, en operaciones de procesamiento de imágenes, se suele convertir el modelo de color de la imagen, de RBG a HSV, pues este espacio de color permite manejar los cambios de iluminación con más facilidad y en general resulta ser un sistema más práctico de emplear para representar tonalidades de color.
 
-De manera similar e intuitiva, el espacio de color HSV está compuesto por tres parámetros para la definición de la concentración de color: el matiz (hue; H), la saturación (saturation; S) y el valor (value; V). Estos tres parámetros son organizados en una lista en el orden mencionado, y contienen un rango de valor asociado a cada uno. A continuación, la tabla \ref{tab:hsv_param} contiene la descripción de los parámetros utilizados por este modelo de color así como su rango de valores.
+De manera similar, el espacio de color HSV está compuesto por tres parámetros para la definición de la concentración de color: el matiz (hue [H]), la saturación (saturation [S]) y el valor (value [V]). 
+
+Estos tres parámetros son organizados en una lista en el orden mencionado, y contienen un rango de valor asociado a cada uno. A continuación, la tabla \ref{tab:hsv_param} contiene la descripción de los parámetros utilizados por este modelo de color así como su rango de valores.
 
 \begin{table}[ht]
     \centering
@@ -235,12 +239,12 @@ De manera similar e intuitiva, el espacio de color HSV está compuesto por tres 
 
 \subsubsection{Concepto}
 
-De acuerdo con su documentación oficial \cite{OpenCV}, OpenCV (del inglés, Open Source Computer Vision Library) es una librería multiplataforma de código abierto que fue diseñada para realizar procesamiento de imágenes en tiempo real, contiene una cantidad considerable de algoritmos de visión artificial, por lo que, es considerada un estándar para implementar aplicaciones en donde es necesario utilizar visión por computadora; está escrita en C/C++ y puede ser instalada en Linux, Windows y Mac OS X. Además, cuenta con interfaces para Python, Ruby, Matlab y otros lenguajes de programación. 
+De acuerdo con su documentación oficial \cite{OpenCV}, OpenCV (del inglés, Open Source Computer Vision Library) es una librería multiplataforma de código abierto que fue diseñada para realizar procesamiento de imágenes en tiempo real. Contiene una cantidad considerable de algoritmos de visión artificial, por lo que es considerada un estándar para implementar aplicaciones en donde es necesario utilizar visión por computadora; está escrita en C/C++ y puede ser instalada en Linux, Windows y Mac OS X. Además, cuenta con interfaces para Python, Ruby, Matlab y otros lenguajes de programación. 
 
 \subsubsection{Historia}
-La primera versión alfa de OpenCV surgió a inicios de 1999, fue desarrollada por Intel con objetivos de investigación en aplicaciones de uso intensivo de CPU. En una visita al MIT, uno de los investigadores de Intel descubrió que un grupo de estudiantes habían desarrollado una infraestructura bastante sólida de visión por computadora, de tal forma que en vez de crear sus propias librerías desde cero, los estudiantes se compartían una serie de código fuente base, con el que podían llevar a cabo sus propias implementaciones, reduciendo el tiempo de desarrollo. 
+La primera versión alfa de OpenCV surgió a inicios de 1999, fue desarrollada por Intel con objetivos de investigación en aplicaciones de uso intensivo de CPU. En una visita al MIT, uno de los investigadores de Intel descubrió que un grupo de estudiantes habían desarrollado una infraestructura bastante sólida de visión por computadora, de tal forma que en vez de crear sus propias librerías desde cero, los estudiantes se compartían paquetes de código fuente que utilizaban como base. Esto les permitía llevar a cabo sus propias implementaciones, reduciendo el tiempo de desarrollo. 
 
-De esta manera, OpenCV fue concebida como una infraestructura estándar que buscaba estar disponible para cualquier desarrollador alrededor del mundo. El desarrollo y optimización de la librería fue delegado a un grupo de expertos pertenecientes a Intel, en Rusia \cite{bradski2008learning}. Vadim Pisarevsky fue el líder del proyecto y participó de forma activa en la optimización y codificación de la librería, tal que gran parte del código desarrollado por él continúa siendo el núcleo funcional de la librería. En conjunto con Vadim, Victor Eruhimov apoyó en el desarrollo prematuro de la infraestructura, al igual que Valery Kuriakin, quien gestionó el laboratorio y aportó de forma continua al proyecto. 
+De esta manera, OpenCV fue concebida como una infraestructura estándar que buscaba estar disponible para cualquier desarrollador alrededor del mundo. El desarrollo y optimización de la librería fue delegado a un grupo de expertos pertenecientes a Intel, en Rusia \cite{bradski2008learning}. Vadim Pisarevsky fue el líder del proyecto y participó de forma activa en la optimización y codificación de la librería y gran parte del código desarrollado por él continúa siendo el núcleo funcional de la librería. Además de Vadim, Victor Eruhimov apoyó en el desarrollo prematuro de la infraestructura, junto con Valery Kuriakin, quien gestionó el laboratorio y aportó de forma continua al proyecto. 
 
 A partir de lo anterior, OpenCV basó su desarrollo en algunos pilares u objetivos:
 
@@ -250,7 +254,7 @@ A partir de lo anterior, OpenCV basó su desarrollo en algunos pilares u objetiv
     \item Potenciar aplicaciones comerciales de visión por computadora, ofreciendo código gratuito y de uso libre, con términos y condiciones de uso que no obligaran al desarrollador a publicar su aplicación como código libre.
 \end{itemize}
 
-En cualquier proyecto de código abierto, la participación de la comunidad es de suma importancia, pues el conjunto de esfuerzos es lo que permite que el proyecto se vuelva autosustentable; OpenCV no es la excepción, pues una cantidad considerable de usuarios han contribuido a su desarrollo, a tal grado que, se puede decir que ya no pertenece a Intel, sino a su propia comunidad. Se estima que la librería ha sido descargada más de dos millones de veces \cite{bradski2008learning}, creciendo de forma continua con un aproximado de hasta 26,000 descargar por mes. 
+En cualquier proyecto de código abierto, la participación de la comunidad es de suma importancia, pues el conjunto de esfuerzos es lo que permite que el proyecto se vuelva autosustentable; OpenCV no es la excepción, pues una cantidad considerable de usuarios han contribuido a su desarrollo, a tal grado que, se puede decir que ya no pertenece a Intel, sino a su propia comunidad. Se estima que la librería ha sido descargada más de dos millones de veces \cite{bradski2008learning}, creciendo de forma continua con un aproximado de hasta 26,000 descargas por mes. 
 
 Hoy en día, OpenCV es utilizada en áreas como segmentación y reconocimiento, identificación de objetos, reconocimiento facial, seguimiento de movimiento, realidad aumentada, percepción de profundidad, calibración multi-cámara, entre muchas otras más \cite{garcia2015learning}. La explotación y el esfuerzo dedicado a la librería ha sido tal que, la infraestructura ya viene con módulos que integran de modelos estadísticos de machine learning.
 
@@ -270,7 +274,7 @@ OpenCV fue diseñado con una estructura modular, es decir, el paquete en su conj
         Detección de objetos & Detección de objetos e instancias de clases especificadas.\\ \hline
         Interfaz gráfica de alto nivel & Interfaz fácil de utilizar con funcionalidades simples\\ \hline
         E/S de video & Interfaces para captura de video y codecs.\\ \hline 
-        Otras & OpenCV cuenta con muchos más módulos, para más información consultar la documentación oficial \cite{OpenCV}\\ \hline \hline
+        Otras & Existen más módulos, para más información consultar la documentación oficial \cite{OpenCV}\\ \hline \hline
     \end{tabular}
     \caption{Módulos de OpenCV}
     \label{tab:OpenCV}
@@ -280,11 +284,11 @@ OpenCV fue diseñado con una estructura modular, es decir, el paquete en su conj
 
 El paradigma de simulación de Software in The Loop (SIL) conlleva la generación de un código fuente compilado a partir de un modelo matemático simulado, de tal forma que se crea un ambiente de simulación práctico para el desarrollo y validación de estrategias de control para sistemas complejos y de gran escala \cite{SIL_OPAL}. 
 
-Con SIL, los ingenieros pueden utilizar una computadora de escritorio para interactuar con la simulación y modificar su código fuente, integrando su algoritmo de control a una planta virtual, substituyendo los prototipos costosos o los bancos de pruebas complejos. El SIL posibilita las pruebas del software antes de la inicialización de la fase de prototipaje, mejorando de forma significativa los tiempos del ciclo de desarrollo del sistema. 
+Con SIL, los ingenieros pueden utilizar una computadora de escritorio para interactuar con la simulación y modificar su código fuente, integrando su algoritmo de control a una planta virtual, substituyendo los prototipos costosos o los bancos de pruebas complejos. El SIL posibilita las pruebas del software antes de pasar a la etapa de pruebas en prototipos, mejorando de forma significativa los tiempos del ciclo de desarrollo del sistema. 
 
-Complementando lo anterior, la simulación de SIL permite detectar bugs o defectos en el código fuente en etapas tempranas de del ciclo de desarrollo, reduciendo los costos derivados de la solución de estos errores en etapas más avanzadas del desarrollo del sistema, cuando el número de componentes e interacciones entre ellos son más complejas y numerosas. 
+Complementando lo anterior, la simulación de SIL permite detectar bugs o defectos en el código fuente en etapas tempranas de del ciclo de desarrollo, reduciendo los costos derivados de la solución de estos errores en etapas más avanzadas del proyecto, cuando el número de componentes e interacciones entre ellos son más complejas y numerosas. 
 
-A manera general, la simulación de SIL contempla la simulación del comportamiento de un algoritmo de control sobre el modelo de una planta o proceso; a diferencia otros paradigmas como Hardware in The Loop (HIL, \citet{HIL_OPAL})  o Rapid Control Prototyping (RCP, \citet{RCP_OPAL}), en una simulación de SIL tanto el sistema de control como el proceso de interés son completamente simulados a partir de modelos matemáticos; es decir, no se requiere ningún tipo de prototipaje físico más que el dispositivo simulador y una computadora para interactuar con la simulación.
+A manera general, la simulación de SIL contempla la simulación del comportamiento de un algoritmo de control sobre el modelo de una planta o proceso; a diferencia otros paradigmas como Hardware in The Loop (HIL, \citet{HIL_OPAL})  o Rapid Control Prototyping (RCP, \citet{RCP_OPAL}), en una simulación de SIL tanto el sistema de control como el proceso de interés son completamente simulados mediante sus respectivos modelos matemáticos; es decir, no se requiere ningún tipo de prototipo físico, más que el dispositivo simulador y una computadora para interactuar con la simulación.
 
 
 Algunas de las ventajas inherentes del paradigma de SIL son: 
@@ -299,21 +303,21 @@ Algunas de las ventajas inherentes del paradigma de SIL son:
 \subsection{Ardupilot}
 
 \subsubsection{Concepto}
-Ardupilot es definido por sus autores \cite{ArduPilot} como un sistema de piloto automático confiable, versátil y de código abierto, capaz de funcionar en diversos vehículos, tales como: multi-copteros, helicópteros, aeronaves de ala fija, botes, submarinos, rovers y más. Al igual que otros proyectos grandes de código abierto, su desarrollo es llevado a cabo por una gran comunidad de profesionales y entusiastas.  
+Ardupilot es definido por sus autores \cite{ArduPilot} como un sistema de piloto automático confiable, versátil y de código abierto, capaz de funcionar en diversos vehículos, tales como: multicópteros, helicópteros, aeronaves de ala fija, botes, submarinos, rovers y más. Al igual que otros proyectos grandes de código abierto, su desarrollo es llevado a cabo por una gran comunidad de profesionales y entusiastas.  
 
-El firmware de ArduPilot permite desarrollar sistemas de navegación para vehículos autónomos no tripulados prácticamente de cualquier tipo, y al ser de código abierto, se encuentra en un estado de mejora continua, más aún, el equipo de desarrollo trabaja de forma colaborativa con socios comerciales para añadir funcionalidades por el beneficio de toda la comunidad. Por otro lado, si bien es cierto que ArduPilot no se dedica a la manufacturación de hardware, su firmware trabaja en una amplia gama de hardware para el control de vehículos no tripulados.  
+El firmware de ArduPilot permite desarrollar sistemas de navegación para vehículos autónomos no tripulados prácticamente de cualquier tipo, y al ser de código abierto, se encuentra en un estado de mejora continua; más aún, el equipo de desarrollo trabaja de forma colaborativa con socios comerciales para añadir funcionalidades por el beneficio de toda la comunidad. Por otro lado, si bien es cierto que ArduPilot no se dedica a la manufacturación de hardware, su firmware trabaja en una amplia gama de tarjetas y sistemas embebidos para el control de vehículos no tripulados.  
 
 Actualmente, se estima que ArduPilot ha sido instalado en más de un millón de vehículos alrededor del mundo \cite{ArduPilot}; además, integra un registro de datos avanzados, herramientas de análisis y simulación, por lo que ha pasado por un proceso de validación bastante extenso, lo que le da una fiabilidad y seguridad bastante alta para sistemas de piloto automático. Además, los usuarios de ArduPilot tienen acceso a una gran cantidad de interfaces para sensores, computadoras de compañía y sistemas de comunicación.
 
-Por último, ArduPilot ha adquirido una relevancia tal que, es usado ampliamente en vehículos desarrollados por instituciones y corporaciones de gran importancia, tales como la NASA, Intel, Boeing y una gran cantidad de universidades y colegios de alrededor del mundo.
+Por último, ArduPilot ha adquirido una relevancia inmensa, a tal grado es usado ampliamente en vehículos desarrollados por instituciones y corporaciones de gran importancia, tales como la NASA, Intel, Boeing y una gran cantidad de universidades y colegios de alrededor del mundo.
 
 \subsubsection{Framework de SIL}
 
-Por otro lado, pese a que ArduPilot está diseñado para ser instalado en hardware físico, como se mencionó en el apartado anterior, también cuenta con herramientas avanzadas de simulación, tal es el caso de su framework destinado a simulaciones de SIL, lo que permite ejecutar perfiles de pilotos automáticos de vehículos como aviones, multi-copteros o rovers, con el objetivo de observar el comportamiento del piloto automático sin necesidad de contar con el vehículo o computadora de vuelo en físico.
+ Pese a que ArduPilot está diseñado para ser instalado en hardware físico, como se mencionó en el apartado anterior, también cuenta con herramientas avanzadas de simulación, tal es el caso de su framework destinado a simulaciones de SIL, lo que permite ejecutar perfiles de pilotos automáticos de vehículos como aviones, multicópteros o rovers, con el objetivo de observar el comportamiento del piloto automático sin necesidad de contar con el vehículo o computadora de vuelo en físico.
 
-El framework de SIL de ArduPilot permite ejecutar ArduPilot en cualquier computadora de escritorio, sin necesidad de cualquier otro tipo de hardware especial. Esto es debido a que ArduPilot puede ser visto como un piloto automático portable que puede ser instalado y ejecutado en una gran variedad de plataformas. Dicho de esta forma, una computadora personal puede ser vista como un dispositivo más, en donde se desea instalar ArduPilot.
+El framework de SIL de ArduPilot permite ejecutar ArduPilot en cualquier computadora de escritorio, sin necesidad de ningún tipo de hardware especial. Esto es debido a que ArduPilot puede ser visto como un piloto automático portable que puede ser instalado y ejecutado en una gran variedad de plataformas. Dicho de esta forma, una computadora personal puede ser vista como un dispositivo más, en donde se desea instalar ArduPilot.
 
-Es importante aclara que cuando la simulación de SIL es ejecutada, los datos \textit{supuestamente} leídos por los sensores del piloto automático son generados a partir de las dinámicas de vuelo del simulador de vuelo. ArduPilot cuenta con una gran variedad de simuladores para distintos vehículos, y puede integrarse con simuladores externos. Lo anterior permite desarrollar aplicaciones para distintos vehículos y sensores, entre ellos: 
+Es importante aclara que cuando la simulación de SIL es ejecutada, los datos \textit{supuestamente} leídos por los sensores del piloto automático son generados a partir de las dinámicas del simulador de vuelo. ArduPilot cuenta con una gran variedad de simuladores para distintos vehículos, y puede integrarse con simuladores externos. Lo anterior permite desarrollar aplicaciones para distintos vehículos y sensores, entre ellos: 
 
 \begin{itemize}
     \item Aeronaves multi-rotor
@@ -327,28 +331,25 @@ Es importante aclara que cuando la simulación de SIL es ejecutada, los datos \t
 
 Además, el framework de SIL provee al usuario con una suite de herramientas de desarrollo, tales como depuradores de código, analizadores estáticos, herramientas de análisis dinámico. El ambiente de SIL fue desarrollado para ejecutarse de forma nativa en los sistemas operativos Linux y Windows.
 
-Por último en cuanto al ambiente de simulación de ArduPilot, la figura \ref{Ardupilot_SIL}, proporciona una perspectiva ejemplo de los puertos de comunicación utilizados para la comunicación de ArduPilot con más software.
-
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.65\textwidth]{Ardupilot_SITL.jpg}
-    \caption{Ejemplo de puertos de comunicación de Ardupilot}
-    \label{Ardupilot_SIL}
-\end{figure}
-
 \subsubsection{PymavLink}
 
 De acuerdo con su documentación oficial \cite{MAVLink}, MAVLink es un protocolo para comunicación con drones y sus componentes; sigue un patrón de diseño híbrido de publicación-subscripción y comunicación punto-a-punto, en donde la trama de datos es enviada mediante el primer paradigma y los protocolos de configuración, como misiones y parámetros de vuelo, son enviados mediante el segundo.
 
-En otras palabras, el uso del protocolo MAVLink es necesario para entablar comunicación con la simulación del controlador de vuelo provisto por Ardupilot, y de esta forma obtener los parámetros de vuelo de dron simulado así como el envío de comandos de vuelo.
+En otras palabras, el uso del protocolo MAVLink es necesario para entablar comunicación con la simulación del controlador de vuelo provisto por Ardupilot, de tal forma que es posible enviar comando de vuelo y obtener los parámetros de vuelo del dron, antes y durante su recorrido.
 
-Dicho lo anterior, MAVROS \cite{MAVROS} es un paquete de ROS que crea un nodo nativo capaz de entablar comunicación con un controlador de vuelo mediante MAVLink, por lo que es una alternativa bastante popular dentro de la comunidad, para la integración de software y proyectos relacionados con ROS y drones; sin embargo, a pesar de que el paquete se encuentre en constante desarrollo, la versión estable del mismo solo se está disponible para ROS 1, mientras que la implementación para ROS 2 todavía se encuentra en una etapa prematura de su desarrollo al tiempo de escritura de este trabajo, ofreciéndose en una versión alfa, la cual no cuenta con todas las funcionalidades ni con la estabilidad ofrecida por la implementación de ROS 1.
+Dicho lo anterior, MAVROS \cite{MAVROS} es un paquete de ROS que crea un nodo nativo capaz de entablar comunicación con un controlador de vuelo mediante MAVLink, por lo que es una alternativa bastante popular dentro de la comunidad, para la integración de software y proyectos relacionados con ROS y drones; sin embargo, a pesar de que el paquete se encuentre en constante desarrollo, la versión estable del mismo solo se está disponible para ROS 1, mientras que la implementación para ROS 2 todavía se encuentra en una etapa prematura de su desarrollo, ofreciéndose en una versión alfa, la cual no cuenta con todas las funcionalidades ni con la estabilidad ofrecida por la implementación de ROS 1.
+
+Por otro lado, existen alternativas a MAVROS, como lo es PymavLink; se trata de una librería desarrollada para Python que cuenta con funciones específicas para establecer un intercambio de datos por medio del protocolo MAVLink.
+
+Entonces, debido a que PymavLink está desarrollada en Python es posible realizar una integración entre la librería y ROS 2, sin ningún tipo de problema.
 
 
 \section{Gazebo}
 
 \subsection{Concepto}
-Dentro del desarrollo de sistemas, es indispensable llevar a cabo un proceso de validación que permita evaluar el cumplimiento de los requerimientos funcionales del sistema desarrollado, tanto para software como para hardware. Hoy en día existen muchas herramientas que facilitan la ejecución de pruebas de validación para sistemas complejos; en este aspecto, el software de simulación corresponde a una gran alternativa pues permite realizar las pruebas de validación pertinentes bajo distintos paradigmas, en donde es necesario (o no) contar con un prototipo físico del sistema o un modelo matemático del mismo, lo anterior agiliza el desarrollo del sistema y probar algoritmos, diseños e incluso llevar a cabo el entrenamiento de algoritmos basados en inteligencia artificial; además, permite identificar errores y fallas en etapas tempranas del desarrollo del sistema, reduciendo costos y asegurando un mayor grado de calidad en el producto final.
+Dentro del desarrollo de sistemas, es indispensable llevar a cabo un proceso de validación que permita evaluar el cumplimiento de los requerimientos funcionales del sistema desarrollado, tanto para software como para hardware. Hoy en día existen muchas herramientas que facilitan la ejecución de pruebas de validación para sistemas complejos. En este aspecto, el software de simulación representa una gran alternativa, pues permite realizar las pruebas de validación pertinentes bajo distintos paradigmas, en donde es necesario (o no) contar con un prototipo físico del sistema o, en su defecto, con un modelo matemático de este. 
+
+La validación por medio de Simulación agiliza el desarrollo del sistema y la integración de algoritmos o diseños;  incluso permite llevar a cabo el entrenamiento de algoritmos basados en inteligencia artificial. Además, permite identificar errores y fallas en etapas tempranas del desarrollo del sistema, reduciendo costos en gestión de cambios y asegurando un mayor grado de calidad en el producto final.
 
 De acuerdo con su sitio oficial \cite{gazebo_2014}, Gazebo es un software de simulación que ofrece la posibilidad de simular de forma precisa y eficiente, conjuntos de robots en ambientes complejos de interiores y exteriores. Además, ofrece un motor de físicas robusto, gráficos de alta calidad e interfaces gráficas y programáticas convenientes. Por último, al ser un proyecto desarrollado bajo el paradigma de open-source, cuenta con una comunidad bastante amplia que distribuye el conocimiento y se encarga de darle mantenimiento a este.
 
@@ -367,7 +368,7 @@ A demás de las ventajas ya mencionadas, inherentes al uso de un simulador para 
 \begin{itemize}
     \item \textbf{Proyecto de código abierto:} el código fuente de Gazebo está liberado al público, por lo que cualquier usuario experimentado puede entender su funcionamiento y contribuir a su desarrollo; además, al ser software libre, Gazebo puede ser utilizado por cualquier tipo de usuario prácticamente sin ningún tipo de restricción. 
     \item \textbf{Simulación de dinámicas:} es posible utilizar una serie de motores de físicas de código abierto, tales como ODE (Open Dynamics Engine), Simbody y DART (Dynamic Animation and Robotics Toolkit)
-    \item \textbf{Gráficos avanzados en 3D:} Gazebo utiliza OGRE, un motor gráfico de código abierto que permite crear ambientes de simulación con gráficos realistas, incluyendo iluminación, sombras y texturas de alta calidad.
+    \item \textbf{Gráficos avanzados en 3D:} Gazebo utiliza OGRE, un motor gráfico de código abierto que permite crear ambientes de simulación con gráficos realistas,q incluyendo iluminación, sombras y texturas de alta calidad.
     \item \textbf{Sensores y ruido:} permite generar datos a partir de una amplia gama de sensores simulados, desde láseres, cámaras, sensores de movimiento, sensores de fuerza y torque, etc.
     \item \textbf{Plugins:} es posible desarrollar plugins personalizados para sensores, robots y el control de ambiente, con base en las necesidades del usuario. 
     \item \textbf{Modelos de robots:} Gazebo cuenta con un catálogo extenso de modelos de robots existentes en el mercado, que pueden ser utilizados por cualquier usuario; sin embargo, también existe la posibilidad de que el usuario cree su propio modelo de robot desde cero. 
